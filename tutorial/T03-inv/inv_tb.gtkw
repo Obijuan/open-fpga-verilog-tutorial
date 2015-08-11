@@ -1,0 +1,22 @@
+[*]
+[*] GTKWave Analyzer v3.3.64 (w)1999-2014 BSI
+[*] Fri Aug  7 16:00:45 2015
+[*]
+[dumpfile] "/home/obijuan/development/mytests/verilog/tutorial/03-not/inv_tb.vcd"
+[dumpfile_mtime] "Fri Aug  7 15:59:15 2015"
+[dumpfile_size] 318
+[savefile] "/home/obijuan/development/mytests/verilog/tutorial/03-not/inv_tb.gtkw"
+[timestart] 0
+[size] 1000 600
+[pos] -1 13
+*-2.975790 6 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 223
+[signals_width] 78
+[sst_expanded] 1
+[sst_vpaned_height] 160
+@28
+inv_tb.din
+@29
+inv_tb.dout
+[pattern_trace] 1
+[pattern_trace] 0
