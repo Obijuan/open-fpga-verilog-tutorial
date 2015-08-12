@@ -43,9 +43,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.000568"
-     inkscape:cx="104.11614"
-     inkscape:cy="832.87021"
+     inkscape:zoom="1.4150168"
+     inkscape:cx="245.80874"
+     inkscape:cy="891.95041"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -143,7 +143,7 @@
          x="385.07425"
          y="137.9193"
          id="tspan4162-7-2"
-         style="font-size:10px;text-align:center;text-anchor:middle">20</tspan></text>
+         style="font-size:10px;text-align:center;text-anchor:middle">44</tspan></text>
     <rect
        style="fill:#ffffff;stroke:#000000;stroke-width:0.76267004;stroke-opacity:1"
        id="rect4268-2-1-5-0"
@@ -511,5 +511,31 @@
          id="tspan3655-2"
          x="476.22949"
          y="145.37737">&quot;0&quot;</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="497.38159"
+       y="124.95206"
+       id="text3653-1"
+       sodipodi:linespacing="125%"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan3655-20"
+         x="497.38159"
+         y="124.95206">(3.3v)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="496.00153"
+       y="145.17221"
+       id="text3653-1-5"
+       sodipodi:linespacing="125%"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan3655-20-3"
+         x="496.00153"
+         y="145.17221">(GND)</tspan></text>
   </g>
 </svg>
