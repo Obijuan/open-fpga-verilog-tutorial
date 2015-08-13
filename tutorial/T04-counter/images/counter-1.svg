@@ -109,7 +109,7 @@
          id="tspan4138"
          x="146.94318"
          y="200.97499"
-         style="font-size:15px">DATA</tspan></text>
+         style="font-size:15px">data</tspan></text>
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 119.93676,306.88337 10.71473,-17.33341 10.08626,17.46993 z"
@@ -132,7 +132,7 @@
          x="119.12234"
          y="283.96652"
          style="font-size:10px"
-         id="tspan4183">CLK</tspan></text>
+         id="tspan4183">clk</tspan></text>
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 130.07122,307.08929 0,22.49881"
@@ -168,6 +168,6 @@
          x="217.95967"
          y="188.2587"
          style="font-size:10px"
-         id="tspan4183-3">16</tspan></text>
+         id="tspan4183-3">26</tspan></text>
   </g>
 </svg>
