@@ -22,6 +22,20 @@
   <defs
      id="defs4">
     <marker
+       inkscape:stockid="Arrow1Mstart"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow1Mstart"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path4356"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#0000ff;stroke-width:1pt;stroke-opacity:1;fill:#0000ff;fill-opacity:1"
+         transform="scale(0.4) translate(10,0)" />
+    </marker>
+    <marker
        inkscape:isstock="true"
        style="overflow:visible;"
        id="Arrow2Mend"
@@ -32,7 +46,7 @@
       <path
          transform="scale(0.6) rotate(180) translate(0,0)"
          d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
-         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round;stroke:#000000;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round;stroke:#0000ff;stroke-opacity:1;fill:#0000ff;fill-opacity:1"
          id="path4474" />
     </marker>
     <marker
@@ -58,8 +72,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.815715"
-     inkscape:cx="192.41749"
-     inkscape:cy="776.44457"
+     inkscape:cx="304.07859"
+     inkscape:cy="882.71011"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -88,7 +102,7 @@
      inkscape:groupmode="layer"
      id="layer1">
     <rect
-       style="fill:#f2f2f2;stroke:none;stroke-width:3;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       style="fill:#ffffff;stroke:none;stroke-width:3;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect4211"
        width="566.43298"
        height="453.05585"
@@ -97,12 +111,22 @@
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <rect
-       style="fill:none;stroke:#000000;stroke-width:1;stroke-opacity:1"
+       style="fill:#f2f2f2;stroke:#000000;stroke-width:1;stroke-opacity:1"
        id="rect3344"
        width="320.60797"
        height="415.39981"
        x="72.887047"
        y="48.881763"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       id="rect3340"
+       width="134.43887"
+       height="224.53049"
+       x="141.22108"
+       y="103.2235"
+       style="fill:#ffffff;stroke:#000000;stroke-width:1;stroke-opacity:1"
+       inkscape:export-filename="/home/obijuan/development/mytests/verilog/tutorial/02-Fport/images/Fport-1.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <text
@@ -120,16 +144,6 @@
          y="131.47185"
          id="tspan4162"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold'">COUNTER</tspan></text>
-    <rect
-       id="rect3340"
-       width="134.43887"
-       height="224.53049"
-       x="141.22108"
-       y="103.2235"
-       style="fill:none;stroke:#000000;stroke-width:1;stroke-opacity:1"
-       inkscape:export-filename="/home/obijuan/development/mytests/verilog/tutorial/02-Fport/images/Fport-1.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -169,7 +183,7 @@
          style="font-size:10px"
          id="tspan4183">CLK</tspan></text>
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#0000ff;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="fill:none;fill-rule:evenodd;stroke:#0000ff;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:;marker-start:url(#Arrow1Mstart)"
        d="m 204.62077,327.89381 0,35.98391 188.0546,0"
        id="path4187"
        inkscape:connector-curvature="0"
@@ -219,29 +233,6 @@
          y="71.92186"
          id="tspan4162-7"
          style="text-align:center;text-anchor:middle">FPGA</tspan></text>
-    <rect
-       style="fill:#ffffff;stroke:#000000;stroke-width:0.76267004;stroke-opacity:1"
-       id="rect4268-6"
-       width="18.261711"
-       height="15.115483"
-       x="393.54803"
-       y="115.26575"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="402.74878"
-       y="126.36084"
-       id="text3336-1-5-5"
-       sodipodi:linespacing="125%"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90"><tspan
-         sodipodi:role="line"
-         x="402.74878"
-         y="126.36084"
-         id="tspan4162-7-2-62"
-         style="font-size:10px;text-align:center;text-anchor:middle">95</tspan></text>
     <rect
        style="fill:#ffffff;stroke:#000000;stroke-width:0.76267004;stroke-opacity:1"
        id="rect4268-2"
@@ -362,7 +353,7 @@
        style="fill:#000000;stroke:#000000;stroke-width:0.59686756;stroke-opacity:1"
        id="path4354-37-9"
        cx="402.43921"
-       cy="90.053467"
+       cy="109.97465"
        r="1.7835134"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
@@ -370,7 +361,7 @@
        style="fill:#000000;stroke:#000000;stroke-width:0.59686756;stroke-opacity:1"
        id="path4354-3-8-5"
        cx="402.43921"
-       cy="97.435913"
+       cy="117.35709"
        r="1.7835134"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
@@ -378,7 +369,7 @@
        style="fill:#000000;stroke:#000000;stroke-width:0.59686756;stroke-opacity:1"
        id="path4354-3-0-8-2"
        cx="402.43921"
-       cy="105.87292"
+       cy="125.79409"
        r="1.7835134"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
@@ -766,7 +757,7 @@
          id="tspan4138-4-0-9"
          x="342.52643"
          y="227.07516"
-         style="font-size:10px;fill:#0000ff">data[15]</tspan></text>
+         style="font-size:10px;fill:#0000ff">data[22]</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#0000ff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -781,7 +772,7 @@
          id="tspan4138-4-0-4-9"
          x="343.42416"
          y="200.02663"
-         style="font-size:10px;fill:#0000ff">data[14]</tspan></text>
+         style="font-size:10px;fill:#0000ff">data[23]</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#0000ff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -796,7 +787,7 @@
          id="tspan4138-4-0-4-6-94"
          x="344.29102"
          y="177.97289"
-         style="font-size:10px;fill:#0000ff">data[13]</tspan></text>
+         style="font-size:10px;fill:#0000ff">data[24]</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#0000ff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -811,7 +802,7 @@
          id="tspan4138-4-0-4-6-9-1"
          x="345.65762"
          y="154.55241"
-         style="font-size:10px;fill:#0000ff">data[12]</tspan></text>
+         style="font-size:10px;fill:#0000ff">data[25]</tspan></text>
     <path
        style="fill:none;fill-rule:evenodd;stroke:#0000ff;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 329.40498,214.98008 0,-24.27194 63.71385,0"
@@ -875,8 +866,8 @@
          style="fill:none;stroke:#000000;stroke-width:0.99999994;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
     </g>
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 457.64904,363.97295 -46.5849,0"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2Mend-6)"
+       d="m 457.64904,363.97347 -44.06608,0"
        id="path5209"
        inkscape:connector-curvature="0"
        inkscape:export-xdpi="90"
@@ -884,15 +875,15 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="468.28613"
+       x="454.84988"
        y="338.74503"
        id="text4425-2-5-5-8"
        sodipodi:linespacing="125%"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90"><tspan
          sodipodi:role="line"
-         x="468.28613"
+         x="454.84988"
          y="338.74503"
-         id="tspan4435-5-2-3-0">Reloj</tspan></text>
+         id="tspan4435-5-2-3-0">Reloj 12MHz</tspan></text>
   </g>
 </svg>
