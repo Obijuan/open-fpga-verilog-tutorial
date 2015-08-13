@@ -30,7 +30,7 @@
      inkscape:pageshadow="2"
      inkscape:zoom="1.4222978"
      inkscape:cx="54.943952"
-     inkscape:cy="833.99542"
+     inkscape:cy="862.11893"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -57,12 +57,22 @@
      inkscape:groupmode="layer"
      id="layer1">
     <rect
-       style="fill:#f2f2f2;stroke:none;stroke-width:3;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       style="fill:#ffffff;stroke:none;stroke-width:3;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect4211"
        width="217.95718"
        height="269.28256"
        x="47.106873"
        y="68.742584"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       id="rect3340"
+       width="134.43887"
+       height="224.53049"
+       x="66.671532"
+       y="82.418976"
+       style="fill:#f2f2f2;stroke:#000000;stroke-width:1;stroke-opacity:1"
+       inkscape:export-filename="/home/obijuan/development/mytests/verilog/tutorial/02-Fport/images/Fport-1.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <text
@@ -85,16 +95,6 @@
          y="119.47417"
          id="tspan4162"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold'">COUNTER</tspan></text>
-    <rect
-       id="rect3340"
-       width="134.43887"
-       height="224.53049"
-       x="66.671532"
-       y="82.418976"
-       style="fill:none;stroke:#000000;stroke-width:1;stroke-opacity:1"
-       inkscape:export-filename="/home/obijuan/development/mytests/verilog/tutorial/02-Fport/images/Fport-1.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
