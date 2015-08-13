@@ -1,6 +1,6 @@
 //---------------------------------------------------------
 //-- counter.v  
-//-- Contador de 16 bits
+//-- Contador de 26 bits
 //---------------------------------------------------------
 //-- BQ  August 2015. Written by Juan Gonzalez (Obijuan)
 //---------------------------------------------------------
@@ -10,12 +10,12 @@
 
 //-----------------------------------
 //-- Entrada: señal de reloj
-//-- Salida: contador de 16 bits
+//-- Salida: contador de 26 bits
 //-----------------------------------
 module counter(input clk, output [25:0] data);
 wire clk;
 
-//-- La salida es un registro de 16 bits, inicializado a 0
+//-- La salida es un registro de 26 bits, inicializado a 0
 reg [25:0] data = 0;
 
 //-- Sensible al flanco de subida
