@@ -1,28 +1,32 @@
 //-------------------------------------------------------------------
 //-- prescaler_tb.v
-//-- Banco de pruebas para el contador
+//-- Banco de pruebas para el prescaler
 //-------------------------------------------------------------------
 //-- BQ August 2015. Written by Juan Gonzalez (Obijuan)
 //-------------------------------------------------------------------
 
 module prescaler_tb();
 
+//-- Numero de bits del prescaler a comprobar
+parameter N = 2;
+
 //-- Registro para generar la señal de reloj
 reg clk = 0;
 
-//-- Datos de salida del contador
-wire [26:0] data;
+//-- Salida del prescaler
+wire clk_out;
 
 
-//-- Registro para comprobar si el contador cuenta correctamente
-reg [26:0] counter_check = 1;
+//-- Registro para comprobar si el prescaler funciona
+reg [N-1:0] counter_check = 0;
 
 
-//-- Instanciar el contador
-counter C1(
-	.clk(clk),
-	.data(data)
-);
+//-- Instanciar el prescaler
+prescaler #(.N(N))
+  Pres1(
+	  .clk_in(clk),
+	  .clk_out(clk_out)
+  );
 
 //-- Generador de reloj. Periodo 2 unidades
 always #1 clk = ~clk;
@@ -31,23 +35,26 @@ always #1 clk = ~clk;
 //-- En cada flanco de bajada se comprueba la salida del contador
 //-- y se incrementa el valor esperado
 always @(negedge clk) begin
-  if (counter_check != data)
-	  $display("-->ERROR!. Esperado: %d. Leido: %d",counter_check, data);
-	counter_check <= counter_check + 1;
+
+  //-- Incrementar variable del contador de prueba
+  counter_check = counter_check + 1;
+
+	//-- El bit de mayor peso debe coincidir con clk_out
+  if (counter_check[N-1] != clk_out) begin
+	  $display("--->ERROR! Prescaler no funciona correctamente");
+		$display("Clk out: %d, counter_check[2]: %d", 
+               clk_out, counter_check[N-1]);
+  end
+
 end
 
 //-- Proceso al inicio
 initial begin
 
 	//-- Fichero donde almacenar los resultados
-	$dumpfile("counter_tb.vcd");
-	$dumpvars(0, counter_tb);
+	$dumpfile("prescaler_tb.vcd");
+	$dumpvars(0, prescaler_tb);
 
-	//-- Comprobación del reset.
-	# 0.5 if (data != 0)
-					$display("ERROR! Contador NO está a 0!");
-				else
-					$display("Contador inicializado. OK.");
 
 	# 99 $display("FIN de la simulacion");
 	# 100 $finish;
