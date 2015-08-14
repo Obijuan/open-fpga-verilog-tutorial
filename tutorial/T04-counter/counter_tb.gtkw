@@ -1,11 +1,11 @@
 [*]
 [*] GTKWave Analyzer v3.3.64 (w)1999-2014 BSI
-[*] Sun Aug  9 17:33:44 2015
+[*] Fri Aug 14 07:31:15 2015
 [*]
-[dumpfile] "/home/obijuan/development/mytests/verilog/tutorial/04-counter/counter_tb.vcd"
-[dumpfile_mtime] "Sun Aug  9 17:33:07 2015"
-[dumpfile_size] 4371
-[savefile] "/home/obijuan/development/mytests/verilog/tutorial/04-counter/counter_tb.gtkw"
+[dumpfile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T04-counter/counter_tb.vcd"
+[dumpfile_mtime] "Fri Aug 14 07:30:21 2015"
+[dumpfile_size] 5413
+[savefile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T04-counter/counter_tb.gtkw"
 [timestart] 0
 [size] 1301 744
 [pos] -1 -1
@@ -18,6 +18,6 @@
 @28
 counter_tb.clk
 @23
-counter_tb.data[15:0]
+counter_tb.C1.data[25:0]
 [pattern_trace] 1
 [pattern_trace] 0

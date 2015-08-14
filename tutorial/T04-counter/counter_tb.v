@@ -11,11 +11,11 @@ module counter_tb();
 reg clk = 0;
 
 //-- Datos de salida del contador
-wire [15:0] data;
+wire [26:0] data;
 
 
 //-- Registro para comprobar si el contador cuenta correctamente
-reg [15:0] counter_check = 1;
+reg [26:0] counter_check = 1;
 
 
 //-- Instanciar el contador
