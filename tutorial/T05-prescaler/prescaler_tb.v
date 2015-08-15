@@ -21,8 +21,8 @@ wire clk_out;
 reg [N-1:0] counter_check = 0;
 
 
-//-- Instanciar el prescaler
-prescaler #(.N(N))
+//-- Instanciar el prescaler de N bits
+prescaler #(.N(N))  //-- Parámetro N
   Pres1(
 	  .clk_in(clk),
 	  .clk_out(clk_out)
