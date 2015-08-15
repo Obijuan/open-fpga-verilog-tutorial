@@ -1,5 +1,5 @@
 ## Descripción
-Contador de 26 bits. Ejemplo de un circuito secuencial "hola mundo"
+Prescaler de N bits. Ejemplo de creación de un módulo paramétrico
 
 ## Simulación
 
@@ -15,11 +15,11 @@ Para implementar el diseño en la FPGA ejecutamos el comando:
 
 $ make sint
 
-Se nos genera el fichero setbit.bin que contiene la conguración de la FPGA para que se nos implemente nuestro circuito digital.
+Se nos genera el fichero prescaler.bin que contiene la conguración de la FPGA para que se nos implemente nuestro circuito digital.
 
 Lo descargamos en la fpga mediante el comando:
 
-sudo iceprog counter.bin
+sudo iceprog prescaler.bin
 
 
 
