@@ -1,7 +1,8 @@
 #----------------------------------------
 #-- Establecer nombre del componente
 #----------------------------------------
-NAME = prescaler
+NAME = mpres
+DEPS = prescaler.v
 
 
 
@@ -30,7 +31,7 @@ sint: $(NAME).bin
 #-------------------------------
 #-- Compilacion y simulacion
 #-------------------------------
-$(NAME)_tb.vcd: $(NAME).v $(NAME)_tb.v
+$(NAME)_tb.vcd: $(NAME).v $(DEPS) $(NAME)_tb.v
 	
 	#-- Compilar
 	iverilog $^ -o $(NAME)_tb.out
@@ -47,7 +48,7 @@ $(NAME)_tb.vcd: $(NAME).v $(NAME)_tb.v
 $(NAME).bin: $(NAME).pcf $(NAME).v 
 	
 	#-- Sintesis
-	yosys -p "synth_ice40 -blif $(NAME).blif" $(NAME).v
+	yosys -p "synth_ice40 -blif $(NAME).blif" $(NAME).v $(DEPS)
 	
 	#-- Place & route
 	arachne-pnr -d 1k -p $(NAME).pcf $(NAME).blif -o $(NAME).txt
