@@ -1,0 +1,22 @@
+[*]
+[*] GTKWave Analyzer v3.3.64 (w)1999-2014 BSI
+[*] Sun Aug 16 15:27:31 2015
+[*]
+[dumpfile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T07-contador-prescaler/counter4_tb.vcd"
+[dumpfile_mtime] "Sun Aug 16 15:25:07 2015"
+[dumpfile_size] 4621
+[savefile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T07-contador-prescaler/counter4_tb.gtkw"
+[timestart] 0
+[size] 1301 744
+[pos] -302 -117
+*-3.926401 2 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 223
+[signals_width] 174
+[sst_expanded] 1
+[sst_vpaned_height] 211
+@28
+counter4_tb.clk
+@22
+counter4_tb.data[3:0]
+[pattern_trace] 1
+[pattern_trace] 0
