@@ -1,6 +1,6 @@
 module counter4(input clk, output [3:0] data);
 wire clk;
-reg [3:0] data;
+reg [3:0] data = 0;
 
 //-- Parametro para el prescaler
 parameter N = 22;

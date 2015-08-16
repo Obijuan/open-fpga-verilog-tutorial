@@ -5,7 +5,7 @@
 //-- BQ August 2015. Written by Juan Gonzalez (Obijuan)
 //-------------------------------------------------------------------
 
-module counter_tb();
+module counter4_tb();
 
 //-- Registro para generar la señal de reloj
 reg clk = 0;
@@ -15,11 +15,11 @@ wire [3:0] data;
 
 
 //-- Registro para comprobar si el contador cuenta correctamente
-reg [3:0] counter_check = 1;
+reg [3:0] counter_check = 0;
 
 
-//-- Instanciar el contador, con prescaler de 22 bits
-counter #(.N(22))
+//-- Instanciar el contador, con prescaler de 1 bit (para la simulacion)
+counter4 #(.N(1))
   C1(
 	  .clk(clk),
 	  .data(data)
@@ -28,21 +28,23 @@ counter #(.N(22))
 //-- Generador de reloj. Periodo 2 unidades
 always #1 clk = ~clk;
 
-//-- Comprobacion del valor del contador
-//-- En cada flanco de bajada se comprueba la salida del contador
-//-- y se incrementa el valor esperado
-always @(negedge clk) begin
+//-- Proceso de comprobación. Cada vez que hay un cambio en
+//-- el contador se comprueba con el valor de prueba
+always @(data) begin
+
   if (counter_check != data)
 	  $display("-->ERROR!. Esperado: %d. Leido: %d",counter_check, data);
-	counter_check <= counter_check + 1;
+
+  counter_check = counter_check + 1;
 end
+
 
 //-- Proceso al inicio
 initial begin
 
 	//-- Fichero donde almacenar los resultados
-	$dumpfile("counter_tb.vcd");
-	$dumpvars(0, counter_tb);
+	$dumpfile("counter4_tb.vcd");
+	$dumpvars(0, counter4_tb);
 
 	//-- Comprobación del reset.
 	# 0.5 if (data != 0)

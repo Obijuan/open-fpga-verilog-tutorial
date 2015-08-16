@@ -1,7 +1,7 @@
 #----------------------------------------
 #-- Establecer nombre del componente
 #----------------------------------------
-NAME = counter
+NAME = counter4
 DEPS = prescaler.v
 
 
