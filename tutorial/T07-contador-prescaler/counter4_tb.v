@@ -1,6 +1,6 @@
 //-------------------------------------------------------------------
-//-- counter_tb.v
-//-- Banco de pruebas para el contador
+//-- counter4_tb.v
+//-- Banco de pruebas para el contador de 4 bits con prescaler
 //-------------------------------------------------------------------
 //-- BQ August 2015. Written by Juan Gonzalez (Obijuan)
 //-------------------------------------------------------------------
