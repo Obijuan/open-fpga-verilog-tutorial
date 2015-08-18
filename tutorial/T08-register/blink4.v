@@ -1,6 +1,12 @@
+//--------------------------------------------------------------
+//--  blink4.v
+//--  (C) BQ. August 2015. Written by Juan Gonzalez (obijuan)
+//--------------------------------------------------------------
+//-- Parpadeo de los 4 leds usando un registro de 4 bits
+//--------------------------------------------------------------
 
 module blink4(input wire clk,           //--Reloj
-              output wire [3:0] data     //-- Salida del registro
+              output wire [3:0] data    //-- Salida del registro
              );
 
 //-- Bits para el prescaler

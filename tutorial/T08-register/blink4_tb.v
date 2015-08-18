@@ -1,6 +1,6 @@
 //-------------------------------------------------------------------
-//-- counter4_tb.v
-//-- Banco de pruebas para el contador de 4 bits con prescaler
+//-- blink4_tb.v
+//-- Banco de pruebas para el componente blink4
 //-------------------------------------------------------------------
 //-- BQ August 2015. Written by Juan Gonzalez (Obijuan)
 //-------------------------------------------------------------------
@@ -10,7 +10,7 @@ module blink4_tb();
 //-- Registro para generar la señal de reloj
 reg clk = 0;
 
-//-- Datos de salida del contador
+//-- Datos de salida del componente
 wire [3:0] data;
 
 //-- Instanciar el componente
