@@ -1,5 +1,5 @@
 ## Descripción
-Contador de 4 bits con prescaler
+Registro de 4 bits. Ejemplo de un secuenciador de 2 estados
 
 ## Simulación
 
@@ -15,11 +15,11 @@ Para implementar el diseño en la FPGA ejecutamos el comando:
 
 $ make sint
 
-Se nos genera el fichero counter4.bin que contiene la conguración de la FPGA para que se nos implemente nuestro circuito digital.
+Se nos genera el fichero blink4.bin que contiene la conguración de la FPGA para que se nos implemente nuestro circuito digital.
 
 Lo descargamos en la fpga mediante el comando:
 
-sudo iceprog counter4.bin
+sudo iceprog blink4.bin
 
 
 
