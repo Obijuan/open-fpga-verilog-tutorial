@@ -1,0 +1,22 @@
+[*]
+[*] GTKWave Analyzer v3.3.64 (w)1999-2014 BSI
+[*] Tue Aug 18 18:00:44 2015
+[*]
+[dumpfile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T09-inicializador/init_tb.vcd"
+[dumpfile_mtime] "Tue Aug 18 17:59:13 2015"
+[dumpfile_size] 409
+[savefile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T09-inicializador/init_tb.gtkw"
+[timestart] 0
+[size] 1000 600
+[pos] -298 -1
+*-2.667667 19 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 223
+[signals_width] 78
+[sst_expanded] 1
+[sst_vpaned_height] 160
+@28
+init_tb.clk
+@29
+init_tb.ini
+[pattern_trace] 1
+[pattern_trace] 0
