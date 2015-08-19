@@ -1,8 +1,10 @@
 //-------------------------------------------------------------------
-//-- blink4_tb.v
-//-- Banco de pruebas para el componente blink4
+//-- init_tb.v
+//-- Banco de pruebas para el componente init
 //-------------------------------------------------------------------
 //-- BQ August 2015. Written by Juan Gonzalez (Obijuan)
+//-------------------------------------------------------------------
+//-- GPL license
 //-------------------------------------------------------------------
 
 module init_tb();
@@ -29,7 +31,6 @@ initial begin
 	//-- Fichero donde almacenar los resultados
 	$dumpfile("init_tb.vcd");
 	$dumpvars(0, init_tb);
-
 
 	# 20 $display("FIN de la simulacion");
 	$finish;
