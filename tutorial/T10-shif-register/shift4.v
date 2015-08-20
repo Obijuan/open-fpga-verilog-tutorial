@@ -1,4 +1,10 @@
-
+//-------------------------------------------------------------------
+//-- Ejemplo de uso de un registro de desplazamiento de 4 bits
+//-- para generar una secuencia de rotacion de bits
+//-------------------------------------------------------------------
+//-- (C) BQ. August 2015. Written by Juan Gonzalez (obijuan)
+//-- GPL license
+//-------------------------------------------------------------------
 module shift4(input wire clk, output reg [3:0] data);
 
 //-- Parametros del secuenciador
@@ -12,7 +18,7 @@ wire clk_pres;
 //-- se carga o desplaza
 //-- shift = 0: carga
 //-- shift = 1: desplaza
-reg shift = 0;
+reg load_shift = 0;
 
 //-- Entrada serie del registro
 wire serin;
@@ -26,12 +32,12 @@ prescaler #(.N(NP))
 
 //-- Inicializador
 always @(posedge(clk_pres)) begin
-    shift <= 1;
+    load_shift <= 1;
 end
 
 //-- Registro de desplazamiento
 always @(posedge(clk_pres)) begin
-  if (shift == 0)  //-- Load mode
+  if (load_shift == 0)  //-- Load mode
     data <= INI;
   else
     data <= {data[2:0], serin};
