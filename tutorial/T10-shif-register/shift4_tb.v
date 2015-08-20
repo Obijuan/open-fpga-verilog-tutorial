@@ -15,7 +15,8 @@ reg clk = 0;
 wire [3:0] data;
 
 //-- Instanciar el registro, con prescaler de 1 bit (para la simulacion)
-shift4 #(.NP(1))
+//-- Valor inicial a cargar: 0001
+shift4 #(.NP(1), .INI(4'b0001))
   C1(
 	  .clk(clk),
 	  .data(data)
