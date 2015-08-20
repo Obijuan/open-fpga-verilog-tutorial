@@ -14,6 +14,9 @@ wire clk_pres;
 //-- shift = 1: desplaza
 reg shift = 0;
 
+//-- Entrada serie del registro
+wire serin;
+
 //-- Instanciar el prescaler de N bits
 prescaler #(.N(NP))
   pres1 (
@@ -31,8 +34,11 @@ always @(posedge(clk_pres)) begin
   if (shift == 0)  //-- Load mode
     data <= INI;
   else
-    data <= {data[2:0], data[3]};
+    data <= {data[2:0], serin};
 end
+
+//-- Salida de mayor peso se re-introduce por la entrada serie
+assign serin = data[3];
 
 endmodule
 
