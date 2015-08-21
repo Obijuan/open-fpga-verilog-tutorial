@@ -1,22 +1,24 @@
 [*]
 [*] GTKWave Analyzer v3.3.64 (w)1999-2014 BSI
-[*] Thu Aug 20 16:52:25 2015
+[*] Fri Aug 21 07:30:08 2015
 [*]
 [dumpfile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T11-mux-2-1/mux2_tb.vcd"
-[dumpfile_mtime] "Thu Aug 20 16:52:03 2015"
+[dumpfile_mtime] "Fri Aug 21 07:29:01 2015"
 [dumpfile_size] 1154
 [savefile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T11-mux-2-1/mux2_tb.gtkw"
-[timestart] 8
-[size] 1000 600
-[pos] -98 -63
-*-2.229546 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[timestart] 0
+[size] 1000 316
+[pos] -1 -1
+*-2.229546 12 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] mux2_tb.
+[treeopen] mux2_tb.dut.
 [sst_width] 223
-[signals_width] 102
+[signals_width] 138
 [sst_expanded] 1
-[sst_vpaned_height] 160
+[sst_vpaned_height] 60
 @28
 mux2_tb.clk
-@29
+mux2_tb.dut.sel
 mux2_tb.data[3:0]
 [pattern_trace] 1
 [pattern_trace] 0
