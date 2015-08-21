@@ -1,7 +1,6 @@
 //-------------------------------------------------------------------
-//-- shift4_tb.v
-//-- Banco de pruebas para el registro de desplazamiento
-//-- de 4 bits con prescaler
+//-- mux2_tb.v
+//-- Banco de pruebas para el secuenciador de 2 estados con multiplexor
 //-------------------------------------------------------------------
 //-- BQ August 2015. Written by Juan Gonzalez (Obijuan)
 //-------------------------------------------------------------------
@@ -11,11 +10,10 @@ module mux2_tb();
 //-- Registro para generar la señal de reloj
 reg clk = 0;
 
-//-- Datos de salida del contador
+//-- Datos de salida del componente
 wire [3:0] data;
 
-//-- Instanciar el registro, con prescaler de 1 bit (para la simulacion)
-//-- Valor inicial a cargar: 0001
+//-- Instanciar el componente, con prescaler de 1 bit (para la simulacion)
 mux2 #(.NP(1))
   dut(
 	  .clk(clk),
