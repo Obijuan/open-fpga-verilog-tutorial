@@ -1,5 +1,5 @@
 ## Descripción
-Ejemplo de uso de un multiplexor de 2 a 1. Generacion de una secuencia de dos estados en los leds
+Ejemplo de uso de un multiplexor de 4 a 1. Generacion de una secuencia de cuatro estados en los leds
 
 ## Simulación
 
@@ -15,11 +15,11 @@ Para implementar el diseño en la FPGA ejecutamos el comando:
 
 $ make sint
 
-Se nos genera el fichero mux2.bin que contiene la conguración de la FPGA para que se nos implemente nuestro circuito digital.
+Se nos genera el fichero mux4.bin que contiene la conguración de la FPGA para que se nos implemente nuestro circuito digital.
 
 Lo descargamos en la fpga mediante el comando:
 
-sudo iceprog mux2.bin
+sudo iceprog mux4.bin
 
 
 
