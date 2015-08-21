@@ -1,7 +1,7 @@
 //-------------------------------------------------------------------
-//-- shift4_tb.v
-//-- Banco de pruebas para el registro de desplazamiento
-//-- de 4 bits con prescaler
+//-- mux4_tb.v
+//-- Banco de pruebas para el secuenciador de 4 estados con multiplexor
+//-- de 4 a 1
 //-------------------------------------------------------------------
 //-- BQ August 2015. Written by Juan Gonzalez (Obijuan)
 //-------------------------------------------------------------------
