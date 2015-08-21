@@ -1,3 +1,12 @@
+//-----------------------------------------------------------------------------
+//-- Secuenciador de 4 estados usando un multiplexor de 4 a 1
+//-- (C) BQ. August 2015. Written by Juan Gonzalez (obijuan)
+//-----------------------------------------------------------------------------
+//-- License GPL
+//-----------------------------------------------------------------------------
+
+//-- Entrada: reloj
+//-- Salida: datos a conectar en los leds
 module mux4(input wire clk, output reg [3:0] data);
 
 //-- Parametros del secuenciador:
