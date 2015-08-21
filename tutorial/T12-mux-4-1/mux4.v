@@ -27,10 +27,10 @@ assign val3 = VAL3;
 //-- Implementación del multiplexor de 4 a 1
 always@*
   case (sel)
-     2'b00 : data <= val0;
-     2'b01 : data <= val1;
-     2'b10 : data <= val2;
-     2'b11 : data <= val3;
+     0 : data <= val0;
+     1 : data <= val1;
+     2 : data <= val2;
+     3 : data <= val3;
      default : data <= 0;
   endcase
 
