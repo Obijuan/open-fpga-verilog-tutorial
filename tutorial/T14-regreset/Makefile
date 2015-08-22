@@ -2,7 +2,7 @@
 #-- Establecer nombre del componente
 #----------------------------------------
 NAME = regreset
-DEPS = prescaler.v
+DEPS = prescaler.v register.v
 
 
 

@@ -16,30 +16,26 @@ parameter INI = 4'b1100;  //-- Valor inicial a cargar en registro
 wire clk_pres;
 
 //-- Salida del regitro
-reg [3:0] dout;
-
-//-- Entrada del registro
-wire [3:0] din;
+wire [3:0] dout;
 
 //-- Señal de inicializacion del reset
 reg rst = 0;
 
-//-- Registro
-always @(posedge(clk_pres))
-  if (rst == 0)
-    dout <= INI;
-  else
-    dout <= din;
-
-//-- Conectar el registro con la salida
-assign data = dout;
-
-//-- Realimentar la entrada con la salida negada
-assign din = ~dout;
-  
 //-- Inicializador
 always @(posedge(clk_pres))
   rst <= 1;
+
+//-- Registro
+register #(.INI(4'b1001))
+  REG0 (
+    .clk(clk_pres),
+    .rst(rst),
+    .din(~dout),
+    .dout(dout)
+  );
+
+//-- Conectar el registro con la salida
+assign data = dout;
 
 //-- Prescaler
 prescaler #(.N(NP))
