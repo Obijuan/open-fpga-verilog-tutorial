@@ -1,7 +1,7 @@
 //-------------------------------------------------------------------
-//-- mux4_tb.v
-//-- Banco de pruebas para el secuenciador de 4 estados con multiplexor
-//-- de 4 a 1
+//-- reginit_tb.v
+//-- Banco de pruebas para el secuenciador de 2 estados con registro
+//-- con precarga
 //-------------------------------------------------------------------
 //-- BQ August 2015. Written by Juan Gonzalez (Obijuan)
 //-------------------------------------------------------------------
