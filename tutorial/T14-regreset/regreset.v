@@ -10,7 +10,7 @@ module regreset(input wire clk, output wire [3:0] data);
 
 //-- Parametros del secuenciador:
 parameter NP = 23;        //-- Bits del prescaler
-parameter INI = 4'b1100;  //-- Valor inicial a cargar en registro
+parameter INI0 = 4'b1001; //-- Valor inicial a cargar en registro
 
 //-- Reloj a la salida del presacaler
 wire clk_pres;
@@ -26,7 +26,7 @@ always @(posedge(clk_pres))
   rst <= 1;
 
 //-- Registro
-register #(.INI(4'b1001))
+register #(.INI(INI0))
   REG0 (
     .clk(clk_pres),
     .rst(rst),
