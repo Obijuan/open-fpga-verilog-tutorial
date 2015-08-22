@@ -1,5 +1,6 @@
 //-----------------------------------------------------------------------------
-//-- 
+//-- Secuenciador de 2 estados a partir de registro de 4 bits con
+//-- inicialización de carga
 //-- (C) BQ. August 2015. Written by Juan Gonzalez (obijuan)
 //-----------------------------------------------------------------------------
 //-- License GPL
@@ -9,12 +10,18 @@ module reginit(input wire clk, output wire [3:0] data);
 
 //-- Parametros del secuenciador:
 parameter NP = 23;        //-- Bits del prescaler
-parameter INI = 4'b1100;  //-- Valor inicial
+parameter INI = 4'b1100;  //-- Valor inicial a cargar en registro
 
 //-- Reloj a la salida del presacaler
 wire clk_pres;
+
+//-- Salida del regitro
 reg [3:0] dout;
+
+//-- Entrada del registro
 wire [3:0] din;
+
+//-- Señal de seleccion del multiplexor
 reg sel = 0;
 
 //-- Registro
