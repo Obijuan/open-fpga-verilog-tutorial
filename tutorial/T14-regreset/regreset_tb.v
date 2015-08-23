@@ -1,6 +1,6 @@
 //-------------------------------------------------------------------
-//-- reginit_tb.v
-//-- Banco de pruebas para el secuenciador de 2 estados con registro
+//-- regreset_tb.v
+//-- Banco de pruebas para el secuenciador de 2 estados con 2 registros
 //-- con precarga
 //-------------------------------------------------------------------
 //-- BQ August 2015. Written by Juan Gonzalez (Obijuan)
@@ -28,12 +28,12 @@ always #1 clk = ~clk;
 //-- Proceso al inicio
 initial begin
 
-	//-- Fichero donde almacenar los resultados
-	$dumpfile("regreset_tb.vcd");
-	$dumpvars(0, regreset_tb);
+  //-- Fichero donde almacenar los resultados
+  $dumpfile("regreset_tb.vcd");
+  $dumpvars(0, regreset_tb);
 
-	# 30 $display("FIN de la simulacion");
-	$finish;
+  # 30 $display("FIN de la simulacion");
+  $finish;
 end
 
 endmodule
