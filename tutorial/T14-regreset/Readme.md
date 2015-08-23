@@ -1,5 +1,5 @@
 ## Descripción
-Ejemplo de inicializacion de registros. Secuenciador de dos estados
+Ejemplo de un registro de N bits con reset síncrono. Secuenciador de dos estados con 2 registros
 
 ## Simulación
 
@@ -15,11 +15,11 @@ Para implementar el diseño en la FPGA ejecutamos el comando:
 
 $ make sint
 
-Se nos genera el fichero reginit.bin que contiene la conguración de la FPGA para que se nos implemente nuestro circuito digital.
+Se nos genera el fichero regreset.bin que contiene la conguración de la FPGA para que se nos implemente nuestro circuito digital.
 
 Lo descargamos en la fpga mediante el comando:
 
-sudo iceprog reginit.bin
+sudo iceprog regreset.bin
 
 
 
