@@ -25,7 +25,6 @@ always @(posedge(clk))
   if (rst == 0)
     dout <= INI; //-- Inicializacion
   else
-    dout <= din; //-- Funcionamiento normal
 
 endmodule
 
