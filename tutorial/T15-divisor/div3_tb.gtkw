@@ -1,0 +1,21 @@
+[*]
+[*] GTKWave Analyzer v3.3.64 (w)1999-2014 BSI
+[*] Mon Aug 24 17:27:35 2015
+[*]
+[dumpfile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T15-divisor/div3_tb.vcd"
+[dumpfile_mtime] "Mon Aug 24 17:26:50 2015"
+[dumpfile_size] 751
+[savefile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T15-divisor/div3_tb.gtkw"
+[timestart] 0
+[size] 1000 600
+[pos] 382 -197
+*-3.229546 26 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 223
+[signals_width] 78
+[sst_expanded] 1
+[sst_vpaned_height] 160
+@28
+div3_tb.clk
+div3_tb.clk_3
+[pattern_trace] 1
+[pattern_trace] 0
