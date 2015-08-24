@@ -5222,7 +5222,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.979899"
-     inkscape:cx="235.98305"
+     inkscape:cx="335.0997"
      inkscape:cy="798.7735"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -5242,7 +5242,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -5305,7 +5305,7 @@
          x="362.83044"
          y="240.90009"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle;fill:#0000ff"
-         id="tspan3408-7">Contador 2 bits</tspan></text>
+         id="tspan3408-7">Registro de 2 bits</tspan></text>
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 296.08649,237.92252 -5.56068,-5.88295 0,11.52931 z"
