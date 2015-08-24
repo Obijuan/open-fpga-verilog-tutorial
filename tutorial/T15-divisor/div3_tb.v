@@ -1,7 +1,6 @@
 //-------------------------------------------------------------------
-//-- regreset_tb.v
-//-- Banco de pruebas para el secuenciador de 2 estados con 2 registros
-//-- con precarga
+//-- div3_tb.v
+//-- Banco de pruebas para el divisor de frecuencia entre 3
 //-------------------------------------------------------------------
 //-- BQ August 2015. Written by Juan Gonzalez (Obijuan)
 //-------------------------------------------------------------------
@@ -13,7 +12,7 @@ reg clk = 0;
 wire clk_3;
 
 
-//-- Instanciar el componente, con prescaler de 1 bit (para la simulacion)
+//-- Instanciar el divisor
 div3
   dut(
     .clk_in(clk),
