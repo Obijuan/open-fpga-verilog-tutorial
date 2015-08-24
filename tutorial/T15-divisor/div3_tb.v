@@ -9,14 +9,14 @@ module div3_tb();
 
 //-- Registro para generar la señal de reloj
 reg clk = 0;
-wire clk_3;
+wire clk_out;
 
 
 //-- Instanciar el divisor
 div3
   dut(
     .clk_in(clk),
-    .clk_out(clk_3)
+    .clk_out(clk_out)
   );
 
 //-- Generador de reloj. Periodo 2 unidades
