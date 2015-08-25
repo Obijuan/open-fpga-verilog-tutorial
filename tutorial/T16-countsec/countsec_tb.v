@@ -1,8 +1,10 @@
 //-------------------------------------------------------------------
-//-- divM_tb.v
-//-- Banco de pruebas para el divisor entre M
+//-- countsec_tb.v
+//-- Banco de pruebas para el contador de segundos
 //-------------------------------------------------------------------
 //-- BQ August 2015. Written by Juan Gonzalez (Obijuan)
+//-------------------------------------------------------------------
+//-- GPL License
 //-------------------------------------------------------------------
 
 module countsec_tb();
@@ -13,14 +15,16 @@ wire [3:0] data;
 
 
 //-- Instanciar el componente y establecer el valor del divisor
-countsec #(5)
+//-- Se pone un valor bajo para simular (sino tardaria mucho)
+countsec #(10)
   dut(
     .clk(clk),
     .data(data)
   );
 
 //-- Generador de reloj. Periodo 2 unidades
-always #1 clk = ~clk;
+always 
+  # 1 clk <= ~clk;
 
 
 //-- Proceso al inicio
