@@ -1,0 +1,10 @@
+set_io ch3  48
+set_io ch2  47
+set_io ch1  45
+set_io ch0  44
+set_io clk  21
+
+
+
+
+
