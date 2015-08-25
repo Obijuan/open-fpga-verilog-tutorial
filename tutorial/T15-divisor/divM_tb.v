@@ -1,7 +1,6 @@
 //-------------------------------------------------------------------
-//-- regreset_tb.v
-//-- Banco de pruebas para el secuenciador de 2 estados con 2 registros
-//-- con precarga
+//-- divM_tb.v
+//-- Banco de pruebas para el divisor entre M
 //-------------------------------------------------------------------
 //-- BQ August 2015. Written by Juan Gonzalez (Obijuan)
 //-------------------------------------------------------------------
@@ -13,8 +12,8 @@ reg clk = 0;
 wire clk_out;
 
 
-//-- Instanciar el componente, con prescaler de 1 bit (para la simulacion)
-divM #(7)
+//-- Instanciar el componente y establecer el valor del divisor
+divM #(5)
   dut(
     .clk_in(clk),
     .clk_out(clk_out)
