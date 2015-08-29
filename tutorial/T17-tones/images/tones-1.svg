@@ -3307,14 +3307,14 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.64189453"
-     inkscape:cx="204.0305"
-     inkscape:cy="659.41179"
+     inkscape:zoom="0.90777595"
+     inkscape:cx="241.13617"
+     inkscape:cy="646.71526"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1855"
-     inkscape:window-height="1056"
+     inkscape:window-height="1176"
      inkscape:window-x="65"
      inkscape:window-y="24"
      inkscape:window-maximized="1"
@@ -3337,12 +3337,12 @@
      inkscape:groupmode="layer"
      id="layer1">
     <rect
-       style="fill:#ffffff;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       style="fill:#f9f9f9;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect10053"
-       width="628.48547"
-       height="498.20322"
-       x="62.849594"
-       y="94.715454"
+       width="620.77429"
+       height="491.59366"
+       x="67.036171"
+       y="99.435684"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <rect
@@ -4122,25 +4122,23 @@
        inkscape:connector-curvature="0"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
-    <g
-       id="g12251"
-       transform="translate(114.97255,46.295178)"
+    <rect
+       style="fill:#000000;stroke:#000000;stroke-width:0.99999994;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect12247"
+       width="6.6210256"
+       height="31.524307"
+       x="637.91943"
+       y="250.1624"
        inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90">
-      <rect
-         y="217.08635"
-         x="522.9469"
-         height="18.305187"
-         width="6.6210256"
-         id="rect12247"
-         style="fill:#000000;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
-      <path
-         sodipodi:nodetypes="ccccc"
-         inkscape:connector-curvature="0"
-         id="path12249"
-         d="m 529.86643,216.39051 10.12089,-10.12089 0,39.45081 -9.87992,-9.87991 z"
-         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
-    </g>
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 644.83898,250.26222 10.12089,-10.12089 0,51.87428 -9.87992,-9.87991 z"
+       id="path12249"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 637.40323,276.5933 -12.39293,0 0,23.68426"
@@ -4236,22 +4234,22 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="619.30493"
-       y="235.11195"
+       x="551.53204"
+       y="209.62823"
        id="text5217-1-5-1-4-3-2-8-0-78"
        sodipodi:linespacing="125%"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90"><tspan
          sodipodi:role="line"
          id="tspan5219-7-2-9-40-8-7-6-5-5"
-         x="619.30493"
-         y="235.11195"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle">Selección del canal</tspan><tspan
+         x="551.53204"
+         y="209.62823"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle">Selección manual</tspan><tspan
          sodipodi:role="line"
-         x="619.30493"
-         y="247.61195"
+         x="551.53204"
+         y="222.12823"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle"
-         id="tspan12389">(Manual)</tspan></text>
+         id="tspan12389">del canal</tspan></text>
     <path
        style="fill:none;fill-rule:evenodd;stroke:#008000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 394.14575,502.22485 96.97855,0"
@@ -4280,5 +4278,48 @@
        inkscape:connector-curvature="0"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 637.38586,258.38876 -12.66833,0 0,-25.61205"
+       id="path3912"
+       inkscape:connector-curvature="0"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <circle
+       style="fill:#000000;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path12318-3"
+       cx="624.8371"
+       cy="231.91672"
+       r="2.2031868"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="628.06049"
+       y="225.46448"
+       id="text3336-1-5-6-6"
+       sodipodi:linespacing="125%"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         x="628.06049"
+         y="225.46448"
+         id="tspan4162-7-2-8-2"
+         style="font-size:10px;text-align:center;text-anchor:middle">3.3v</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="628.45276"
+       y="320.96915"
+       id="text5217-1-5-1-4-3-2-8-0-78-7"
+       sodipodi:linespacing="125%"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         x="628.45276"
+         y="320.96915"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle"
+         id="tspan12389-6">zumbador</tspan></text>
   </g>
 </svg>
