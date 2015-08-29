@@ -1,6 +1,6 @@
 //-------------------------------------------------------------------
-//-- countsec_tb.v
-//-- Banco de pruebas para el contador de segundos
+//-- tones_tb.v
+//-- Banco de pruebas para el generador de 4 tonos
 //-------------------------------------------------------------------
 //-- BQ August 2015. Written by Juan Gonzalez (Obijuan)
 //-------------------------------------------------------------------
@@ -11,11 +11,13 @@ module tones_tb();
 
 //-- Registro para generar la señal de reloj
 reg clk = 0;
+
+//-- Salidas de los canales
 wire ch0, ch1, ch2, ch3;
 
 
 //-- Instanciar el componente y establecer el valor del divisor
-//-- Se pone un valor bajo para simular (sino tardaria mucho)
+//-- Se pone un valor bajo para simular (de lo contrario tardaria mucho)
 tones #(3, 5, 7, 10)
   dut(
     .clk(clk),
