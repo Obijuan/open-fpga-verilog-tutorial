@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------
-//-- Contador de segundos
+//-- Generador de tonos de 1Khz, 2Khz, 3Khz y 4Khz
 //-- (C) BQ. August 2015. Written by Juan Gonzalez
 //-----------------------------------------------------------------------------
 //-- GPL license
