@@ -1,0 +1,28 @@
+[*]
+[*] GTKWave Analyzer v3.3.64 (w)1999-2014 BSI
+[*] Sun Aug 30 08:37:59 2015
+[*]
+[dumpfile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T19-secnotas/secnotas_tb.vcd"
+[dumpfile_mtime] "Sun Aug 30 08:37:01 2015"
+[dumpfile_size] 11652
+[savefile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T19-secnotas/secnotas_tb.gtkw"
+[timestart] 0
+[size] 1113 600
+[pos] 470 199
+*-5.773307 31 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] secnotas_tb.
+[sst_width] 223
+[signals_width] 117
+[sst_expanded] 1
+[sst_vpaned_height] 160
+@28
+secnotas_tb.clk
+secnotas_tb.dut.ch0
+secnotas_tb.dut.ch1
+secnotas_tb.dut.ch2
+@29
+secnotas_tb.dut.sel[1:0]
+@28
+secnotas_tb.ch_out
+[pattern_trace] 1
+[pattern_trace] 0
