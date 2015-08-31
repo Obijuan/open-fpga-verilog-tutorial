@@ -17,14 +17,14 @@ module notas(input wire clk, output wire ch0, ch1, ch2, ch3, ch4, ch5, ch6, ch7)
 //-- Parametro del divisor. Fijarlo a 1Hz
 //-- Se define como parametro para poder modificarlo desde el testbench
 //-- para hacer pruebas
-parameter N0 = `DO;
-parameter N1 = `RE;
-parameter N2 = `MI;
-parameter N3 = `FA;
-parameter N4 = `SOL;
-parameter N5 = `LA;
-parameter N6 = `SI;
-parameter N7 = `DO_1;
+parameter N0 = `DO_4;
+parameter N1 = `RE_4;
+parameter N2 = `MI_4;
+parameter N3 = `FA_4;
+parameter N4 = `SOL_4;
+parameter N5 = `LA_4;
+parameter N6 = `SI_4;
+parameter N7 = `DO_5;
 
 
 reg [1:0] sel = 0;
