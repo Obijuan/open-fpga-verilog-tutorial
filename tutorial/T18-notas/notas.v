@@ -29,11 +29,6 @@ parameter N5 = `LA_4;
 parameter N6 = `SI_4;
 parameter N7 = `DO_5;
 
-
-reg [1:0] sel = 0;
-
-wire clk_dur;
-
 //-- Generador de tono 0
 divider #(N0)
   CH0 (
