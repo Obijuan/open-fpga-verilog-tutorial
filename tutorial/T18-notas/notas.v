@@ -17,8 +17,8 @@
 //-- chx: salidas de los 8 canales. Una nota por cada uno
 module notas(input wire clk, output wire ch0, ch1, ch2, ch3, ch4, ch5, ch6, ch7);
 
-//-- Parametro del divisor. Fijarlo a 1Hz
-//-- Se define como parametro para poder modificarlo desde el testbench
+//-- Parametros del divisor
+//-- Se definen como parametros para poder modificarlo desde el testbench
 //-- para hacer pruebas
 parameter N0 = `DO_4;
 parameter N1 = `RE_4;
