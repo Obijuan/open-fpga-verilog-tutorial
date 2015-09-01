@@ -1,6 +1,6 @@
 //-------------------------------------------------------------------
-//-- tones_tb.v
-//-- Banco de pruebas para el generador de 4 tonos
+//-- notas_tb.v
+//-- Banco de pruebas para el generador de 8 notas
 //-------------------------------------------------------------------
 //-- BQ August 2015. Written by Juan Gonzalez (Obijuan)
 //-------------------------------------------------------------------
