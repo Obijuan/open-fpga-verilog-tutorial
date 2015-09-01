@@ -1,5 +1,8 @@
 //-----------------------------------------------------------------------------
-//-- Contador de segundos
+//-- Reproducción de 8 notas musicales simultáneas, una por cada canal
+//-- Se reproducen 7 notas basicas de la octava 4: do, re, mi, fa, sol, la, si
+//-- y un DO de la octava 5
+//-----------------------------------------------------------------------------
 //-- (C) BQ. August 2015. Written by Juan Gonzalez
 //-----------------------------------------------------------------------------
 //-- GPL license
@@ -11,7 +14,7 @@
 
 //-- Parameteros:
 //-- clk: Reloj de entrada de la placa iCEstick
-//-- data: Valor del contador de segundos, a sacar por los leds de la iCEstick
+//-- chx: salidas de los 8 canales. Una nota por cada uno
 module notas(input wire clk, output wire ch0, ch1, ch2, ch3, ch4, ch5, ch6, ch7);
 
 //-- Parametro del divisor. Fijarlo a 1Hz
