@@ -5294,9 +5294,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.3999276"
-     inkscape:cx="291.56586"
-     inkscape:cy="695.05585"
+     inkscape:zoom="1.2837227"
+     inkscape:cx="265.22289"
+     inkscape:cy="664.30567"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -6140,7 +6140,9 @@
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:;marker-start:url(#Arrow1Mstart-1)"
        d="m 361.44726,353.75465 -17.5009,0 0,52.14556 -21.07252,0"
        id="path9906"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <g
        id="g15781-2-7-6"
        transform="matrix(0.84243467,0,0,1.0014868,29.265578,95.94824)"
@@ -6223,7 +6225,9 @@
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.99999994px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Mend-3-1)"
        d="m 291.08647,466.97478 31.73751,0"
        id="path9955"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#008000;stroke-width:0.99999994px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker6315-4-7)"
        d="m 120.44355,468.25871 40.62045,0"
@@ -6273,7 +6277,9 @@
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker19183)"
        d="m 468.59566,313.39542 68.57497,0"
        id="path17205"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
