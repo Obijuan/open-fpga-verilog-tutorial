@@ -18,9 +18,9 @@ module secnotas(input wire clk, output reg ch_out);
 //-- Parametros: notas a tocar
 //-- Se define como parametro para poder modificarlas desde el testbench
 //-- para hacer pruebas
-parameter N0 = `DO;
-parameter N1 = `RE;
-parameter N2 = `MI;
+parameter N0 = `DO_4;
+parameter N1 = `RE_4;
+parameter N2 = `MI_4;
 parameter DUR = `T_250ms;
 
 //-- Cables de salida de los canales
