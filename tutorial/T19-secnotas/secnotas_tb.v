@@ -1,6 +1,6 @@
 //-------------------------------------------------------------------
-//-- tones_tb.v
-//-- Banco de pruebas para el generador de 4 tonos
+//-- sectones_tb.v
+//-- Banco de pruebas para el secuenciador de 4 notas
 //-------------------------------------------------------------------
 //-- BQ August 2015. Written by Juan Gonzalez (Obijuan)
 //-------------------------------------------------------------------
@@ -18,7 +18,7 @@ wire ch_out;
 
 //-- Instanciar el componente y establecer el valor del divisor
 //-- Se pone un valor bajo para simular (de lo contrario tardaria mucho)
-secnotas #(2, 3, 4, 6, 24)
+secnotas #(.N0(2), .N1(3), .N2(4), .DUR(10))
   dut(
     .clk(clk),
     .ch_out(ch_out)
