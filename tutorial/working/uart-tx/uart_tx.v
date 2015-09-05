@@ -5,7 +5,7 @@
 module uart_tx(
    input wire clk,         //-- Relog del sistema
    input wire rstn,        //-- Reset sincrono activo a nivel bajo
-	 input wire [7:0] data,  //-- Dato a transmitir
+   input wire [7:0] data,  //-- Dato a transmitir
    input wire ws,          //-- Validacion del dato
    output reg tx           //-- Linea de transmision al exterior
 );
@@ -26,12 +26,6 @@ reg [1:0] state;
 
 //-- Contador de bits transmitidos
 reg [3:0] bitcount;
-
-//-- Definicion de los estados del transmisor
-localparam IDLE = 0;         //-- Reposo
-localparam WAIT = 1;         //-- Esperar flanco bajada en wr
-localparam LOAD = 2;         //-- Carga de registros y contadores
-localparam TRANSMITING = 3;  //-- Transmitiendo datos
 
 //-- Generador de reloj para transmitir datos a los baudios indicados
 baudgen #(`B115200)
@@ -78,65 +72,68 @@ always @(posedge clk)
 
   else if (load == 0 && ser_clk == 1)
     bitcount <= bitcount - 1;
-  
-//-- Conectar el bit de menos peso del registro de desplazamiento
-//-- con la linea de transmision
-//assign tx = shifter[0];
 
-always @(state)
-  case (state)
+//----------------------------
+//-- Maquina de estados
+//----------------------------
 
-    IDLE: 
-      load <= 0;
-        
-    WAIT:
-      load <= 0;
-
-    LOAD: 
-      load <= 1;
-
-    TRANSMITING: 
-      load <= 0;
-
-    default: 
-        load <= 0;
-  endcase
+//-- Definicion de los estados del transmisor
+localparam IDLE = 0;         //-- Reposo
+localparam WAIT = 1;         //-- Esperar flanco bajada en wr
+localparam LOAD = 2;         //-- Carga de registros y contadores
+localparam TRANSMITING = 3;  //-- Transmitiendo datos
 
 
+//-- Salidas del automata
+assign load = (state == LOAD) ? 1 : 0;
+
+//-- Transicion entre estados del automata
 always @(posedge clk)
+
+  //-- Reset: estado inicial
   if (!rstn)
     state <= IDLE;
     
   else
+
+    //-- Segun el estado, analizar las entradas y 
+    //-- cambiar al estado siguiente
     case (state)
 
+      //-- Estado de reposo. Esperando a que se 
+      //-- active la senal ws
       IDLE: 
         if (ws == 1)
           state <= WAIT;
         else
           state <= IDLE;
 
+      //-- Estado de espera. Esperar a que la senal ws
+      //-- se ponga a 0 (para que llegue un flanco de bajada)
       WAIT:
         if (ws == 0)
           state <= LOAD;
         else
           state <= WAIT;
 
+      //-- Estado de carga. Se activa la senal de load para cargar
+      //-- el registro de desplazamiento con el dato a transmitir
+      //-- y se inicializa el contador de bits
       LOAD:
         state <= TRANSMITING;
 
+      //-- Estado de transmision. Se estan enviando los datos en serie
+      //-- Cuando el contador de bits llega a 0 se vuelve al estado de reposo
       TRANSMITING:
         if ( |bitcount == 0)
           state <= IDLE;
         else
           state <= TRANSMITING;
 
+      //-- Para completar todos los casos y evitar ambiguedades
       default: 
         state <= IDLE;
     endcase
-
-
-
 
 
 endmodule
