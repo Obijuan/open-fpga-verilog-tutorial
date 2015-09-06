@@ -1,6 +1,7 @@
+`include "baudgen.vh"
+
 `default_nettype none
 
-`define B115200 104
 
 module uart_tx(
    input wire clk,         //-- Relog del sistema
@@ -9,6 +10,8 @@ module uart_tx(
    input wire ws,          //-- Validacion del dato
    output reg tx           //-- Linea de transmision al exterior
 );
+
+parameter BAUD = `B115200;
 
 //-- Registro de desplazamiento
 //-- 9 bits:  8 de datos + el bit de start
@@ -28,7 +31,7 @@ reg [1:0] state;
 reg [3:0] bitcount;
 
 //-- Generador de reloj para transmitir datos a los baudios indicados
-baudgen #(`B115200)
+baudgen #(BAUD)
   DIV (
     .clk_in(clk),
     .clk_out(ser_clk),

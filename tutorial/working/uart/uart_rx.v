@@ -1,6 +1,6 @@
-`default_nettype none
+`include "baudgen.vh"
 
-`define B115200 104
+`default_nettype none
 
 module uart_rx(
    input wire clk,         //-- Relog del sistema
@@ -10,11 +10,13 @@ module uart_rx(
    output wire rs         //-- Validacion de los datos (para su captura)
 );
 
+parameter BAUD = `B115200;
+
 wire ser_clk;
 reg restart = 0;
 
 //-- GENERADOR DEL RELOJ
-baudgen #(`B115200 >> 1)
+baudgen #(BAUD >> 1)
   DIV0 (
     .clk_in(clk),
     .restart(restart),
