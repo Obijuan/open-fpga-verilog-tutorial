@@ -5,8 +5,6 @@
 //-- GPL license
 //-----------------------------------------------------------------------------
 
-`include "divider.vh"
-
 //-- Entrada: clk_in. Señal original
 //-- Salida: clk_out. Señal de frecuencia 1/M de la original
 module baudgen(input wire clk_in,
@@ -15,7 +13,7 @@ module baudgen(input wire clk_in,
 
 //-- Valor por defecto del divisor
 //-- Lo ponemos a 1 Hz
-parameter M = `F_2KHz;
+parameter M = 104;
 
 //-- Numero de bits para almacenar el divisor
 //-- Se calculan con la funcion de verilog $clog2, que nos devuelve el 

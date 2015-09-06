@@ -7,7 +7,7 @@
 //-- GPL License
 //-------------------------------------------------------------------
 
-module txcar_tb();
+module echo_tb();
 
 //-- Registro para generar la señal de reloj
 reg clk = 0;
@@ -51,7 +51,7 @@ initial begin
   #204 rx <= 0;   //-- Bit 7
   #204 rx <= 1;   //-- Bit stop
 
-  # 40000 $display("FIN de la simulacion");
+  # 4000 $display("FIN de la simulacion");
   $finish;
 end
 
