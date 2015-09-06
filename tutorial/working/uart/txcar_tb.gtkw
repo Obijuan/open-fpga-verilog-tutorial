@@ -1,0 +1,45 @@
+[*]
+[*] GTKWave Analyzer v3.3.64 (w)1999-2014 BSI
+[*] Sun Sep  6 16:10:38 2015
+[*]
+[dumpfile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/working/uart/txcar_tb.vcd"
+[dumpfile_mtime] "Sun Sep  6 16:07:15 2015"
+[dumpfile_size] 751687
+[savefile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/working/uart/txcar_tb.gtkw"
+[timestart] 0
+[size] 1842 600
+[pos] 73 0
+*-8.669619 828 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] txcar_tb.
+[treeopen] txcar_tb.dut.
+[treeopen] txcar_tb.dut.UART_RX.
+[sst_width] 223
+[signals_width] 251
+[sst_expanded] 1
+[sst_vpaned_height] 160
+@200
+-UART: RX
+@28
+txcar_tb.dut.UART_RX.clk
+txcar_tb.dut.UART_RX.rstn
+txcar_tb.dut.UART_RX.ser_clk
+txcar_tb.dut.UART_RX.rx
+@22
+txcar_tb.dut.UART_RX.data[7:0]
+@28
+txcar_tb.dut.UART_RX.rs
+@200
+-
+-UART: TX
+@28
+txcar_tb.dut.UART_TX.ser_clk
+txcar_tb.dut.UART_TX.rstn
+txcar_tb.dut.UART_TX.ws
+@22
+txcar_tb.dut.UART_TX.data[7:0]
+@28
+txcar_tb.dut.UART_TX.tx
+@23
+txcar_tb.dut.leds[3:0]
+[pattern_trace] 1
+[pattern_trace] 0
