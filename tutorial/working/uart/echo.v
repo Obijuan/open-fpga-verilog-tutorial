@@ -22,6 +22,7 @@ module echo(input wire clk,           //-- Reloj del sistema (12MHz en ICEstick)
              output wire [3:0] leds,  //-- 4 bits de menos peso del dato recibido
              output wire act);        //-- Actividad (conectar a un led)
 
+//-- BUG: a velocidades menores de 38400 no funciona bien
 parameter BAUD = `B115200;
 
 //------ Cables
