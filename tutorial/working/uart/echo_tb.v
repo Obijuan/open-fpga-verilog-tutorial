@@ -1,8 +1,8 @@
 //-------------------------------------------------------------------
-//-- sectones_tb.v
-//-- Banco de pruebas para el secuenciador de 4 notas
+//-- Banco de pruebas para probar la UART
+//-- Se envían los bits en serie
 //-------------------------------------------------------------------
-//-- BQ August 2015. Written by Juan Gonzalez (Obijuan)
+//-- BQ September 2015. Written by Juan Gonzalez (Obijuan)
 //-------------------------------------------------------------------
 //-- GPL License
 //-------------------------------------------------------------------
@@ -13,12 +13,13 @@ module echo_tb();
 reg clk = 0;
 
 
-//-- Salida de la uart
+//-- Cables para las pruebas
 wire tx;
 reg rx = 1;
 wire act;
 wire [3:0] leds;
 
+//-- Instanciar el modulo de Eco
 echo
   dut(
     .clk(clk),
@@ -40,7 +41,8 @@ initial begin
   $dumpfile("echo_tb.vcd");
   $dumpvars(0, echo_tb);
 
-  #20 rx <= 0;    //-- Bit start dato 1
+  //-- Enviar el dato de prueba 0x55:  01010101
+  #20 rx <= 0;    //-- Bit start 
   #204 rx <= 1;   //-- Bit 0
   #204 rx <= 0;   //-- Bit 1
   #204 rx <= 1;   //-- Bit 2
