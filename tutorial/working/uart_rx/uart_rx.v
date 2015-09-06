@@ -72,7 +72,6 @@ localparam IDLE = 0;
 localparam START = 1;
 localparam RECEIVING = 2;
 localparam FINISH = 3;
-localparam STOP = 7;
 
 reg [2:0] state = IDLE;
 
@@ -117,15 +116,6 @@ always @* begin
         regdata_load <= 1;
       end
 
-    STOP: begin //-- Depuracion
-      restart <= 1;
-      shift <= 0;
-      bitcounter_enable <= 0;
-      car_counter_enable <= 0;
-      regdata_load <= 0;
-
-    end
-
     default: begin
       restart <= 1; 
       shift <= 0;
@@ -167,9 +157,6 @@ always @(posedge clk)
       //-- Terminado. Dato disponible
       FINISH:
            state <= IDLE;
-
-      STOP:
-        state <= STOP;
         
       default:
         state <= IDLE;
