@@ -1,0 +1,8 @@
+set_io rxdata[3] 96
+set_io rxdata[2] 97
+set_io rxdata[1] 98
+set_io rxdata[0] 99
+set_io act 95
+set_io rx 9
+set_io clk 21
+
