@@ -1,7 +1,7 @@
 #----------------------------------------
 #-- Establecer nombre del componente
 #----------------------------------------
-NAME = txcar
+NAME = echo
 DEPS = uart_tx.v uart_rx.v baudgen.v 
 
 #-------------------------------------------------------

@@ -19,7 +19,7 @@ reg rx = 1;
 wire act;
 wire [3:0] leds;
 
-txcar
+echo
   dut(
     .clk(clk),
     .tx(tx),
@@ -37,8 +37,8 @@ always
 initial begin
 
   //-- Fichero donde almacenar los resultados
-  $dumpfile("txcar_tb.vcd");
-  $dumpvars(0, txcar_tb);
+  $dumpfile("echo_tb.vcd");
+  $dumpvars(0, echo_tb);
 
   #20 rx <= 0;    //-- Bit start dato 1
   #204 rx <= 1;   //-- Bit 0
