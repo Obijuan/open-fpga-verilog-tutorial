@@ -6,6 +6,7 @@
 //-------------------------------------------------------------------
 //-- GPL License
 //-------------------------------------------------------------------
+`include "baudgen.vh"
 
 module echo_tb();
 
@@ -20,7 +21,7 @@ wire act;
 wire [3:0] leds;
 
 //-- Instanciar el modulo de Eco
-echo
+echo #(.BAUD(`B115200))
   dut(
     .clk(clk),
     .tx(tx),

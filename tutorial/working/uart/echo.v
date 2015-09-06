@@ -13,6 +13,7 @@
 //--
 //-- 
 //----------------------------------------------------------------------------
+`include "baudgen.vh"
 
 //--- Modulo que hace eco
 module echo(input wire clk,           //-- Reloj del sistema (12MHz en ICEstick)
@@ -20,6 +21,8 @@ module echo(input wire clk,           //-- Reloj del sistema (12MHz en ICEstick)
              output wire tx,          //-- Salida de datos serie (hacia el PC)
              output wire [3:0] leds,  //-- 4 bits de menos peso del dato recibido
              output wire act);        //-- Actividad (conectar a un led)
+
+parameter BAUD = `B115200;
 
 //------ Cables
 reg rstn = 0;       //-- Reset. Inicializacion de la UART
@@ -29,7 +32,8 @@ wire rs;            //-- Read Strobe. Flanco para capturar datos recibidos
 
 //--- INSTANCIAR LA UNIDAD DE RECEPCION
 
-uart_rx UART_RX (
+uart_rx #(.BAUD(BAUD)) 
+  UART_RX (
     .clk(clk), 
     .rstn(rstn),
     .rx(rx),
@@ -39,13 +43,14 @@ uart_rx UART_RX (
 
 //-- INSTANCIAR LA UNIDAD DE TRANSMISION
 
-uart_tx UART_TX (
-  .clk(clk),
-  .rstn(rstn),
-  .data(data),  //-- Datos a transmitir. Provenientes del receptor serie
-  .ws(rs),
-  .tx(tx)
-);
+uart_tx #(.BAUD(BAUD))
+  UART_TX (
+    .clk(clk),
+    .rstn(rstn),
+    .data(data),  //-- Datos a transmitir. Provenientes del receptor serie
+    .ws(rs),
+    .tx(tx)
+  );
 
 
 //-- Sacar byte de menor peso del dato recibido por los leds
