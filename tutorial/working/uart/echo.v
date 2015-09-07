@@ -23,7 +23,7 @@ module echo(input wire clk,           //-- Reloj del sistema (12MHz en ICEstick)
              output wire act);        //-- Actividad (conectar a un led)
 
 //-- BUG: a 19200 no funciona
-parameter BAUD = `B19200;
+parameter BAUD = `B115200;
 
 //------ Cables
 reg rstn = 0;       //-- Reset. Inicializacion de la UART

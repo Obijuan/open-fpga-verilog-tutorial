@@ -8,6 +8,16 @@ Estado actual:
          Programa de prueba: rxcar.v
 
   * Ejemplo Transmision - recepción: (Eco)  Por probar a todas las velocidades
+       115200: OK
+       57600: ok
+       38400: Recibe, pero no transmite :-(
+       19200: ok
+       9600: Recibe, pero no transmite :-(
+       4800: ok
+       2400: ok
+       1200: ok
+       600: ok
+       300: ok
 
 
 
