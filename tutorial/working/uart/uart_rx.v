@@ -63,23 +63,33 @@ always @(posedge ser_clk)
   else if (shift & tics_counter[0]==1)
     shifter <= {rx, shifter[8:1]};
 
+reg [7:0] regdata;
 
+always @(posedge clk)
+  if (!rstn)
+    regdata <= 0;
+  else if (regdata_load)
+    regdata <= shifter[7:0];
 
 //-- MAQUINA DE ESTADOS
 localparam IDLE = 0;
 localparam START = 1;
 localparam RECEIVING = 2;
 localparam FINISH = 3;
+localparam READY = 4;
 
 reg [2:0] state = IDLE;
+reg ready = 0;
 
-//assign data = (state == FINISH) ? 8'b0000_1000 : {6'b000000, ser_clk, 1'b0};
+//assign data = (state == FINISH) ? 8'h04 : 0;
 
-//assign data = {4'b0000, car_counter[0], regdata[2:0]};
+//assign data = {4'b0000, car_counter[0], shifter[2:0]};
 
-assign data = shifter[7:0];
+//assign data = {4'b0000, car_counter};
 
-assign rs = regdata_load;
+assign data =  regdata; //shifter[7:0]; //regdata;
+
+assign rs = ready;//regdata_load;
 
 //-- Salidas del automata del receptor
 always @* begin
@@ -90,6 +100,7 @@ always @* begin
       bitcounter_enable <= 0;
       car_counter_enable <= 0;
       regdata_load <= 0;
+      ready <= 0;
       end
 
     START: begin
@@ -98,6 +109,7 @@ always @* begin
         bitcounter_enable <= 1;
         car_counter_enable <= 0;
         regdata_load <= 0;
+        ready <= 0;
       end
 
     RECEIVING: begin
@@ -106,6 +118,7 @@ always @* begin
         bitcounter_enable <= 1;
         car_counter_enable <= 0;
         regdata_load <= 0;
+        ready <= 0;
       end
 
     FINISH: begin
@@ -114,6 +127,16 @@ always @* begin
         bitcounter_enable <= 0;
         car_counter_enable <= 1;
         regdata_load <= 1;
+        ready <= 0;
+      end
+
+    READY: begin
+        restart <= 1;
+        shift <= 0;
+        bitcounter_enable <= 0;
+        car_counter_enable <= 0;
+        regdata_load <= 0;
+        ready <= 1;
       end
 
     default: begin
@@ -122,6 +145,7 @@ always @* begin
       bitcounter_enable <= 0;
       car_counter_enable <= 0;
       regdata_load <= 0;
+      ready <= 0;
       end
 
   endcase
@@ -156,6 +180,9 @@ always @(posedge clk)
         
       //-- Terminado. Dato disponible
       FINISH:
+           state <= READY;
+
+      READY:
            state <= IDLE;
         
       default:

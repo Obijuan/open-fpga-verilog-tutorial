@@ -22,7 +22,7 @@ module rxcar(input wire clk,           //-- Reloj del sistema (12MHz en ICEstick
              output wire act);        //-- Actividad (conectar a un led)
 
 //-- BUG: a velocidades de 1200 baudios no funciona
-parameter BAUD = `B1200; //`B115200;
+parameter BAUD = `B115200; //`B115200;
 
 //------ Cables
 reg rstn = 0;       //-- Reset. Inicializacion de la UART
@@ -43,11 +43,11 @@ uart_rx #(.BAUD(BAUD))
     .rs(rs)
   );
 
+
 //-- Registrar los datos recibidos
 always @(posedge clk)
   if (rs)
     regdata <= data;
-
 
 //-- Sacar byte de menor peso del dato recibido por los leds
 assign leds = regdata[3:0];
