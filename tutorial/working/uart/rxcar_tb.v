@@ -14,7 +14,7 @@
 
 module rxcar_tb();
 
-localparam BAUD = `B19200;
+localparam BAUD = `B1200;
 
 //-- Tics de reloj para envio de datos a esa velocidad
 //-- Se multiplica por 2 porque el periodo del reloj es de 2 unidades
@@ -62,9 +62,9 @@ initial begin
   # BITRATE rx <= 0;   //-- Bit 7
   # BITRATE rx <= 1;   //-- Bit stop
 
-  # BITRATE rx <= 1;
-
-  # 4000 $display("FIN de la simulacion");
+  # (BITRATE * 10)
+      rx <=0; 
+      $display("FIN de la simulacion");
   $finish;
 end
 

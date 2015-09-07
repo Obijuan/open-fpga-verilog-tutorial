@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.64 (w)1999-2014 BSI
-[*] Mon Sep  7 09:52:44 2015
+[*] Mon Sep  7 10:13:19 2015
 [*]
 [dumpfile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/working/uart/rxcar_tb.vcd"
-[dumpfile_mtime] "Mon Sep  7 09:49:32 2015"
-[dumpfile_size] 273079
+[dumpfile_mtime] "Mon Sep  7 10:13:04 2015"
+[dumpfile_size] 6670624
 [savefile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/working/uart/rxcar_tb.gtkw"
-[timestart] 6486
+[timestart] 0
 [size] 1578 600
-[pos] -278 -429
-*-10.588435 10164 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[pos] -170 -1
+*-16.112141 264200 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] rxcar_tb.
 [treeopen] rxcar_tb.dut.
 [sst_width] 230
