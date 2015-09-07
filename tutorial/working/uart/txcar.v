@@ -23,7 +23,7 @@ module txcar(input wire clk,           //-- Reloj del sistema (12MHz en ICEstick
 
 //-- BUG: a velocidades menores de 38400 no funciona bien
 parameter BAUD = `B115200;
-parameter DELAY = `T_1s;
+parameter DELAY = `T_250ms;
 
 //------ Cables
 reg rstn = 0;       //-- Reset. Inicializacion de la UART
