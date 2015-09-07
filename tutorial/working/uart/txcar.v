@@ -1,7 +1,5 @@
 //----------------------------------------------------------------------------
-//-- Pruebas para la uart: Se hace eco de todo lo recibido por el puerto serie
-//-- La unidad de Recepcion recibe el dato y se lo pasa a la unidad de 
-//-- transmision para enviarlo de vuelta al pc
+//-- Prueba del transmisor de la uart: Se invia un caracter fijo cada 250ms
 //----------------------------------------------------------------------------
 //-- (C) BQ. September 2015. Written by Juan Gonzalez (Obijuan)
 //-- GPL license
@@ -16,12 +14,11 @@
 `include "baudgen.vh"
 `include "divider.vh"
 
-//--- Modulo que hace eco
-module txcar(input wire clk,           //-- Reloj del sistema (12MHz en ICEstick)
+//--- Modulo que envia un caracter fijo repetidamente
+module txcar(input wire clk,          //-- Reloj del sistema (12MHz en ICEstick)
              output wire tx,          //-- Salida de datos serie (hacia el PC)
              output wire act);        //-- Actividad (conectar a un led)
 
-//-- BUG: a velocidades menores de 38400 no funciona bien
 parameter BAUD = `B115200;
 parameter DELAY = `T_250ms;
 
