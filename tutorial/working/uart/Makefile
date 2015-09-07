@@ -7,6 +7,9 @@ DEPS = uart_tx.v uart_rx.v baudgen.v
 NAME2 = txcar
 DEPS2 = uart_tx.v baudgen.v divider.v
 
+NAME3 = rxcar
+DEPS3 = uart_rx.v baudgen.v
+
 #-------------------------------------------------------
 #-- Objetivo por defecto: hacer simulacion y sintesis
 #-------------------------------------------------------
@@ -97,6 +100,48 @@ $(NAME2).bin: $(NAME2).pcf $(NAME2).v $(DEPS2)
 	
 	#-- Generar binario final, listo para descargar en fgpa
 	icepack $(NAME2).txt $(NAME2).bin
+
+
+
+
+sim3: $(NAME3)_tb.vcd
+	
+#-----------------------------------------------
+#-  make sint
+#-----------------------------------------------
+#-  Objetivo para realizar la sintetis completa
+#- y dejar el diseno listo para su grabacion en
+#- la FPGA
+#-----------------------------------------------
+sint3: $(NAME3).bin
+	
+#-------------------------------
+#-- Compilacion y simulacion
+#-------------------------------
+$(NAME3)_tb.vcd: $(NAME3).v $(DEPS3) $(NAME3)_tb.v
+	
+	#-- Compilar
+	iverilog $^ -o $(NAME3)_tb.out
+	
+	#-- Simular
+	./$(NAME3)_tb.out
+	
+	#-- Ver visualmente la simulacion con gtkwave
+	gtkwave $@ $(NAME3)_tb.gtkw &
+
+#------------------------------
+#-- Sintesis completa
+#------------------------------
+$(NAME3).bin: $(NAME3).pcf $(NAME3).v $(DEPS3)
+	
+	#-- Sintesis
+	yosys -p "synth_ice40 -blif $(NAME3).blif" $(NAME3).v $(DEPS3)
+	
+	#-- Place & route
+	arachne-pnr -d 1k -p $(NAME3).pcf $(NAME3).blif -o $(NAME3).txt
+	
+	#-- Generar binario final, listo para descargar en fgpa
+	icepack $(NAME3).txt $(NAME3).bin
 
 
 
