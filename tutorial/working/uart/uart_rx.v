@@ -53,15 +53,15 @@ always @(posedge clk)
 
 
 //-- REGISTRO DE DESPLAZAMIENTO
-reg [7:0] shifter = 0;
+reg [8:0] shifter = 0;
 reg shift = 0;  //-- Modo: shift = 1 desplzamiento, 0 stop (no habilitado)
 
 
 always @(posedge ser_clk)
   if (!rstn)
-    shifter <= 8'b1111_1111;
+    shifter <= 9'b1_1111_1111;
   else if (shift & tics_counter[0]==1)
-    shifter <= {rx, shifter[7:1]};
+    shifter <= {rx, shifter[8:1]};
 
 
 
@@ -77,7 +77,7 @@ reg [2:0] state = IDLE;
 
 //assign data = {4'b0000, car_counter[0], regdata[2:0]};
 
-assign data = shifter;
+assign data = shifter[7:0];
 
 assign rs = regdata_load;
 
@@ -149,7 +149,7 @@ always @(posedge clk)
       
       //-- Recibiendo datos sobremuesreados en el reg de desplazamiento
       RECEIVING:
-         if (tics_counter == 19)
+         if (tics_counter == 20)
            state <= FINISH;
          else
            state <= RECEIVING;
