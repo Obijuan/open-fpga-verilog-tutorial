@@ -1,0 +1,4 @@
+set_io act 95
+set_io tx 8
+set_io clk 21
+
