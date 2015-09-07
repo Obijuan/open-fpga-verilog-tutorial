@@ -14,7 +14,7 @@
 
 module rxcar_tb();
 
-localparam BAUD = `B115200;
+localparam BAUD = `B38400;
 
 //-- Tics de reloj para envio de datos a esa velocidad
 //-- Se multiplica por 2 porque el periodo del reloj es de 2 unidades

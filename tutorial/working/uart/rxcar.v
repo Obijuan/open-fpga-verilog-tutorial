@@ -22,7 +22,7 @@ module rxcar(input wire clk,           //-- Reloj del sistema (12MHz en ICEstick
              output wire act);        //-- Actividad (conectar a un led)
 
 //-- BUG: a velocidades menores de 38400 no funciona bien
-parameter BAUD = `B115200;
+parameter BAUD = `B115200; //`B115200;
 
 //------ Cables
 reg rstn = 0;       //-- Reset. Inicializacion de la UART
