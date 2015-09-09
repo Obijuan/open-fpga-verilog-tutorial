@@ -1,6 +1,7 @@
 //-------------------------------------------------------------------
-//-- sectones_tb.v
-//-- Banco de pruebas para el secuenciador de 4 notas
+//-- echowire1_tb.v
+//-- Banco de pruebas para el eco cableado del puerto serie y las 
+//-- comprobaciones de las señales DTR y RTS
 //-------------------------------------------------------------------
 //-- BQ August 2015. Written by Juan Gonzalez (Obijuan)
 //-------------------------------------------------------------------
@@ -9,12 +10,13 @@
 
 module echowire1_tb();
 
+//-- Declaracion de los cables
 reg dtr = 0;
 reg rts = 0;
 reg rx = 0;
 wire tx, led1, led2;
 
-
+//-- Instanciar el componente
 echowire1
   dut(
     .dtr(dtr),
@@ -25,12 +27,15 @@ echowire1
     .rx(rx)
   );
 
+//-- Generar cambios en dtr. Los mismos deben reflejarse en el cable D1
 always
   #2 dtr <= ~dtr;
 
+//-- Generar cambios en rts. Se deben reflejar en el cable D2
 always
   #3 rts = ~rts;
 
+//-- Generar cambios en rs. Se reflejan en TX
 always
   #1 rx <= ~rx;
 
