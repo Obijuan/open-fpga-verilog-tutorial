@@ -1,3 +1,8 @@
+//-----------------------------------------------------------------------------
+//-- Pruebas de conexionado del puerto serie
+//-- Las señales dtr y rts se cablean a los leds
+//-- La señal Rx se conecta a Tx para que se haga un eco a nivel fisico
+//------------------------------------------------------------------------------
 module echowire1(input wire dtr,
                  input wire rts,
                  input wire rx,
