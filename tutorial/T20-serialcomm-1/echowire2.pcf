@@ -1,0 +1,15 @@
+set_io rx2  45
+set_io tx2  44
+set_io tx   8
+set_io rx   9
+set_io rts  7
+set_io dtr  3
+set_io D2   98
+set_io D1   99
+
+
+
+
+
+
+
