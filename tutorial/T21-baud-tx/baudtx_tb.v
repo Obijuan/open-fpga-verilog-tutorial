@@ -1,6 +1,6 @@
 //-------------------------------------------------------------------
-//-- sectones_tb.v
-//-- Banco de pruebas para el secuenciador de 4 notas
+//-- baudtx_tb.v
+//-- Banco de pruebas para la tranmision de datos
 //-------------------------------------------------------------------
 //-- BQ August 2015. Written by Juan Gonzalez (Obijuan)
 //-------------------------------------------------------------------
@@ -13,11 +13,14 @@ module baudtx_tb();
 //-- Registro para generar la señal de reloj
 reg clk = 0;
 
-//-- Salida de la uart
+//-- Linea de tranmision
 wire tx;
+
+//-- Simulacion de la señal dtr
 reg dtr = 0;
 
-baudtx #( .BAUD(`B115200), .DELAY(4000) )
+//-- Instanciar el componente para que funcione a 115200 baudios
+baudtx #(`B115200)
   dut(
     .clk(clk),
     .load(dtr),
@@ -36,14 +39,19 @@ initial begin
   $dumpfile("baudtx_tb.vcd");
   $dumpvars(0, baudtx_tb);
 
+  //-- Primer envio: cargar y enviar
   #10 dtr <= 0;
   #300 dtr <= 1;
  
-  #20000 dtr <=0;
+  //-- Segundo envio
+  #10000 dtr <=0;
+  #300 dtr <=1;
 
-  #30000 dtr <=1;
+  //-- Tercer envio
+  #10000 dtr <=0;
+  #300 dtr <=1;
 
-  # 40000 $display("FIN de la simulacion");
+  #5000 $display("FIN de la simulacion");
   $finish;
 end
 
