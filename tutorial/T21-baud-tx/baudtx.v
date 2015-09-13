@@ -1,37 +1,42 @@
 //----------------------------------------------------------------------------
-//-- Prueba del transmisor de la uart: Se invia un caracter fijo cada 250ms
+//-- Prueba de tranmision 1. Se transmite el caracter "K" con cada flanco de
+//-- subida en la señal DTR. De esta forma controlamos la transmision desde
+//-- el PC
 //----------------------------------------------------------------------------
 //-- (C) BQ. September 2015. Written by Juan Gonzalez (Obijuan)
 //-- GPL license
 //----------------------------------------------------------------------------
-//-- Although this UART has been written from the scratch, it has been
+//-- Although this transmitter has been written from the scratch, it has been
 //-- inspired by the one developed in the swapforth proyect by James Bowman
 //--
 //-- https://github.com/jamesbowman/swapforth
 //--
-//-- 
 //----------------------------------------------------------------------------
 `default_nettype none
 
 `include "baudgen.vh"
 
-//--- Modulo que envia un caracter fijo repetidamente
+//--- Modulo que envia un caracter fijo con cada flanco de subida de la señal dtr
 module baudtx(input wire clk,          //-- Reloj del sistema (12MHz en ICEstick)
-              input wire dtr,
-             output wire tx          //-- Salida de datos serie (hacia el PC)
+              input wire dtr,          //-- Señal dtr
+              output wire tx           //-- Salida de datos serie (hacia el PC)
              );
 
-parameter BAUD =  `B115200; //`B115200; //`B9600; //`B19200;
+//-- Parametro: velocidad de transmision
+parameter BAUD =  `B115200;
 
-//------ Cables
-reg rstn = 0;
-wire clk_car;
+//-- Registro de 10 bits para almacenar la trama a enviar:
+//-- 1 bit start + 8 bits datos + 1 bit stop
 reg [9:0] shifter;
-wire loadn;
+
+//-- Reloj para la transmision
 wire clk_baud;
 
 
-//-- Registro de desplazamiento
+//-- Registro de desplazamiento, con carga paralela
+//-- Cuando DTR es 0, se carga la trama
+//-- Cuando DTR es 1 se desplaza hacia la derecha, y se 
+//-- introducen '1's por la izquierda
 always @(posedge clk_baud)
   if (dtr == 0)
     shifter <= {"K",2'b01};
@@ -39,9 +44,14 @@ always @(posedge clk_baud)
     shifter <= {1'b1, shifter[9:1]};
 
 //-- Sacar por tx el bit menos significativo del registros de desplazamiento
+//-- Cuando estamos en modo carga (dtr == 0), se saca siempre un 1 para 
+//-- que la linea este siempre a un estado de reposo. De esta forma en el 
+//-- inicio tx esta en reposo, aunque el valor del registro de desplazamiento
+//-- sea desconocido
 assign tx = (dtr) ? shifter[0] : 1;
 
 
+//-- Divisor para obtener el reloj de transmision
 divider #(BAUD)
   BAUD0 (
     .clk_in(clk),
