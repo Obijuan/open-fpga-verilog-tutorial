@@ -19075,13 +19075,13 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.97667994"
-     inkscape:cx="225.33475"
-     inkscape:cy="612.30739"
+     inkscape:cx="177.71343"
+     inkscape:cy="604.13002"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1855"
-     inkscape:window-height="1056"
+     inkscape:window-height="1176"
      inkscape:window-x="65"
      inkscape:window-y="24"
      inkscape:window-maximized="1"
@@ -19628,7 +19628,7 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="104.32229"
+       x="92.803673"
        y="361.01822"
        id="text5217-1-5-1-4-3-2-8-5-0-7-78-3-5-5"
        sodipodi:linespacing="125%"
@@ -19636,8 +19636,8 @@
        inkscape:export-ydpi="90"><tspan
          sodipodi:role="line"
          id="tspan5219-7-2-9-40-8-7-6-1-5-6-1-2-2-5"
-         x="104.32229"
+         x="92.803673"
          y="361.01822"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold'">clk_ser</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold'">clk_baud</tspan></text>
   </g>
 </svg>
