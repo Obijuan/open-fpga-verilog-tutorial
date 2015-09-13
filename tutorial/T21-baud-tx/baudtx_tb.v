@@ -20,7 +20,7 @@ reg dtr = 0;
 baudtx #( .BAUD(`B115200), .DELAY(4000) )
   dut(
     .clk(clk),
-    .dtr(dtr),
+    .load(dtr),
     .tx(tx)
   );
 
