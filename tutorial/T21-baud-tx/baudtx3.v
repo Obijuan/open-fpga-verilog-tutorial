@@ -61,6 +61,7 @@ assign tx = (load2) ? shifter[0] : 1;
 always @(posedge clk_baud)
   load2 <= load;
 
+
 //-- Divisor para obtener el reloj de transmision
 divider #(BAUD)
   BAUD0 (
