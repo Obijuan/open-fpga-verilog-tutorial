@@ -9,6 +9,14 @@
 //-- En milisegundos
 `define T_500ms  6000000
 `define T_250ms  3000000
+`define T_100ms  1200000
+`define T_10ms   120000
+`define T_5ms    60000
+`define T_2ms    24000
+`define T_1ms    12000
+
+//-- En microsegundos
+
 
 //-------------------- Frecuencias
 //-- Megaherzios  MHz
