@@ -1,6 +1,6 @@
 //-------------------------------------------------------------------
-//-- baudtx_tb.v
-//-- Banco de pruebas para la tranmision de datos
+//-- baudtx2_tb.v
+//-- Banco de pruebas para la tranmision de datos continua
 //-------------------------------------------------------------------
 //-- BQ August 2015. Written by Juan Gonzalez (Obijuan)
 //-------------------------------------------------------------------
