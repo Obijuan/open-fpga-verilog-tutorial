@@ -1,7 +1,6 @@
 //----------------------------------------------------------------------------
-//-- Prueba de tranmision 1. Se transmite el caracter "K" con cada flanco de
-//-- subida en la señal DTR. De esta forma controlamos la transmision desde
-//-- el PC
+//-- Prueba de tranmision 2. Transmision continua del caracter K cuando se
+//-- activa la señal DTR
 //----------------------------------------------------------------------------
 //-- (C) BQ. September 2015. Written by Juan Gonzalez (Obijuan)
 //-- GPL license
@@ -18,9 +17,9 @@
 
 //--- Modulo que envia un caracter cunado load esta a 1
 module baudtx2(input wire clk,       //-- Reloj del sistema (12MHz en ICEstick)
-              input wire load,      //-- Señal de cargar / desplazamiento
-              output wire tx        //-- Salida de datos serie (hacia el PC)
-             );
+               input wire load,      //-- Señal de cargar / desplazamiento
+               output wire tx        //-- Salida de datos serie (hacia el PC)
+              );
 
 //-- Parametro: velocidad de transmision
 parameter BAUD =  `B115200;
@@ -40,7 +39,7 @@ always @(posedge clk_baud)
   if (load == 0)
     shifter <= {"K",2'b01};
   else
-    shifter <= {1'b1, shifter[9:1]};
+    shifter <= {shifter[0], shifter[9:1]};
 
 //-- Sacar por tx el bit menos significativo del registros de desplazamiento
 //-- Cuando estamos en modo carga (dtr == 0), se saca siempre un 1 para 

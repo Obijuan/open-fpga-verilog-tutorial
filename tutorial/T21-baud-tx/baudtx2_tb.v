@@ -45,11 +45,11 @@ initial begin
  
   //-- Segundo envio
   #10000 dtr <=0;
-  #300 dtr <=1;
+  #2000 dtr <=1;
 
   //-- Tercer envio
   #10000 dtr <=0;
-  #300 dtr <=1;
+  #2000 dtr <=1;
 
   #5000 $display("FIN de la simulacion");
   $finish;
