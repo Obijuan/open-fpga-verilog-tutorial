@@ -18,7 +18,7 @@ wire tx;
 
 
 //-- Instanciar el componente para que funcione a 115200 baudios
-baudtx3 #(.BAUD(`B115200))
+baudtx3 #(.BAUD(`B115200), .DELAY(4000))
   dut(
     .clk(clk),
     .tx(tx)
@@ -36,7 +36,7 @@ initial begin
   $dumpfile("baudtx3_tb.vcd");
   $dumpvars(0, baudtx3_tb);
 
-  #1000000 $display("FIN de la simulacion");
+  #40000 $display("FIN de la simulacion");
   $finish;
 end
 
