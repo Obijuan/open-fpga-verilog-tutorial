@@ -17,7 +17,7 @@
 //
 //-- SALIDAS:
 //--     - clk_out. Señal de salida para lograr la velocidad en baudios indicada
-//--                Anchura de 1 periodo de clk. SALIDA REGISTRADA
+//--                Anchura de 1 periodo de clk. SALIDA NO REGISTRADA
 module baudgen(input wire clk,
                input wire clk_ena, 
                output wire clk_out);
