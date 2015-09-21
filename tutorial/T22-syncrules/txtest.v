@@ -2,6 +2,8 @@
 //-- Prueba de tranmision 1. Se transmite el caracter "K" con cada flanco de
 //-- subida en la señal DTR. De esta forma controlamos la transmision desde
 //-- el PC
+//--
+//-- Este circuito CUMPLE con las normas de diseño síncrono
 //----------------------------------------------------------------------------
 //-- (C) BQ. September 2015. Written by Juan Gonzalez (Obijuan)
 //-- GPL license
@@ -17,25 +19,25 @@
 `include "baudgen.vh"
 
 //--- Modulo que envia un caracter cuando load esta a 1
+//--- La salida tx ESTA REGISTRADA
 module txtest(input wire clk,       //-- Reloj del sistema (12MHz en ICEstick)
               input wire load,      //-- Señal de cargar / desplazamiento
-              output reg tx        //-- Salida de datos serie (hacia el PC)
+              output reg tx         //-- Salida de datos serie (hacia el PC)
              );
 
 //-- Parametro: velocidad de transmision
+//-- Pruebas del caso peor: a 300 baudios
 parameter BAUD =  `B300;
 
 //-- Registro de 10 bits para almacenar la trama a enviar:
 //-- 1 bit start + 8 bits datos + 1 bit stop
 reg [9:0] shifter;
 
-reg load_r;  //-- Señal de load registrada
+//-- Señal de load registrada
+reg load_r; 
 
 //-- Reloj para la transmision
 wire clk_baud;
-
-//- Señal tx interna, antes de salir al exterior
-//wire tx_in;
 
 //-- Registrar la entrada load
 //-- (para cumplir con las reglas de diseño sincrono)
@@ -63,7 +65,6 @@ always @(posedge clk)
 //-- sea desconocido
 //-- ES UNA SALIDA REGISTRADA, puesto que tx se conecta a un bus sincrono
 //-- y hay que evitar que salgan pulsos espureos (glitches)
-//assign tx_in = (load_r) ? shifter[0] : 1;
 always @(posedge clk)
   tx <= (load_r) ? shifter[0] : 1;
 
