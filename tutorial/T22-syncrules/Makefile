@@ -7,8 +7,8 @@ DEPS = baudgen.v
 NAME2 = txtest2
 DEPS2 = baudgen.v
 
-NAME3 = baudtx3
-DEPS3 = divider.v
+NAME3 = txtest3
+DEPS3 = baudgen.v divider.v
 
 #-------------------------------------------------------
 #-- Objetivo por defecto: hacer simulacion y sintesis
