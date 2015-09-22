@@ -7,6 +7,11 @@
 //----------------------------------------------------------------------------
 //-- (C) BQ. September 2015. Written by Juan Gonzalez (Obijuan)
 //-- GPL license
+//--
+//----------------------------------------------------------------------------
+//-- Comprobado su funcionamiento a todas las velocidades estandares:
+//-- 300, 600, 1200, 2400, 4800, 9600, 19200, 38400, 57600, 115200
+//--
 //----------------------------------------------------------------------------
 //-- Although this transmitter has been written from the scratch, it has been
 //-- inspired by the one developed in the swapforth proyect by James Bowman
