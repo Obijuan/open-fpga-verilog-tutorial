@@ -4,8 +4,8 @@
 NAME = txtest
 DEPS = baudgen.v
 
-NAME2 = baudtx2
-DEPS2 = divider.v
+NAME2 = txtest2
+DEPS2 = baudgen.v
 
 NAME3 = baudtx3
 DEPS3 = divider.v
