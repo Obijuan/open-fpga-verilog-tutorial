@@ -28,7 +28,7 @@ module fsmtx (input wire clk,       //-- Reloj del sistema (12MHz en ICEstick)
 
 //-- Parametro: velocidad de transmision
 //-- Pruebas del caso peor: a 300 baudios
-parameter BAUD =  `B115200;
+parameter BAUD =  `B300;
 
 //-- Caracter a enviar
 parameter CAR = "A";
