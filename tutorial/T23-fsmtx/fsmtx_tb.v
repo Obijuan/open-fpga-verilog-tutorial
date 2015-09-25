@@ -2,7 +2,7 @@
 //-- fsmtx_tb.v
 //-- Banco de pruebas para la tranmision de datos
 //-------------------------------------------------------------------
-//-- BQ August 2015. Written by Juan Gonzalez (Obijuan)
+//-- BQ September 2015. Written by Juan Gonzalez (Obijuan)
 //-------------------------------------------------------------------
 //-- GPL License
 //-------------------------------------------------------------------
@@ -62,7 +62,7 @@ initial begin
   #FRAME_WAIT start <= 1;
   #(BITRATE * 2) start <=0;
 
-  //-- Segundo envio
+  //-- Segundo envio (2 caracteres mas)
   #(FRAME_WAIT * 2) start <=1;
   #(FRAME * 1) start <=0;
 
