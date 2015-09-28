@@ -63,10 +63,10 @@ initial begin
   #(BITRATE * 2) dtr <=0;
 
   //-- Segundo envio (2 caracteres mas)
-  #(FRAME_WAIT * 2) dtr <=1;
-  #(FRAME * 1) dtr <=0;
+  #(FRAME * 11) dtr <=1;
+  #(BITRATE * 1) dtr <=0;
 
-  #(FRAME_WAIT * 4) $display("FIN de la simulacion");
+  #(FRAME * 11) $display("FIN de la simulacion");
   $finish;
 end
 

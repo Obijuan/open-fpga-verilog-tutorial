@@ -21,18 +21,17 @@
 
 //--- Modulo que envia un caracter cuando load esta a 1
 //--- La salida tx ESTA REGISTRADA
-module uart_tx (input wire clk,      //-- Reloj del sistema (12MHz en ICEstick)
-                input wire rstn,     //-- Reset global
-                input wire start,    //-- Activar a 1 para transmitir
-                output reg tx,       //-- Salida de datos serie (hacia el PC)
-                output wire ready     //-- Transmisor listo / ocupado
-               );
+module uart_tx (
+         input wire clk,        //-- Reloj del sistema (12MHz en ICEstick)
+         input wire rstn,       //-- Reset global
+         input wire start,      //-- Activar a 1 para transmitir
+         input wire [7:0] data, //-- Byte a transmitir
+         output reg tx,         //-- Salida de datos serie (hacia el PC)
+         output wire ready      //-- Transmisor listo / ocupado
+       );
 
 //-- Parametro: velocidad de transmision
 parameter BAUD =  `B115200;
-
-//-- Caracter a enviar
-parameter CAR = "A";
 
 //-- Registro de 10 bits para almacenar la trama a enviar:
 //-- 1 bit start + 8 bits datos + 1 bit stop
@@ -46,6 +45,9 @@ wire clk_baud;
 
 //-- Bitcounter
 reg [3:0] bitc;
+
+//-- Datos registrados
+reg [7:0] data_r;
 
 //--------- Microordenes
 wire load;    //-- Carga del registro de desplazamiento. Puesta a 0 del
@@ -61,6 +63,10 @@ wire baud_en; //-- Habilitar el generador de baudios para la transmision
 always @(posedge clk)
   start_r <= start;
 
+always @(posedge clk)
+  if (start == 1 && state == IDLE)
+    data_r <= data;
+
 //-- Registro de desplazamiento, con carga paralela
 //-- Cuando load_r es 0, se carga la trama
 //-- Cuando load_r es 1 y el reloj de baudios esta a 1 se desplaza hacia
@@ -73,7 +79,7 @@ always @(posedge clk)
 
   //-- Modo carga
   else if (load == 1)
-    shifter <= {CAR,2'b01};
+    shifter <= {data_r,2'b01};
 
   //-- Modo desplazamiento
   else if (load == 0 && clk_baud == 1)
