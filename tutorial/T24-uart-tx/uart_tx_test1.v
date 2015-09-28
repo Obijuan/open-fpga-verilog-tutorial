@@ -1,7 +1,7 @@
 `include "baudgen.vh"
 
 module uart_tx_test1 (input wire clk,
-                      input wire transmit,
+                      input wire dtr,
                       output wire tx
                      );
 
@@ -22,10 +22,12 @@ uart_tx #(.BAUD(BAUD))
   TX0 (
     .clk(clk),
     .rstn(rstn),
-    .start(start),
+    .start(dtr),
     .ready(ready),
     .tx(tx)
   );
+
+//-- Controlador
 
 
 endmodule

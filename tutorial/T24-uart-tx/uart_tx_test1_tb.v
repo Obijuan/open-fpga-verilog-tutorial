@@ -33,14 +33,14 @@ reg clk = 0;
 //-- Linea de tranmision
 wire tx;
 
-//-- Simulacion de la señal start
-reg transmit = 0;
+//-- Simulacion de la señal dtr
+reg dtr = 0;
 
 //-- Instanciar el componente
 uart_tx_test1 #(.BAUD(BAUD))
   dut(
     .clk(clk),
-    .transmit(transmit),
+    .dtr(dtr),
     .tx(tx)
   );
 
@@ -56,15 +56,15 @@ initial begin
   $dumpfile("uart_tx_test1_tb.vcd");
   $dumpvars(0, uart_tx_test1_tb);
 
-  #1 transmit <= 0;
+  #1 dtr <= 0;
 
   //-- Enviar primer caracter
-  #FRAME_WAIT transmit <= 1;
-  #(BITRATE * 2) transmit <=0;
+  #FRAME_WAIT dtr <= 1;
+  #(BITRATE * 2) dtr <=0;
 
   //-- Segundo envio (2 caracteres mas)
-  #(FRAME_WAIT * 2) transmit <=1;
-  #(FRAME * 1) transmit <=0;
+  #(FRAME_WAIT * 2) dtr <=1;
+  #(FRAME * 1) dtr <=0;
 
   #(FRAME_WAIT * 4) $display("FIN de la simulacion");
   $finish;

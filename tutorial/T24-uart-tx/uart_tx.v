@@ -25,7 +25,7 @@ module uart_tx (input wire clk,      //-- Reloj del sistema (12MHz en ICEstick)
                 input wire rstn,     //-- Reset global
                 input wire start,    //-- Activar a 1 para transmitir
                 output reg tx,       //-- Salida de datos serie (hacia el PC)
-                output wire ready    //-- Transmisor listo / ocupado
+                output wire ready     //-- Transmisor listo / ocupado
                );
 
 //-- Parametro: velocidad de transmision
@@ -46,9 +46,6 @@ wire clk_baud;
 
 //-- Bitcounter
 reg [3:0] bitc;
-
-//---- MODIFCAR!!!!
-assign ready = 1;
 
 //--------- Microordenes
 wire load;    //-- Carga del registro de desplazamiento. Puesta a 0 del
@@ -160,6 +157,7 @@ always @(posedge clk)
 //-- Generacion de las microordenes
 assign load = (state == START) ? 1 : 0;
 assign baud_en = (state == IDLE) ? 0 : 1;
+assign ready = (state == IDLE) ? 1 : 0;
 
 endmodule
 
