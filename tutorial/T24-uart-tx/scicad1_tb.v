@@ -9,7 +9,7 @@
 `include "baudgen.vh"
 
 
-module uart_tx_test1_tb();
+module scicad1_tb();
 
 //-- Baudios con los que realizar la simulacion
 //-- A 300 baudios, la simulacion tarda mas en realizarse porque los
@@ -37,7 +37,7 @@ wire tx;
 reg dtr = 0;
 
 //-- Instanciar el componente
-uart_tx_test1 #(.BAUD(BAUD))
+scicad1 #(.BAUD(BAUD))
   dut(
     .clk(clk),
     .dtr(dtr),
@@ -53,8 +53,8 @@ always
 initial begin
 
   //-- Fichero donde almacenar los resultados
-  $dumpfile("uart_tx_test1_tb.vcd");
-  $dumpvars(0, uart_tx_test1_tb);
+  $dumpfile("scicad1_tb.vcd");
+  $dumpvars(0, scicad1_tb);
 
   #1 dtr <= 0;
 

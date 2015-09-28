@@ -1,9 +1,9 @@
 `include "baudgen.vh"
 
-module uart_tx_test1 (input wire clk,
-                      input wire dtr,
-                      output wire tx
-                     );
+module scicad1 (input wire clk,
+                input wire dtr,
+                output wire tx
+               );
 
 parameter BAUD = `B115200;
 

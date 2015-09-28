@@ -1,7 +1,7 @@
 #----------------------------------------
 #-- Establecer nombre del componente
 #----------------------------------------
-NAME = uart_tx_test1
+NAME = scicad1
 DEPS = uart_tx.v baudgen.v
 
 NAME2 = fsmtx2
