@@ -1,6 +1,7 @@
 //-------------------------------------------------------------------
-//-- uart_tx_test1_tb.v
-//-- Banco de pruebas para la tranmision de datos
+//-- scicad1_tb
+//-- Banco de pruebas para el ejemplo de transmision continua de
+//-- cadenas
 //-------------------------------------------------------------------
 //-- BQ September 2015. Written by Juan Gonzalez (Obijuan)
 //-------------------------------------------------------------------
@@ -12,9 +13,6 @@
 module scicad1_tb();
 
 //-- Baudios con los que realizar la simulacion
-//-- A 300 baudios, la simulacion tarda mas en realizarse porque los
-//-- tiempos son mas largos. A 115200 baudios la simulacion es mucho
-//-- mas rapida
 localparam BAUD = `B115200;
 
 //-- Tics de reloj para envio de datos a esa velocidad
@@ -58,7 +56,7 @@ initial begin
 
   #1 dtr <= 0;
 
-  //-- Enviar primer caracter
+  //-- Comenzar primer envio
   #FRAME_WAIT dtr <= 1;
   #(BITRATE * 2) dtr <=0;
 

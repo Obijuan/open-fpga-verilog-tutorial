@@ -1,21 +1,37 @@
+//----------------------------------------------------------------------------
+//-- Ejemplo de uso del transmisor serie
+//-- Envio de la cadena "Hola!..." de forma continuada cuando se activa la 
+//-- señal de DTR
+//----------------------------------------------------------------------------
+//-- (C) BQ. September 2015. Written by Juan Gonzalez (Obijuan)
+//-- GPL license
+//----------------------------------------------------------------------------
+//-- Comprobado su funcionamiento a todas las velocidades estandares:
+//-- 300, 600, 1200, 2400, 4800, 9600, 19200, 38400, 57600, 115200
+//----------------------------------------------------------------------------
 `include "baudgen.vh"
 
-module scicad1 (input wire clk,
-                input wire dtr,
-                output wire tx
+//-- Modulo para envio de una cadena por el puerto serie
+module scicad1 (input wire clk,  //-- Reloj del sistema
+                input wire dtr,  //-- Señal de DTR
+                output wire tx   //-- Salida de datos serie
                );
 
+//-- Velocidad a la que hacer las pruebas
 parameter BAUD = `B115200;
 
 //-- Reset
 reg rstn = 0;
 
+//-- Señal de listo del transmisor serie
 wire ready;
 
+//-- Dato a transmitir (normal y registrado)
 reg [7:0] data;
-
 reg [7:0] data_r;
 
+//-- Señal para indicar al controlador el comienzo de la transmision
+//-- de la cadena. Es la de DTR registrada
 reg transmit;
 
 //-- Microordenes
@@ -31,7 +47,7 @@ reg start;  //-- Transmitir cadena (cuando transmit = 1)
 always @(posedge clk)
   rstn <= 1;
 
-//-- Unidad de transmision
+//-- Instanciar la Unidad de transmision
 uart_tx #(.BAUD(BAUD))
   TX0 (
     .clk(clk),
@@ -43,6 +59,7 @@ uart_tx #(.BAUD(BAUD))
   );
 
 //-- Multiplexor con los caracteres de la cadena a transmitir
+//-- se seleccionan mediante la señal car_count
 always @*
   case (car_count)
     8'd0: data <= "H";
@@ -56,10 +73,12 @@ always @*
     default: data <= ".";
   endcase
 
+//-- Registrar los datos de salida del multiplexor
 always @*
   data_r <= data;
 
 //-- Contador de caracteres
+//-- Cuando la microorden cena esta activada, se incrementa
 reg [2:0] car_count;
 
 always @(posedge clk)
@@ -76,40 +95,57 @@ always @(posedge clk)
 //-- CONTROLADOR
 //----------------------------------------------------
 localparam IDLE = 0;   //-- Reposo
-localparam TXCAR = 1;  //-- Transmitiendo caracter
-localparam NEXT = 2;   //-- Preparar transmision del sig caracter
+localparam TXCAR = 2'd1;  //-- Transmitiendo caracter
+localparam NEXT = 2'd2;   //-- Preparar transmision del sig caracter
 localparam END = 3;    //-- Terminar
 
+//-- Registro de estado del automata
 reg [1:0] state;
 
+//-- Gestionar el cambio de estado
 always @(posedge clk)
+
   if (rstn == 0)
+    //-- Ir al estado inicial
     state <= IDLE;
+
   else
     case (state)
+      //-- Estado inicial. Se sale de este estado al recibirse la
+      //-- señal de transmit, conectada al DTR
       IDLE: 
         if (transmit == 1) state <= TXCAR;
         else state <= IDLE;
 
+      //-- Estado de transmision de un caracter. Esperar a que el 
+      //-- transmisor serie este disponible. Cuando lo esta se pasa al
+      //-- siguiente estado
       TXCAR: 
         if (ready == 1) state <= NEXT;
         else state <= TXCAR;
 
+      //-- Envio del siguiente caracter. Es un estado transitorio
+      //-- Cuando se llega al ultimo caracter se pasa para finalizar
+      //-- la transmision 
       NEXT:	
         if (car_count == 7) state <= END;
         else state <= TXCAR;
 
+      //-- Ultimo estado:finalizacion de la transmision. Se espera hasta
+      //-- que se haya enviado el ultimo caracter. Cuando ocurre se vuelve
+      //-- al estado de reposo inicial
       END: 
         //--Esperar a que se termine ultimo caracter
         if (ready == 1) state <= IDLE;
         else state <= END;
 
+      //-- Necesario para evitar latches
       default:
          state <= IDLE;
 
     endcase
 
-
+//-- Generacion de las microordenes
 always @*
   case (state)
     IDLE: begin
