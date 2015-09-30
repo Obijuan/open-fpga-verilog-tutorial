@@ -4,8 +4,8 @@
 NAME = scicad1
 DEPS = uart_tx.v baudgen.v
 
-NAME2 = fsmtx2
-DEPS2 = baudgen.v dividerp1.v
+NAME2 = scicad2
+DEPS2 = uart_tx.v baudgen.v dividerp1.v
 
 #-------------------------------------------------------
 #-- Objetivo por defecto: hacer simulacion y sintesis
