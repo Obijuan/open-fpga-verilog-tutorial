@@ -113629,9 +113629,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.9797966"
-     inkscape:cx="353.79416"
-     inkscape:cy="841.67435"
+     inkscape:zoom="1.815458"
+     inkscape:cx="311.64566"
+     inkscape:cy="864.63574"
      inkscape:document-units="px"
      inkscape:current-layer="layer1-6"
      showgrid="false"
@@ -114213,6 +114213,27 @@
          sodipodi:nodetypes="cc"
          inkscape:export-xdpi="90"
          inkscape:export-ydpi="90" />
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 94.192787,40.539876 7.546423,-7.54641"
+         id="path65857"
+         inkscape:connector-curvature="0"
+         inkscape:export-xdpi="90"
+         inkscape:export-ydpi="90" />
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         sodipodi:linespacing="125%"
+         id="text5217-1-5-1-4-3-2-1-1-9-2-0-8-7-1-8"
+         y="33.206715"
+         x="90.160873"
+         style="font-style:normal;font-weight:normal;font-size:10px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10px;font-family:sans-serif;-inkscape-font-specification:sans-serif"
+           y="33.206715"
+           x="90.160873"
+           id="tspan5219-7-2-9-40-8-7-9-3-5-6-1-1-5-7-2"
+           sodipodi:role="line">8</tspan></text>
     </g>
   </g>
 </svg>
