@@ -94,8 +94,10 @@ reg [1:0] state;
 
 //-- Transiciones entre estados
 always @(posedge clk)
+
   if (rstn == 0)
     state <= IDLE;
+
   else
     case (state)
 
@@ -136,49 +138,6 @@ always @* begin
   rcv <= (state == DAV) ? 1 : 0;
 end
 
-
-
-/*
-
-always @*
-  case (state)
-
-    IDLE: begin
-      bauden <= 0;
-      clear <= 1;
-      load <= 0;
-      rcv <= 0;
-    end
-
-    RECV: begin
-      bauden <= 1;      //- Activar reloj de datos
-      clear <= 0;
-      load <= 0;
-      rcv <= 0;
-    end
-
-    LOAD: begin          //-- Almacenar dato recibido
-      bauden <= 0;
-      clear <= 0;
-      load <= 1;
-      rcv <= 0;
-    end
-
-    DAV: begin         //-- Señalizar que hay dato recibido
-      bauden <= 0;
-      clear <= 0;
-      load <= 0;
-      rcv <= 1;
-    end
-
-  default: begin
-      bauden <= 0;
-      clear <= 1;
-      load <= 0;
-      rcv <= 0;
-  end
-  endcase
-*/
 
 endmodule
 
