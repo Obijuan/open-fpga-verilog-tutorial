@@ -1,0 +1,28 @@
+[*]
+[*] GTKWave Analyzer v3.3.64 (w)1999-2014 BSI
+[*] Sun Oct  4 17:43:56 2015
+[*]
+[dumpfile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T25-uart-rx/rxleds_tb.vcd"
+[dumpfile_mtime] "Sun Oct  4 17:43:39 2015"
+[dumpfile_size] 122745
+[savefile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T25-uart-rx/rxleds_tb.gtkw"
+[timestart] 0
+[size] 1000 600
+[pos] -1 -1
+*-11.386868 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] rxleds_tb.
+[sst_width] 223
+[signals_width] 102
+[sst_expanded] 1
+[sst_vpaned_height] 160
+@28
+rxleds_tb.clk
+rxleds_tb.dut.rstn
+rxleds_tb.rx
+@29
+rxleds_tb.dut.rcv
+@22
+rxleds_tb.dut.data[7:0]
+rxleds_tb.leds[3:0]
+[pattern_trace] 1
+[pattern_trace] 0
