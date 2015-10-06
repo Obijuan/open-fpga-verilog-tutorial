@@ -3,6 +3,9 @@
 //-- Señal cuadrada, de periodo igual a la frecuencia de los baudios indicados
 //-- El ancho del pulso positivo es de 1 ciclo de reloj
 //--
+//-- Una vez habilitado, el pulso se genera justo en la mitad del periodo
+//-- Esto es necesario para implementar el receptor
+//--
 //-- (c) BQ. August 2015. written by Juan Gonzalez (obijuan)
 //-----------------------------------------------------------------------------
 //-- GPL license
@@ -28,6 +31,7 @@ parameter M = `B115200;
 //-- Numero de bits para almacenar el divisor de baudios
 localparam N = $clog2(M);
 
+//-- Valor para generar pulso en la mitad del periodo
 localparam M2 = (M >> 1);
 
 //-- Registro para implementar el contador modulo M
@@ -46,6 +50,7 @@ always @(posedge clk)
 //-- Sacar un pulso de anchura 1 ciclo de reloj si el generador
 //-- esta habilitado (clk_ena == 1)
 //-- en caso contrario se saca 0
+//-- Se pone a uno en la mitad del periodo
 assign clk_out = (divcounter == M2) ? clk_ena : 0;
 
 
