@@ -21,7 +21,7 @@ module rxleds(input wire clk,         //-- Reloj del sistema
               output wire act);       //-- Led de actividad (verde)
 
 //-- Parametro: Velocidad de transmision
-localparam BAUD = `B300;
+localparam BAUD = `B115200;
 
 //-- Señal de dato recibido
 wire rcv;
