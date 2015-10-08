@@ -1,8 +1,8 @@
 //-------------------------------------------------------------------
-//-- Banco de pruebas para probar la UART
+//-- Banco de pruebas para probar el receptor de la UART
 //-- Se envían los bits en serie
 //-------------------------------------------------------------------
-//-- BQ September 2015. Written by Juan Gonzalez (Obijuan)
+//-- BQ October 2015. Written by Juan Gonzalez (Obijuan)
 //-------------------------------------------------------------------
 //-- GPL License
 //-------------------------------------------------------------------
@@ -54,7 +54,7 @@ reg rx = 1;
 wire act;
 wire [3:0] leds;
 
-//-- Instanciar el modulo de Eco
+//-- Instanciar el modulo rxleds
 rxleds #(BAUD)
   dut(
     .clk(clk),
@@ -76,7 +76,7 @@ initial begin
   $dumpvars(0, rxleds_tb);
 
   //-- Enviar datos de prueba
-  #BITRATE  send_car(8'h55);
+  #BITRATE    send_car(8'h55);
   #FRAME_WAIT send_car("K");
 
   #(FRAME_WAIT*4) $display("FIN de la simulacion");
