@@ -1,0 +1,46 @@
+[*]
+[*] GTKWave Analyzer v3.3.64 (w)1999-2014 BSI
+[*] Thu Oct  8 09:37:30 2015
+[*]
+[dumpfile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T25-uart-rx/echo_tb.vcd"
+[dumpfile_mtime] "Thu Oct  8 09:36:44 2015"
+[dumpfile_size] 164882
+[savefile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T25-uart-rx/echo_tb.gtkw"
+[timestart] 0
+[size] 1277 600
+[pos] 0 94
+*-11.158985 8210 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] echo_tb.
+[treeopen] echo_tb.dut.
+[sst_width] 223
+[signals_width] 129
+[sst_expanded] 1
+[sst_vpaned_height] 160
+@28
+echo_tb.rx
+@c00022
+echo_tb.dut.data[7:0]
+@28
+(0)echo_tb.dut.data[7:0]
+(1)echo_tb.dut.data[7:0]
+(2)echo_tb.dut.data[7:0]
+(3)echo_tb.dut.data[7:0]
+(4)echo_tb.dut.data[7:0]
+(5)echo_tb.dut.data[7:0]
+(6)echo_tb.dut.data[7:0]
+(7)echo_tb.dut.data[7:0]
+@1401200
+-group_end
+@c00023
+echo_tb.leds[3:0]
+@29
+(0)echo_tb.leds[3:0]
+(1)echo_tb.leds[3:0]
+(2)echo_tb.leds[3:0]
+(3)echo_tb.leds[3:0]
+@1401201
+-group_end
+@28
+echo_tb.dut.tx
+[pattern_trace] 1
+[pattern_trace] 0

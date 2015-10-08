@@ -4,8 +4,8 @@
 NAME = rxleds
 DEPS = uart_rx.v baudgen_rx.v 
 
-NAME2 = 
-DEPS2 = 
+NAME2 = echo
+DEPS2 = uart_rx.v uart_tx.v baudgen_rx.v baudgen.v 
 
 #-------------------------------------------------------
 #-- Objetivo por defecto: hacer simulacion y sintesis
