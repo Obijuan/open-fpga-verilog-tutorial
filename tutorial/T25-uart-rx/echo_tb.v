@@ -52,17 +52,13 @@ reg clk = 0;
 //-- Cables para las pruebas
 reg rx = 1;
 wire tx;
-wire act;
-wire [3:0] leds;
 
 //-- Instanciar el modulo rxleds
 echo #(BAUD)
   dut(
     .clk(clk),
     .rx(rx),
-    .tx(tx),
-    .act(act),
-    .leds(leds)
+    .tx(tx)
   );
 
 //-- Generador de reloj. Periodo 2 unidades
