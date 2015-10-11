@@ -1,0 +1,25 @@
+[*]
+[*] GTKWave Analyzer v3.3.64 (w)1999-2014 BSI
+[*] Sun Oct 11 06:51:21 2015
+[*]
+[dumpfile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/working/memory/romleds2_tb.vcd"
+[dumpfile_mtime] "Sun Oct 11 06:50:51 2015"
+[dumpfile_size] 2817
+[savefile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/working/memory/romleds2_tb.gtkw"
+[timestart] 0
+[size] 1000 600
+[pos] -588 -363
+*-4.933561 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] romleds2_tb.
+[sst_width] 223
+[signals_width] 102
+[sst_expanded] 1
+[sst_vpaned_height] 160
+@28
+romleds2_tb.clk
+@22
+romleds2_tb.leds[3:0]
+@29
+romleds2_tb.dut.clk_delay
+[pattern_trace] 1
+[pattern_trace] 0

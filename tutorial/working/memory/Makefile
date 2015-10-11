@@ -4,8 +4,8 @@
 NAME = romleds
 DEPS = rom.v dividerp1.v
 
-NAME2 = project1
-DEPS2 =  
+NAME2 = romleds2
+DEPS2 = rom2.v dividerp1.v
 
 NAME3 = project2
 DEPS3 =  
