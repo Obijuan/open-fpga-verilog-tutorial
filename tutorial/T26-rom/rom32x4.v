@@ -5,7 +5,7 @@ module rom32x4 (input clk,
   //-- Memoria
   reg [3:0] rom [0:31];
 
-  always @(negedge clk) begin
+  always @(posedge clk) begin
     data <= rom[addr];
   end
     
