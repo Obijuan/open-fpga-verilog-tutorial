@@ -1,3 +1,14 @@
+//----------------------------------------------------------------------------
+//-- Memoria ROM de 32 x 4
+//------------------------------------------
+//-- (C) BQ. October 2015. Written by Juan Gonzalez (Obijuan)
+//-- GPL license
+//----------------------------------------------------------------------------
+//-- Este ejemplo saca por los leds el contenido de la memoria ROM de la
+//-- direccion dada por el parametro ADDR
+//----------------------------------------------------------------------------
+`default_nettype none
+
 module rom32x4 (input clk,
                 input wire [4:0] addr,
                 output reg [3:0] data);
@@ -5,6 +16,9 @@ module rom32x4 (input clk,
   //-- Memoria
   reg [3:0] rom [0:31];
 
+  //-- Proceso de acceso a la memoria. 
+  //-- Se ha elegido flanco de bajada en este ejemplo, pero
+  //-- funciona igual si es de subida
   always @(negedge clk) begin
     data <= rom[addr];
   end
