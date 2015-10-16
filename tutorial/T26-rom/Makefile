@@ -4,8 +4,8 @@
 NAME = romhw
 DEPS = rom32x4.v
 
-NAME2 = romleds2
-DEPS2 = rom2.v dividerp1.v
+NAME2 = romleds
+DEPS2 = rom16x4.v dividerp1.v
 
 NAME3 = project2
 DEPS3 =  
