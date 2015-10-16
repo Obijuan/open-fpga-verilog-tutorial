@@ -1,5 +1,5 @@
 //-------------------------------------------------------------------
-//-- romleds_tb.v
+//-- romled2_tb.v
 //-- Banco de pruebas para el secuenciador de luces, implementado con
 //-- una memoria rom
 //-------------------------------------------------------------------
@@ -10,7 +10,7 @@ module romleds2_tb();
 
 //-- Para la simulacion se usa un retraso de 2 ciclos de reloj
 parameter DELAY = 2;
-parameter ROMFILE = "rom2.list";
+parameter ROMFILE = "rom1.list";
 
 //-- Registro para generar la señal de reloj
 reg clk = 0;
