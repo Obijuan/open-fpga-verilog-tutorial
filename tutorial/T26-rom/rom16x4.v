@@ -1,3 +1,13 @@
+//----------------------------------------------------------------------------
+//-- Memoria ROM de 16 x 4
+//------------------------------------------
+//-- (C) BQ. October 2015. Written by Juan Gonzalez (Obijuan)
+//-- GPL license
+//----------------------------------------------------------------------------
+//-- La memoria está inicializada con los valores para sacar por los leds
+//-- y generar una secuencia de luces
+//----------------------------------------------------------------------------
+
 module rom16x4 (input clk,
                 input wire [3:0] addr,
                 output reg [3:0] data);

@@ -4,8 +4,9 @@
 //-- (C) BQ. October 2015. Written by Juan Gonzalez (Obijuan)
 //-- GPL license
 //----------------------------------------------------------------------------
-//-- Este ejemplo saca por los leds el contenido de la memoria ROM de la
-//-- direccion dada por el parametro ADDR
+//-- Ejemplo de una memoria rom de 32 x 4. Solo estan inicializadas las 8
+//-- primeras posiciones (con un valor igual a su direccion). El resto
+//-- están a 0
 //----------------------------------------------------------------------------
 `default_nettype none
 
