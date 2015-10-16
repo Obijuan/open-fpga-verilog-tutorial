@@ -1,22 +1,22 @@
 //-------------------------------------------------------------------
-//-- mux4_tb.v
-//-- Banco de pruebas para el secuenciador de 4 estados con multiplexor
-//-- de 4 a 1
+//-- romhw_tb.v
+//-- Banco de pruebas para el modulo romhw (hola mundo de la rom)
 //-------------------------------------------------------------------
-//-- BQ August 2015. Written by Juan Gonzalez (Obijuan)
+//-- Simplemente se instancia el componente y se genera la señal de
+//-- reloj
+//-------------------------------------------------------------------
+//-- BQ October 2015. Written by Juan Gonzalez (Obijuan)
 //-------------------------------------------------------------------
 
 module romhw_tb();
 
-parameter DELAY = 2;
-
 //-- Registro para generar la señal de reloj
 reg clk = 0;
 
-//-- Datos de salida del componente
+//-- Datos de salida de la rom
 wire [3:0] leds;
 
-//-- Instanciar el componente, con prescaler de 1 bit (para la simulacion)
+//-- Instanciar el componente a probar
 romhw
   dut(
     .clk(clk),
