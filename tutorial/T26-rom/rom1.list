@@ -1,5 +1,9 @@
-0 
-1
+//-- Fichero rom1.list
+//-- Cada linea se corresponde con una posicion de memoria
+//-- Se pueden poner comentarios
+//-- ROM1: contiene los numeros del 0 al 15 (en hexadecimal)
+0   //-- Posicion 0
+1   //-- Posicion 1
 2
 3
 4
@@ -13,5 +17,4 @@ B
 C
 D
 E
-F
-
+F  //-- Posicion 15
