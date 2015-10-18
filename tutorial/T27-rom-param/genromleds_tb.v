@@ -1,7 +1,7 @@
 //-------------------------------------------------------------------
-//-- romled_tb.v
+//-- genromleds_tb.v
 //-- Banco de pruebas para el secuenciador de luces, implementado con
-//-- una memoria rom
+//-- una memoria rom generica
 //-------------------------------------------------------------------
 //-- BQ August 2015. Written by Juan Gonzalez (Obijuan)
 //-------------------------------------------------------------------

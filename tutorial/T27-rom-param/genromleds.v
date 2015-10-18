@@ -1,6 +1,6 @@
 //----------------------------------------------------------------------------
-//-- Ejemplo que saca una secuencia en los leds, usando una memoria
-//-- rom de 16x4
+//-- Ejemplo de uso de una memoria rom generica
+//-- Se reproduce en los leds la secuencia definida en el fichero rom1.list
 //------------------------------------------
 //-- (C) BQ. October 2015. Written by Juan Gonzalez (Obijuan)
 //-- GPL license
@@ -14,9 +14,16 @@ module genromleds (input wire clk,
 
 //- Tiempo de envio
 parameter DELAY = `T_500ms;
+
+//-- Fichero con la rom
 parameter ROMFILE = "rom1.list";
 
-reg [4:0] addr;
+//-- Numero de bits de la direccione
+parameter AW = 5;
+
+//-- Cable para direccionar la memoria
+reg [AW-1: 0] addr;
+
 reg rstn = 0;
 wire clk_delay;
 
