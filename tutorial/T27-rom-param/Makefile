@@ -7,8 +7,8 @@ DEPS = genrom.v dividerp1.v
 NAME2 = romnotes
 DEPS2 = notegen.v dividerp1.v genrom.v
 
-NAME3 = romleds2
-DEPS3 = romfile16x4.v dividerp1.v
+NAME3 = vacio
+DEPS3 = 
 
 #-------------------------------------------------------
 #-- Objetivo por defecto: hacer simulacion y sintesis

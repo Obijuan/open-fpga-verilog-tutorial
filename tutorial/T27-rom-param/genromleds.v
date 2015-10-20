@@ -20,6 +20,7 @@ parameter ROMFILE = "rom1.list";
 
 //-- Numero de bits de la direccione
 parameter AW = 5;
+parameter DW = 5;
 
 //-- Cable para direccionar la memoria
 reg [AW-1: 0] addr;
@@ -30,8 +31,8 @@ wire clk_delay;
 //-- Instanciar la memoria rom
 genrom 
   #( .ROMFILE(ROMFILE),
-     .AW(5),
-     .DW(5))
+     .AW(AW),
+     .DW(DW))
   ROM (
         .clk(clk),
         .addr(addr),
