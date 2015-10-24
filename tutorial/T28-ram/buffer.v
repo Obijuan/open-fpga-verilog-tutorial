@@ -86,6 +86,8 @@ localparam READ_1 = 0;  //-- Lectura en memoria
 localparam TRANS_1 = 1;   //-- Comienzo de transmision de caracter
 localparam TRANS_2 = 2;   //-- Esperar a que transmision se estabilice
 
+localparam RCV_1 = 3;     //-- Recepcion de caracter
+
 reg [1: 0] state;
 
 always @(posedge clk)
@@ -105,8 +107,14 @@ always @(posedge clk)
         //-- Esperar a que ready se ponga a 0
         if (ready)
           state <= TRANS_2;
+
+        //-- Si cadena entera enviada, pasar a recibir una nueva
+        else if (addr == 0)
+          state <= RCV_1;
         else
-          state <= TRANS_2;
+          state <= READ_1;
+
+      RCV_1:  state <= RCV_1;
 
       default: state <= READ_1;
     endcase
@@ -126,6 +134,12 @@ always @*
     end
 
     TRANS_2: begin
+      rw <= 1;
+      cena <= 0;
+      transmit <= 0;
+    end
+
+    RCV_1: begin
       rw <= 1;
       cena <= 0;
       transmit <= 0;
