@@ -1,21 +1,16 @@
-//-- Fichero rom1.list
-//-- Cada linea se corresponde con una posicion de memoria
-//-- Se pueden poner comentarios
-//-- ROM1: contiene los numeros del 0 al 31 (en hexadecimal)
-o
-l
-a
-
-k
-
-a
-s
-e
-.
-.
-.
-.
-.
-.
-.
-
+6F
+6C
+61
+20
+6B
+20
+61
+73
+65
+2E
+2E
+2E
+2E
+2E
+2E
+2E
