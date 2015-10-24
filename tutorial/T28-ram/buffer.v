@@ -13,7 +13,8 @@ module buffer (input wire clk,
                input wire rstn,
                input wire rx,
                output wire tx,
-               output wire [4:0] leds);
+               output wire [4:0] leds,
+               output wire beep);
 
 //-- Velocidad de transmision
 parameter BAUD = `B115200;
@@ -35,6 +36,9 @@ wire ready;
 reg transmit;
 
 reg rstn_r;
+
+wire tx_line;
+
 
 //-- Registrar el reset
 always @(posedge clk)
@@ -77,8 +81,11 @@ uart_tx #(.BAUD(BAUD))
     .data(data_out),
     .start(transmit),
     .ready(ready),
-    .tx(tx)
+    .tx(tx_line)
   );
+
+assign tx = tx_line;
+assign beep = tx_line;
 
 
 //------------------- CONTROLADOR
