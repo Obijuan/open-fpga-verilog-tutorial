@@ -68,9 +68,7 @@ genram
 
 //-- Contador
 always @(posedge clk)
-  if (rstn_r == 0)
-    addr <= 0;
-  else if (ccl)
+  if (ccl)
     addr <= 0;
   else if (cena)
     addr <= addr + 1;
@@ -108,22 +106,24 @@ uart_rx #(BAUD)
 
 //------------------- CONTROLADOR
 
-localparam READ_1 = 0;    //-- Lectura en memoria
-localparam TRANS_1 = 1;   //-- Comienzo de transmision de caracter
-localparam TRANS_2 = 2;   //-- Esperar a que transmision se estabilice
+localparam INIT = 0;
+localparam READ_1 = 1;    //-- Lectura en memoria
+localparam TRANS_1 = 2;   //-- Comienzo de transmision de caracter
+localparam TRANS_2 = 3;   //-- Esperar a que transmision se estabilice
 
-localparam INITW = 3;
-localparam RCV_1 = 4;     //-- Esperar a recibir caracter
-localparam RCV_2 = 5;     //-- Escribir en memoria
-localparam END = 6;       //-- Preparacion para comenzar otra vez
+localparam INITW = 4;
+localparam RCV_1 = 5;     //-- Esperar a recibir caracter
+localparam RCV_2 = 6;     //-- Escribir en memoria
+localparam END = 7;       //-- Preparacion para comenzar otra vez
 
 reg [2: 0] state;
 
 always @(posedge clk)
   if (rstn_r == 0)
-    state <= READ_1;
+    state <= INIT;
   else
     case (state)
+      INIT: state <= READ_1;
       READ_1: 
         //-- Esperar a que el transmisor este listo
         if (ready) 
@@ -152,6 +152,13 @@ always @(posedge clk)
 
 always @*
   case (state)
+    INIT: begin
+      rw <= 1;
+      cena <= 0;
+      transmit <= 0;
+      ccl <= 1;
+    end
+
     READ_1: begin
       rw <= 1;
       cena <= 0;
@@ -177,7 +184,7 @@ always @*
       rw <= 1;
       cena <= 0;
       transmit <= 0;
-      ccl <= 0;
+      ccl <= 1;
     end
 
     RCV_1: begin
