@@ -112,9 +112,10 @@ localparam READ_1 = 0;    //-- Lectura en memoria
 localparam TRANS_1 = 1;   //-- Comienzo de transmision de caracter
 localparam TRANS_2 = 2;   //-- Esperar a que transmision se estabilice
 
-localparam RCV_1 = 3;     //-- Esperar a recibir caracter
-localparam RCV_2 = 4;     //-- Escribir en memoria
-localparam END = 5;       //-- Preparacion para comenzar otra vez
+localparam INITW = 3;
+localparam RCV_1 = 4;     //-- Esperar a recibir caracter
+localparam RCV_2 = 5;     //-- Escribir en memoria
+localparam END = 6;       //-- Preparacion para comenzar otra vez
 
 reg [1: 0] state;
 
@@ -124,14 +125,22 @@ always @(posedge clk)
   else
     case (state)
       READ_1: 
-        //-- Si transmisor listo, pasar al estado de transmitir
+        //-- Esperar a que el transmisor este listo
         if (ready) 
           state <= TRANS_1;
         else
-          state <= READ_1;
+          state <= READ_1;  //-- No listo. Esperar
 
       TRANS_1: state <= TRANS_2;
-      TRANS_2: state <= TRANS_2;
+
+      TRANS_2:           //-- Condicion de terminacion de lectura
+        if (addr == 0)
+          state <= INITW;
+        else
+          state <= READ_1;
+
+      //-- Inicializar ciclo de escritura
+      INITW: state <= INITW;
 
     default:
       state <= READ_1;
@@ -155,6 +164,13 @@ always @*
     end
 
     TRANS_2: begin
+      rw <= 1;
+      cena <= 0;
+      transmit <= 0;
+      ccl <= 0;
+    end
+
+    INITW: begin
       rw <= 1;
       cena <= 0;
       transmit <= 0;
