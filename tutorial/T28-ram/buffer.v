@@ -172,6 +172,20 @@ always @*
       transmit <= 0;
       ccl <= 0;
     end
+
+    INITW: begin
+      rw <= 1;
+      cena <= 0;
+      transmit <= 0;
+      ccl <= 0;
+    end
+
+    RCV_1: begin
+      rw <= 1;
+      cena <= 0;
+      transmit <= 0;
+      ccl <= 0;
+    end
     
     default: begin
       rw <= 1;
