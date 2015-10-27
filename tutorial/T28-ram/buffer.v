@@ -23,7 +23,7 @@ parameter BAUD = `B115200;
 parameter ROMFILE = "bufferini.list";
 
 //-- Numero de bits de la direccion
-parameter AW = 2;
+parameter AW = 3;
 parameter DW = 8;
 
 //-- Cable para direccionar la memoria
@@ -96,19 +96,19 @@ uart_tx #(.BAUD(BAUD))
 assign tx = tx_line;
 assign beep = tx_line;
 
-//-- Instanciar la unidad de recepcion
+//-------- RECEPTOR SERIE
 uart_rx #(BAUD)
-  RX0 (.clk(clk),      //-- Reloj del sistema
-       .rstn(rstn_r),    //-- Señal de reset
-       .rx(rx),        //-- Linea de recepción de datos serie
-       .rcv(rcv),      //-- Señal de dato recibido
+  RX0 (.clk(clk),         //-- Reloj del sistema
+       .rstn(rstn_r),     //-- Señal de reset
+       .rx(rx),           //-- Linea de recepción de datos serie
+       .rcv(rcv),         //-- Señal de dato recibido
        .data(data_in)     //-- Datos recibidos
       );
 
 
 //------------------- CONTROLADOR
 
-localparam READ_1 = 0;  //-- Lectura en memoria
+localparam READ_1 = 0;    //-- Lectura en memoria
 localparam TRANS_1 = 1;   //-- Comienzo de transmision de caracter
 localparam TRANS_2 = 2;   //-- Esperar a que transmision se estabilice
 
@@ -116,10 +116,60 @@ localparam RCV_1 = 3;     //-- Esperar a recibir caracter
 localparam RCV_2 = 4;     //-- Escribir en memoria
 localparam END = 5;       //-- Preparacion para comenzar otra vez
 
+reg [1: 0] state;
+
+always @(posedge clk)
+  if (rstn_r == 0)
+    state <= READ_1;
+  else
+    case (state)
+      READ_1: 
+        //-- Si transmisor listo, pasar al estado de transmitir
+        if (ready) 
+          state <= TRANS_1;
+        else
+          state <= READ_1;
+
+      TRANS_1: state <= TRANS_2;
+      TRANS_2: state <= TRANS_2;
+
+    default:
+      state <= READ_1;
+    endcase
 
 
-reg [2: 0] state;
+always @*
+  case (state)
+    READ_1: begin
+      rw <= 1;
+      cena <= 0;
+      transmit <= 0;
+      ccl <= 0;
+    end
 
+    TRANS_1: begin
+      rw <= 1;
+      cena <= 1;
+      transmit <= 1;
+      ccl <= 0;
+    end
+
+    TRANS_2: begin
+      rw <= 1;
+      cena <= 0;
+      transmit <= 0;
+      ccl <= 0;
+    end
+    
+    default: begin
+      rw <= 1;
+      cena <= 0;
+      transmit <= 0;
+      ccl <= 0;
+    end
+  endcase
+
+/*
 
 always @(posedge clk)
   if (rstn_r == 0)
@@ -210,7 +260,7 @@ always @*
       ccl <= 0;
     end
   endcase
-
+*/
 
 endmodule
 
