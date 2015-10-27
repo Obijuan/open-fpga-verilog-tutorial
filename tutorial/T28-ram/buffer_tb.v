@@ -78,7 +78,7 @@ initial begin
   $dumpvars(0, buffer_tb);
 
    # 20  rstn <= 1;
-   #(FRAME_WAIT * 15) send_car("H");
+   #(FRAME_WAIT * 40) send_car("H");
    #(FRAME_WAIT * 2) send_car("O");
    #(FRAME_WAIT * 2) send_car("L");
    #(FRAME_WAIT * 2) send_car("A");

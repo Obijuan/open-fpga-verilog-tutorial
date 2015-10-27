@@ -40,6 +40,7 @@ reg rstn_r;
 wire tx_line;
 
 wire rcv;
+reg rcv_r;
 
 reg ccl;
 
@@ -75,7 +76,7 @@ always @(posedge clk)
 
 //-- Conectar los leds
 always @(posedge clk)
-  leds_r <= {1'b0, addr}; //data_in[4:0];
+  leds_r <= data_in[4:0];
 
 assign leds = leds_r;
 
@@ -102,6 +103,9 @@ uart_rx #(BAUD)
        .rcv(rcv),         //-- Señal de dato recibido
        .data(data_in)     //-- Datos recibidos
       );
+
+always @(posedge clk)
+  rcv_r <= rcv;
 
 
 //------------------- CONTROLADOR
@@ -142,7 +146,9 @@ always @(posedge clk)
       INITW:
          state <= RCV_1;
 
-			RCV_1: state <= RCV_1;
+			RCV_1: 
+        if (rcv_r == 1) state <= INIT;
+        else state <= RCV_1;
  
 
     default:
