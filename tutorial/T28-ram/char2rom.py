@@ -5,7 +5,7 @@
 #--------------------------------------------------------
 
 ##-- String to store into the rom
-cad = "ola k ase......."
+cad = "01234567"
 
 ##-- output the characters as hexadecimal numbers
 ##-- one per row

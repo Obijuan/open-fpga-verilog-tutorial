@@ -2,7 +2,7 @@
 #-- Establecer nombre del componente
 #----------------------------------------
 NAME = buffer
-DEPS = genram.v uart_tx.v baudgen.v
+DEPS = genram.v uart_tx.v uart_rx.v baudgen.v baudgen_rx.v
 
 NAME2 = romnotes
 DEPS2 = notegen.v dividerp1.v genrom.v

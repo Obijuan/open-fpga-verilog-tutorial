@@ -25,11 +25,31 @@ localparam FRAME = (BITRATE * 11);
 //-- Tiempo entre dos bits enviados
 localparam FRAME_WAIT = (BITRATE * 4);
 
+//----------------------------------------
+//-- Tarea para enviar caracteres serie  
+//----------------------------------------
+  task send_car;
+    input [7:0] car;
+  begin
+    rx <= 0;                 //-- Bit start 
+    #BITRATE rx <= car[0];   //-- Bit 0
+    #BITRATE rx <= car[1];   //-- Bit 1
+    #BITRATE rx <= car[2];   //-- Bit 2
+    #BITRATE rx <= car[3];   //-- Bit 3
+    #BITRATE rx <= car[4];   //-- Bit 4
+    #BITRATE rx <= car[5];   //-- Bit 5
+    #BITRATE rx <= car[6];   //-- Bit 6
+    #BITRATE rx <= car[7];   //-- Bit 7
+    #BITRATE rx <= 1;        //-- Bit stop
+    #BITRATE rx <= 1;        //-- Esperar a que se envie bit de stop
+  end
+  endtask
+
 
 //-- Registro para generar la señal de reloj
 reg clk = 0;
 wire tx;
-wire rx;
+reg rx;
 reg rstn = 0;
 
 //-- Datos de salida del componente
@@ -57,10 +77,14 @@ initial begin
   $dumpfile("buffer_tb.vcd");
   $dumpvars(0, buffer_tb);
 
-  # 20  rstn <= 1;
+   # 20  rstn <= 1;
+   #(FRAME_WAIT * 15) send_car("H");
+   #(FRAME_WAIT * 2) send_car("O");
+   #(FRAME_WAIT * 2) send_car("L");
+   #(FRAME_WAIT * 2) send_car("A");
+   #(FRAME_WAIT * 2) send_car("Q");
 
-
-   #(FRAME * 20) $display("FIN de la simulacion");
+   #(FRAME_WAIT * 20) $display("FIN de la simulacion");
   $finish;
 end
 
