@@ -117,7 +117,7 @@ localparam RCV_1 = 4;     //-- Esperar a recibir caracter
 localparam RCV_2 = 5;     //-- Escribir en memoria
 localparam END = 6;       //-- Preparacion para comenzar otra vez
 
-reg [1: 0] state;
+reg [2: 0] state;
 
 always @(posedge clk)
   if (rstn_r == 0)
@@ -140,8 +140,9 @@ always @(posedge clk)
             state <= READ_1;
 
       INITW:
-         state <= INITW;
+         state <= RCV_1;
 
+			RCV_1: state <= RCV_1;
  
 
     default:
