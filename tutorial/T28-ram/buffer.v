@@ -117,7 +117,7 @@ localparam TRANS_2 = 3;   //-- Esperar a que transmision se estabilice
 
 localparam INITW = 4;
 localparam RCV_1 = 5;     //-- Esperar a recibir caracter
-localparam RCV_2 = 6;     //-- Escribir en memoria
+localparam WRITE = 6;     //-- Escribir en memoria
 localparam END = 7;       //-- Preparacion para comenzar otra vez
 
 reg [2: 0] state;
@@ -147,8 +147,12 @@ always @(posedge clk)
          state <= RCV_1;
 
 			RCV_1: 
-        if (rcv_r == 1) state <= INIT;
+        if (rcv_r == 1) state <= WRITE;
         else state <= RCV_1;
+
+      WRITE:  state <= END;
+
+      END:  state <= END;
  
 
     default:
@@ -195,6 +199,13 @@ always @*
 
     RCV_1: begin
       rw <= 1;
+      cena <= 0;
+      transmit <= 0;
+      ccl <= 0;
+    end
+
+    WRITE: begin
+      rw <= 0;
       cena <= 0;
       transmit <= 0;
       ccl <= 0;
