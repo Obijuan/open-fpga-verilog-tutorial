@@ -23,7 +23,7 @@ parameter BAUD = `B115200;
 parameter ROMFILE = "bufferini.list";
 
 //-- Numero de bits de la direccion
-parameter AW = 3;
+parameter AW = 4;
 parameter DW = 8;
 
 //-- Cable para direccionar la memoria
@@ -134,13 +134,9 @@ always @(posedge clk)
       TRANS_1: state <= TRANS_2;
 
       TRANS_2:           //-- Condicion de terminacion de lectura
-        if (addr == 0)
-          state <= INITW;
-        else
           state <= READ_1;
 
-      //-- Inicializar ciclo de escritura
-      INITW: state <= INITW;
+ 
 
     default:
       state <= READ_1;
@@ -164,13 +160,6 @@ always @*
     end
 
     TRANS_2: begin
-      rw <= 1;
-      cena <= 0;
-      transmit <= 0;
-      ccl <= 0;
-    end
-
-    INITW: begin
       rw <= 1;
       cena <= 0;
       transmit <= 0;

@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.64 (w)1999-2014 BSI
-[*] Tue Oct 27 10:33:46 2015
+[*] Tue Oct 27 11:33:20 2015
 [*]
 [dumpfile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T28-ram/buffer_tb.vcd"
-[dumpfile_mtime] "Tue Oct 27 10:32:57 2015"
-[dumpfile_size] 728189
+[dumpfile_mtime] "Tue Oct 27 11:32:10 2015"
+[dumpfile_size] 663982
 [savefile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T28-ram/buffer_tb.gtkw"
 [timestart] 0
 [size] 1301 600
 [pos] 44 0
-*-12.974824 14671 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-13.359649 3200 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] buffer_tb.
 [treeopen] buffer_tb.dut.
 [sst_width] 223
@@ -20,16 +20,19 @@
 buffer_tb.clk
 buffer_tb.dut.rstn
 @22
-buffer_tb.dut.state[1:0]
+buffer_tb.dut.state[2:0]
 @28
 buffer_tb.tx
+@22
+buffer_tb.dut.addr[3:0]
 @23
-buffer_tb.dut.addr[2:0]
+buffer_tb.dut.data_out[7:0]
 @200
 -
 @28
 buffer_tb.dut.transmit
 buffer_tb.dut.ready
 buffer_tb.dut.cena
+buffer_tb.dut.ccl
 [pattern_trace] 1
 [pattern_trace] 0
