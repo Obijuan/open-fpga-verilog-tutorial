@@ -77,7 +77,7 @@ always @(posedge clk)
 
 //-- Conectar los leds
 always @(posedge clk)
-  leds_r <= data_in[4:0];
+  leds_r <= {1'b0, addr}; //data_in[4:0];
 
 assign leds = leds_r;
 
@@ -134,7 +134,13 @@ always @(posedge clk)
       TRANS_1: state <= TRANS_2;
 
       TRANS_2:           //-- Condicion de terminacion de lectura
-          state <= READ_1;
+          if (addr == 14)  
+            state <= INITW;
+          else
+            state <= READ_1;
+
+      INITW:
+         state <= INITW;
 
  
 
