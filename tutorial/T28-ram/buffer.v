@@ -14,7 +14,8 @@ module buffer (input wire clk,
                input wire rx,
                output wire tx,
                output wire [4:0] leds,
-               output wire beep);
+               output wire beep, 
+               output wire gen1);
 
 //-- Velocidad de transmision
 parameter BAUD = `B115200;
@@ -76,7 +77,7 @@ always @(posedge clk)
 
 //-- Conectar los leds
 always @(posedge clk)
-  leds_r <= data_in[4:0];
+  leds_r <= {1'b0, addr}; //data_out[4:0];//data_in[4:0];
 
 assign leds = leds_r;
 
@@ -121,6 +122,76 @@ localparam WRITE = 6;     //-- Escribir en memoria
 localparam END = 7;       //-- Preparacion para comenzar otra vez
 
 reg [2: 0] state;
+reg [2: 0] next_state;
+
+always @(posedge clk) begin
+	if(rstn == 0)
+		state <= INIT;
+	else
+		state <= next_state;
+end
+
+always @(*) begin
+  next_state = state;
+  rw = 1;
+  cena = 0;
+  transmit = 0;
+  ccl = 0;
+
+  case (state)
+    INIT: begin
+      ccl = 1;
+      next_state = READ_1;
+    end
+
+    READ_1: begin
+      if (ready)
+        next_state = TRANS_1;
+      else
+        next_state = READ_1;
+    end
+
+    TRANS_1: begin
+      cena = 1;
+      transmit = 1;
+      next_state = TRANS_2;
+    end
+
+    TRANS_2: 
+      if (addr == 4'd14)
+        next_state = INITW;
+      else
+        next_state = READ_1; 
+
+    INITW: begin
+      ccl = 1;
+      next_state = RCV_1;
+    end
+
+    RCV_1: begin
+      if (rcv_r == 1) next_state = WRITE;
+      else next_state = RCV_1;
+    end
+
+		WRITE: begin
+      rw = 0;
+      cena = 1;
+      next_state = END;
+    end
+
+    END: begin
+      if (addr == 4'd5)
+        next_state = INIT;
+      else
+        next_state = RCV_1; 
+    end
+
+
+  endcase
+
+end
+
+/*
 
 always @(posedge clk)
   if (rstn_r == 0)
@@ -164,71 +235,75 @@ always @(posedge clk)
     endcase
 
 
+assign rw = (state == WRITE) ? 0 : 1;
+
 always @*
   case (state)
     INIT: begin
-      rw <= 1;
+      //rw <= 1;
       cena <= 0;
       transmit <= 0;
       ccl <= 1;
     end
 
     READ_1: begin
-      rw <= 1;
+      //rw <= 1;
       cena <= 0;
       transmit <= 0;
       ccl <= 0;
     end
 
     TRANS_1: begin
-      rw <= 1;
+      //rw <= 1;
       cena <= 1;
       transmit <= 1;
       ccl <= 0;
     end
 
     TRANS_2: begin
-      rw <= 1;
+      //rw <= 1;
       cena <= 0;
       transmit <= 0;
       ccl <= 0;
     end
 
     INITW: begin
-      rw <= 1;
+      //rw <= 1;
       cena <= 0;
       transmit <= 0;
       ccl <= 1;
     end
 
     RCV_1: begin
-      rw <= 1;
+      //rw <= 1;
       cena <= 0;
       transmit <= 0;
       ccl <= 0;
     end
 
     WRITE: begin
-      rw <= 0;
+      //rw <= 0;
       cena <= 1;
       transmit <= 0;
       ccl <= 0;
     end
 
     END: begin
-      rw <= 1;
+      //rw <= 1;
       cena <= 0;
       transmit <= 0;
       ccl <= 0;
     end
     
     default: begin
-      rw <= 1;
+      //rw <= 1;
       cena <= 0;
       transmit <= 0;
       ccl <= 0;
     end
   endcase
+
+*/
 
 /*
 
