@@ -138,7 +138,7 @@ always @(posedge clk)
       TRANS_1: state <= TRANS_2;
 
       TRANS_2:           //-- Condicion de terminacion de lectura
-          if (addr == 14)  
+          if (addr > 4)  
             state <= INITW;
           else
             state <= READ_1;
@@ -153,7 +153,7 @@ always @(posedge clk)
       WRITE:  state <= END;
 
       END:  
-        if (addr == 3)
+        if (addr > 4)
           state <= INIT;
         else
           state <= RCV_1;
