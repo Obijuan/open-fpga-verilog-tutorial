@@ -152,7 +152,11 @@ always @(posedge clk)
 
       WRITE:  state <= END;
 
-      END:  state <= END;
+      END:  
+        if (addr == 3)
+          state <= INIT;
+        else
+          state <= RCV_1;
  
 
     default:
@@ -206,6 +210,13 @@ always @*
 
     WRITE: begin
       rw <= 0;
+      cena <= 1;
+      transmit <= 0;
+      ccl <= 0;
+    end
+
+    END: begin
+      rw <= 1;
       cena <= 0;
       transmit <= 0;
       ccl <= 0;
