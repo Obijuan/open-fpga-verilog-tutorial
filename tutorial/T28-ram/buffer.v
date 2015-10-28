@@ -180,7 +180,7 @@ always @(*) begin
     end
 
     END: begin
-      if (addr == 4'd5)
+      if (addr > 4'd13)
         next_state = INIT;
       else
         next_state = RCV_1; 
