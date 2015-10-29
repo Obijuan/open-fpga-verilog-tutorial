@@ -62,8 +62,7 @@ buffer #(.ROMFILE(ROMFILE), .BAUD(BAUD))
     .clk(clk),
     .tx(tx),
     .rx(rx),
-    .leds(leds),
-    .debug(debug)
+    .leds(leds)
   );
 
 

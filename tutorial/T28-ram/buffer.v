@@ -28,7 +28,7 @@ parameter AW = 4;
 parameter DW = 8;
 
 //-- Señal de reset
-reg rstn=0;
+reg rstn = 0;
 
 //-- Inicializador
 always @(posedge clk)
@@ -143,8 +143,6 @@ always @(*) begin
     end
 
     RX_WAIT: begin
-
-      debug = 1;
 
       if (rcv)
         next_state = RX_WRITE;
