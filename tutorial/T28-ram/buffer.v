@@ -130,7 +130,7 @@ reg [2: 0] next_state;
 localparam TX_WAIT = 1;
 localparam TX_READ = 2;
 localparam RX_WAIT = 3;
-localparam RX_READ = 4;
+localparam RX_WRITE = 4;
 
 always @(posedge clk) begin
 	if(rstn == 0)
@@ -170,254 +170,27 @@ always @(*) begin
         next_state = TX_WAIT;
     end
 
+    RX_WAIT: begin
+      if (rcv)
+        next_state = RX_WRITE;
+      else
+        next_state = RX_WAIT;
+    end
+
+    RX_WRITE: begin
+      rw = 0;
+      cena = 1;
+
+      if (ov)
+        next_state = TX_WAIT;
+      else
+        next_state = RX_WAIT;
+    end
+
   endcase
 
 end
 
-/*
-always @(*) begin
-  next_state = state;
-  rw = 1;
-  cena = 0;
-  transmit = 0;
-  ccl = 0;
-
-  case (state)
-    TX_WAIT: begin
-      ccl = 1;
-      next_state = TX_READ;
-    end
-
-    TX_READ: begin
-      if (ready)
-        next_state = TRANS_1;
-      else
-        next_state = TX_READ;
-    end
-
-    TRANS_1: begin
-      cena = 1;
-      transmit = 1;
-      next_state = TRANS_2;
-    end
-
-    TRANS_2: 
-      if (addr > 4'd13)
-        next_state = INITW;
-      else
-        next_state = READ_1; 
-
-
-  endcase
-
-end*/
-
-/*
-
-always @(posedge clk)
-  if (rstn_r == 0)
-    state <= INIT;
-  else
-    case (state)
-      INIT: state <= READ_1;
-      READ_1: 
-        //-- Esperar a que el transmisor este listo
-        if (ready) 
-          state <= TRANS_1;
-        else
-          state <= READ_1;  //-- No listo. Esperar
-
-      TRANS_1: state <= TRANS_2;
-
-      TRANS_2:           //-- Condicion de terminacion de lectura
-          if (addr > 4)  
-            state <= INITW;
-          else
-            state <= READ_1;
-
-      INITW:
-         state <= RCV_1;
-
-			RCV_1: 
-        if (rcv_r == 1) state <= WRITE;
-        else state <= RCV_1;
-
-      WRITE:  state <= END;
-
-      END:  
-        if (addr > 4)
-          state <= INIT;
-        else
-          state <= RCV_1;
- 
-
-    default:
-      state <= READ_1;
-    endcase
-
-
-assign rw = (state == WRITE) ? 0 : 1;
-
-always @*
-  case (state)
-    INIT: begin
-      //rw <= 1;
-      cena <= 0;
-      transmit <= 0;
-      ccl <= 1;
-    end
-
-    READ_1: begin
-      //rw <= 1;
-      cena <= 0;
-      transmit <= 0;
-      ccl <= 0;
-    end
-
-    TRANS_1: begin
-      //rw <= 1;
-      cena <= 1;
-      transmit <= 1;
-      ccl <= 0;
-    end
-
-    TRANS_2: begin
-      //rw <= 1;
-      cena <= 0;
-      transmit <= 0;
-      ccl <= 0;
-    end
-
-    INITW: begin
-      //rw <= 1;
-      cena <= 0;
-      transmit <= 0;
-      ccl <= 1;
-    end
-
-    RCV_1: begin
-      //rw <= 1;
-      cena <= 0;
-      transmit <= 0;
-      ccl <= 0;
-    end
-
-    WRITE: begin
-      //rw <= 0;
-      cena <= 1;
-      transmit <= 0;
-      ccl <= 0;
-    end
-
-    END: begin
-      //rw <= 1;
-      cena <= 0;
-      transmit <= 0;
-      ccl <= 0;
-    end
-    
-    default: begin
-      //rw <= 1;
-      cena <= 0;
-      transmit <= 0;
-      ccl <= 0;
-    end
-  endcase
-
-*/
-
-/*
-
-always @(posedge clk)
-  if (rstn_r == 0)
-    state <= READ_1;
-  else
-    case (state)
-      READ_1:
-        //-- Si transmisor listo, pasar al estado de transmitir
-        if (ready) 
-          state <= TRANS_1;
-        else
-          state <= READ_1;
-
-      TRANS_1: state <= TRANS_2;
-      TRANS_2: 
-        //-- Esperar a que ready se ponga a 0
-        if (ready)
-          state <= TRANS_2;
-        else
-          state <= READ_1;
-
-      RCV_1:  
-        if (rcv)
-          state <= RCV_2;
-        else
-          state <= RCV_1;
-
-      RCV_2:
-        if (addr == 1) 
-          state <= END;
-        else
-          state <= RCV_1;
-
-      END: state <= END;
-        
-
-      default: state <= READ_1;
-    endcase
-
-always @*
-  case (state)
-    READ_1: begin
-      rw <= 1;
-      cena <= 0;
-      transmit <= 0;
-      ccl <= 0;
-    end
-
-    TRANS_1: begin
-      rw <= 1;
-      cena <= 1;
-      transmit <= 1;
-      ccl <= 0;
-    end
-
-    TRANS_2: begin
-      rw <= 1;
-      cena <= 0;
-      transmit <= 0;
-      ccl <= 0;
-    end
-
-    RCV_1: begin
-      rw <= 1;
-      cena <= 0;
-      transmit <= 0;
-      ccl <= 0;
-    end
-
-    RCV_2: begin
-      rw <= 0;
-      cena <= 1;
-      transmit <= 0;
-      ccl <= 0;
-    end
-
-    END: begin
-      rw <= 1;
-      cena <= 0;
-      ccl <= 1;
-      transmit <= 0;
-    end
-
-    default: begin
-      rw <= 1;
-      cena <= 0;
-      transmit <= 0;
-      ccl <= 0;
-    end
-  endcase
-*/
 
 endmodule
 

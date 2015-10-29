@@ -83,6 +83,17 @@ initial begin
    #(FRAME_WAIT * 2) send_car("L");
    #(FRAME_WAIT * 2) send_car("A");
    #(FRAME_WAIT * 2) send_car("Q");
+   #(FRAME_WAIT * 2) send_car("H");
+   #(FRAME_WAIT * 2) send_car("O");
+   #(FRAME_WAIT * 2) send_car("L");
+   #(FRAME_WAIT * 2) send_car("A");
+   #(FRAME_WAIT * 2) send_car("Q");
+   #(FRAME_WAIT * 2) send_car("H");
+   #(FRAME_WAIT * 2) send_car("O");
+   #(FRAME_WAIT * 2) send_car("L");
+   #(FRAME_WAIT * 2) send_car("A");
+   #(FRAME_WAIT * 2) send_car("Q");
+   #(FRAME_WAIT * 2) send_car("Q");
 
    #(FRAME_WAIT * 20) $display("FIN de la simulacion");
   $finish;
