@@ -21,15 +21,13 @@ parameter BAUD = `B115200;
 //-- Fichero con la rom
 parameter ROMFILE = "bufferini.list";
 
-//-- Numero de bits de la direccion
+//-- Numero de bits de la direccion de memoria
 parameter AW = 4;
+
+//-- Numero de bits de los datos almacenados en memoria
 parameter DW = 8;
 
-wire ready;
-reg transmit;
-
-wire rcv;
-
+//-- Señal de reset
 reg rstn=0;
 
 //-- Inicializador
@@ -68,6 +66,8 @@ always @(posedge clk)
 wire ov = & addr;
 
 //-------- TRANSMISOR SERIE
+wire ready;
+reg transmit;
 
 //-- Instanciar la Unidad de transmision
 uart_tx #(.BAUD(BAUD))
@@ -81,6 +81,8 @@ uart_tx #(.BAUD(BAUD))
   );
 
 //-------- RECEPTOR SERIE
+wire rcv;
+
 uart_rx #(BAUD)
   RX0 (.clk(clk),         //-- Reloj del sistema
        .rstn(rstn),     //-- Señal de reset
