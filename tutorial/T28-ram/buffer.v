@@ -28,11 +28,7 @@ parameter ROMFILE = "bufferini.list";
 parameter AW = 4;
 parameter DW = 8;
 
-//-- Cable para direccionar la memoria
-reg [AW-1: 0] addr;
-wire [DW-1: 0] data_in;
-wire [DW-1: 0] data_out;
-reg rw;
+
 wire ready;
 reg transmit;
 
@@ -52,12 +48,14 @@ assign gen1 = rcv_r;
 always @(posedge clk)
   rstn_r <= rstn;
 
-//-------------------- Microordenes
-//-- counter enable: Se pone a 1 cuando haya que acceder a la siguiente
-//-- posicion de memoria
-reg cena;
 
-//-- Instanciar la memoria rom
+
+//--------------------- Memoria RAM
+reg [AW-1: 0] addr;
+wire [DW-1: 0] data_in;
+wire [DW-1: 0] data_out;
+reg rw;
+
 genram
   #( .ROMFILE(ROMFILE),
      .AW(AW),
@@ -70,23 +68,25 @@ genram
         .rw(rw)
       );
 
-//-- Contador
+//------ Contador
+//-- counter enable: Se pone a 1 cuando haya que acceder a la siguiente
+//-- posicion de memoria
+reg cena;
+
 always @(posedge clk)
   if (rstn_r == 0)
     addr <= 0;
   else if (cena)
     addr <= addr + 1;
 
-//-- Overflow
+//-- Overflow del contador: se pone a uno cuando todos sus bits
+//-- esten a 1
 wire ov = & addr;
 
-//-- Conectar los leds
-//always @(posedge clk)
-//  leds_r <= {1'b0, addr}; //data_out[4:0];//data_in[4:0];
-
-assign leds = data_in[4:0]; //{1'b0, addr}; //leds_r;
-
 //-------- TRANSMISOR SERIE
+
+
+
 //-- Instanciar la Unidad de transmision
 uart_tx #(.BAUD(BAUD))
   TX0 (
@@ -113,6 +113,7 @@ uart_rx #(BAUD)
 always @(posedge clk)
   rcv_r <= rcv;
 
+assign leds = data_in[4:0]; //{1'b0, addr}; //leds_r;
 
 //------------------- CONTROLADOR
 
