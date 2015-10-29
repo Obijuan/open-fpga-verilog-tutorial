@@ -58,7 +58,9 @@ genram
 reg cena;
 
 always @(posedge clk)
-  if (cena)
+  if (!rstn)
+    addr <= 0;
+  else if (cena)
     addr <= addr + 1;
 
 //-- Overflow del contador: se pone a uno cuando todos sus bits
@@ -91,7 +93,7 @@ uart_rx #(BAUD)
        .data(data_in)     //-- Datos recibidos
       );
 
-assign leds = data_in[4:0];
+assign leds = data_in[3:0];
 
 //------------------- CONTROLADOR
 
