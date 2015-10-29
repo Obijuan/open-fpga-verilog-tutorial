@@ -51,7 +51,7 @@ always @(posedge clk)
 
 
 //--------------------- Memoria RAM
-reg [AW-1: 0] addr;
+reg [AW-1: 0] addr = 0;
 wire [DW-1: 0] data_in;
 wire [DW-1: 0] data_out;
 reg rw;
@@ -74,9 +74,7 @@ genram
 reg cena;
 
 always @(posedge clk)
-  if (rstn_r == 0)
-    addr <= 0;
-  else if (cena)
+  if (cena)
     addr <= addr + 1;
 
 //-- Overflow del contador: se pone a uno cuando todos sus bits
@@ -84,8 +82,6 @@ always @(posedge clk)
 wire ov = & addr;
 
 //-------- TRANSMISOR SERIE
-
-
 
 //-- Instanciar la Unidad de transmision
 uart_tx #(.BAUD(BAUD))
