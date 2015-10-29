@@ -31,9 +31,6 @@ module uart_tx (
 //-- Parametro: velocidad de transmision
 parameter BAUD =  `B115200;
 
-//-- Señal de start registrada
-reg start_r; 
-
 //-- Reloj para la transmision
 wire clk_baud;
 
@@ -51,11 +48,6 @@ wire baud_en; //-- Habilitar el generador de baudios para la transmision
 //-------------------------------------
 //-- RUTA DE DATOS
 //-------------------------------------
-
-//-- Registrar la entrada start
-//-- (para cumplir con las reglas de diseño sincrono)
-always @(posedge clk)
-  start_r <= start;
 
 always @(posedge clk)
   if (start == 1 && state == IDLE)
@@ -132,7 +124,7 @@ always @(posedge clk)
       //-- Estado de reposo. Se sale cuando la señal
       //-- de start se pone a 1
       IDLE: 
-        if (start_r == 1) 
+        if (start == 1) 
           state <= START;
         else 
           state <= IDLE;
