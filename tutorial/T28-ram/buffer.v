@@ -13,9 +13,7 @@ module buffer (input wire clk,
                input wire rx,
                output wire tx,
                output wire [3:0] leds,
-               output reg debug,
-               output wire beep, 
-               output wire gen1);
+               output reg debug);
 
 //-- Velocidad de transmision
 parameter BAUD = `B115200;
@@ -27,28 +25,16 @@ parameter ROMFILE = "bufferini.list";
 parameter AW = 4;
 parameter DW = 8;
 
-
 wire ready;
 reg transmit;
 
-reg rstn_r;
-
-wire tx_line;
-
 wire rcv;
-reg rcv_r;
-
-assign gen1 = rcv_r;
-
-//reg ccl;
 
 reg rstn=0;
 
 //-- Inicializador
 always @(posedge clk)
   rstn <= 1;
-
-
 
 //--------------------- Memoria RAM
 reg [AW-1: 0] addr = 0;
