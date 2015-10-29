@@ -10,7 +10,6 @@
 `include "baudgen.vh"
 
 module buffer (input wire clk,
-               input wire rstn,
                input wire rx,
                output wire tx,
                output wire [3:0] leds,
@@ -43,10 +42,11 @@ assign gen1 = rcv_r;
 
 //reg ccl;
 
+reg rstn=0;
 
-//-- Registrar el reset
+//-- Inicializador
 always @(posedge clk)
-  rstn_r <= rstn;
+  rstn <= 1;
 
 
 
@@ -87,7 +87,7 @@ wire ov = & addr;
 uart_tx #(.BAUD(BAUD))
   TX0 (
     .clk(clk),
-    .rstn(rstn_r),
+    .rstn(rstn),
     .data(data_out),
     .start(transmit),
     .ready(ready),
@@ -97,7 +97,7 @@ uart_tx #(.BAUD(BAUD))
 //-------- RECEPTOR SERIE
 uart_rx #(BAUD)
   RX0 (.clk(clk),         //-- Reloj del sistema
-       .rstn(rstn_r),     //-- Señal de reset
+       .rstn(rstn),     //-- Señal de reset
        .rx(rx),           //-- Linea de recepción de datos serie
        .rcv(rcv),         //-- Señal de dato recibido
        .data(data_in)     //-- Datos recibidos

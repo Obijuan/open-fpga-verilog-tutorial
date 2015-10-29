@@ -60,7 +60,6 @@ wire debug;
 buffer #(.ROMFILE(ROMFILE), .BAUD(BAUD))
   dut(
     .clk(clk),
-    .rstn(rstn),
     .tx(tx),
     .rx(rx),
     .leds(leds),

@@ -6,7 +6,6 @@ set_io debug  95
 set_io beep 44
 set_io rx   9
 set_io tx   8
-set_io rstn 3
 set_io clk  21
 set_io gen1 45
 
