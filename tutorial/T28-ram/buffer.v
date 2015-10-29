@@ -95,11 +95,8 @@ uart_tx #(.BAUD(BAUD))
     .data(data_out),
     .start(transmit),
     .ready(ready),
-    .tx(tx_line)
+    .tx(tx)
   );
-
-assign tx = tx_line;
-assign beep = tx_line;
 
 //-------- RECEPTOR SERIE
 uart_rx #(BAUD)
@@ -113,7 +110,7 @@ uart_rx #(BAUD)
 always @(posedge clk)
   rcv_r <= rcv;
 
-assign leds = data_in[4:0]; //{1'b0, addr}; //leds_r;
+assign leds = data_in[4:0];
 
 //------------------- CONTROLADOR
 
