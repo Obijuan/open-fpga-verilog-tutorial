@@ -143,7 +143,6 @@ always @(*) begin
 
   case (state)
     INIT: begin
-      //ccl = 1;
       next_state = TX_WAIT;
     end
 
