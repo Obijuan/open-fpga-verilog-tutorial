@@ -70,7 +70,7 @@ genram
 
 //-- Contador
 always @(posedge clk)
-  if (ccl)
+  if (rstn == 0)
     addr <= 0;
   else if (cena)
     addr <= addr + 1;
@@ -124,6 +124,8 @@ localparam END = 7;       //-- Preparacion para comenzar otra vez
 reg [2: 0] state;
 reg [2: 0] next_state;
 
+localparam WAIT_TX = 0;
+
 always @(posedge clk) begin
 	if(rstn == 0)
 		state <= INIT;
@@ -131,6 +133,22 @@ always @(posedge clk) begin
 		state <= next_state;
 end
 
+always @(*) begin
+  next_state = state;
+  rw = 1;
+  cena = 0;
+  transmit = 0;
+
+  case (state)
+    INIT: begin
+      transmit = 1;
+    end
+  endcase
+
+end
+
+
+/*
 always @(*) begin
   next_state = state;
   rw = 1;
@@ -154,7 +172,7 @@ always @(*) begin
     TRANS_1: begin
       cena = 1;
       transmit = 1;
-      next_state = TRANS_2;
+      next_state = TRANS_1; //TRANS_2;
     end
 
     TRANS_2: 
@@ -190,6 +208,8 @@ always @(*) begin
   endcase
 
 end
+
+*/
 
 /*
 

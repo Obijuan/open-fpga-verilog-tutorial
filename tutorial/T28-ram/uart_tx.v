@@ -25,7 +25,7 @@ module uart_tx (
          input wire start,      //-- Activar a 1 para transmitir
          input wire [7:0] data, //-- Byte a transmitir
          output reg tx,         //-- Salida de datos serie (hacia el PC)
-         output wire ready      //-- Transmisor listo / ocupado
+         output reg ready      //-- Transmisor listo / ocupado
        );
 
 //-- Parametro: velocidad de transmision
@@ -41,9 +41,9 @@ reg [3:0] bitc;
 reg [7:0] data_r;
 
 //--------- Microordenes
-wire load;    //-- Carga del registro de desplazamiento. Puesta a 0 del
+reg load;    //-- Carga del registro de desplazamiento. Puesta a 0 del
               //-- contador de bits
-wire baud_en; //-- Habilitar el generador de baudios para la transmision
+reg baud_en; //-- Habilitar el generador de baudios para la transmision
 
 //-------------------------------------
 //-- RUTA DE DATOS
@@ -109,15 +109,76 @@ localparam TRANS = 2;  //-- Estado: transmitiendo dato
 
 //-- Estados del autómata del controlador
 reg [1:0] state;
+reg [1:0] next_state;
 
-//-- Transiciones entre los estados
-always @(posedge clk)
+//-- Actualizacion del estado
+always @(posedge clk) begin
+	if(rstn == 0)
+		state <= IDLE;
+	else
+		state <= next_state;
+end
 
-  //-- Reset del automata. Al estado inicial
-  if (rstn == 0)
-    state <= IDLE;
+//-- Obtencion de los siguientes estados y
+//-- Generacion de las microordenes
+always @(*) begin
 
-  else
+  //-- Por defecto permanecer en el mismo estado
+  next_state = state;
+
+  //-- Señales por defecto
+  ready = 0;
+  baud_en = 0;
+  load = 0;
+
+  case (state)
+
+    //-- Estado de reposo. 
+    IDLE: begin
+
+      //-- Indicar que receptor listo
+      ready = 1;
+
+      //-- Se sale cuando la señal de start se pone a 1
+      if (start == 1) 
+        next_state <= START;
+      else 
+        next_state <= IDLE;
+    end
+
+    //-- Estado de comienzo. Prepararse para empezar
+    //-- a transmitir. Duracion: 1 ciclo de reloj
+    START: begin
+
+      //-- Cargar dato a transmitir
+      load = 1;
+
+      //-- Activar generador de baudios
+      baud_en = 1;
+
+      //-- Pasar al siguiente estado
+      next_state <= TRANS;
+    end
+
+    //-- Transmitiendo. Se esta en este estado hasta
+    //-- que se hayan transmitido todos los bits pendientes
+    TRANS: begin
+
+      //-- Esperar a que todos los bits se envien
+      if (bitc == 11)
+        next_state <= IDLE;
+      else
+        next_state <= TRANS;
+      
+      //-- Generador de baudios activado
+      baud_en = 1;
+    end
+  endcase
+
+end
+
+ 
+/*
     //-- Transiciones a los siguientes estados
     case (state)
 
@@ -156,6 +217,8 @@ assign baud_en = (state == IDLE) ? 0 : 1;
 //-- Señal de salida. Esta a 1 cuando estamos en reposo (listos
 //-- para transmitir). En caso contrario esta a 0
 assign ready = (state == IDLE) ? 1 : 0;
+
+*/
 
 endmodule
 
