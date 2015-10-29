@@ -158,7 +158,7 @@ always @(*) begin
     end
 
     TRANS_2: 
-      if (addr == 4'd14)
+      if (addr > 4'd13)
         next_state = INITW;
       else
         next_state = READ_1; 
