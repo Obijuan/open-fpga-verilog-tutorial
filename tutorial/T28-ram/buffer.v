@@ -13,7 +13,8 @@ module buffer (input wire clk,
                input wire rstn,
                input wire rx,
                output wire tx,
-               output wire [4:0] leds,
+               output wire [3:0] leds,
+               output reg debug,
                output wire beep, 
                output wire gen1);
 
@@ -32,7 +33,6 @@ reg [AW-1: 0] addr;
 wire [DW-1: 0] data_in;
 wire [DW-1: 0] data_out;
 reg rw;
-reg [4:0] leds_r;
 wire ready;
 reg transmit;
 
@@ -42,8 +42,6 @@ wire tx_line;
 
 wire rcv;
 reg rcv_r;
-
-reg ccl;
 
 
 //-- Registrar el reset
@@ -74,12 +72,6 @@ always @(posedge clk)
     addr <= 0;
   else if (cena)
     addr <= addr + 1;
-
-//-- Conectar los leds
-always @(posedge clk)
-  leds_r <= {1'b0, addr}; //data_out[4:0];//data_in[4:0];
-
-assign leds = leds_r;
 
 //-------- TRANSMISOR SERIE
 //-- Instanciar la Unidad de transmision
@@ -133,15 +125,19 @@ always @(posedge clk) begin
 		state <= next_state;
 end
 
+assign leds = data_out[3:0]; // addr;
+
 always @(*) begin
   next_state = state;
   rw = 1;
   cena = 0;
   transmit = 0;
+  debug = 0;
 
   case (state)
     INIT: begin
       transmit = 1;
+      debug = 1;
     end
   endcase
 

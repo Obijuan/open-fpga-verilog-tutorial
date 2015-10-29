@@ -53,7 +53,9 @@ reg rx;
 reg rstn = 0;
 
 //-- Datos de salida del componente
-wire [4:0] leds;
+wire [3:0] leds;
+
+wire debug;
 
 //-- Instanciar el componente
 buffer #(.ROMFILE(ROMFILE), .BAUD(BAUD))
@@ -62,7 +64,8 @@ buffer #(.ROMFILE(ROMFILE), .BAUD(BAUD))
     .rstn(rstn),
     .tx(tx),
     .rx(rx),
-    .leds(leds)
+    .leds(leds),
+    .debug(debug)
   );
 
 
