@@ -96,8 +96,8 @@ assign leds = data_in[4:0];
 //------------------- CONTROLADOR
 
 //-- Estado del automata
-reg [2: 0] state = TX_WAIT;
-reg [2: 0] next_state;
+reg [1:0] state;
+reg [1:0] next_state;
 
 localparam TX_WAIT = 0;
 localparam TX_READ = 1;
@@ -106,7 +106,10 @@ localparam RX_WRITE = 3;
 
 //-- Transiones de estados
 always @(posedge clk) 
-  state <= next_state;
+  if (!rstn)
+    state <= TX_WAIT;
+  else
+    state <= next_state;
 
 //-- Generacion de microordenes
 //-- y siguientes estados
