@@ -13,7 +13,8 @@ module buffer (input wire clk,
                input wire rstn,
                input wire rx,
                output wire tx,
-               output wire [4:0] leds,
+               output wire [3:0] leds,
+               output reg debug,
                output wire beep, 
                output wire gen1);
 
@@ -32,7 +33,6 @@ reg [AW-1: 0] addr;
 wire [DW-1: 0] data_in;
 wire [DW-1: 0] data_out;
 reg rw;
-reg [4:0] leds_r;
 wire ready;
 reg transmit;
 
@@ -43,7 +43,9 @@ wire tx_line;
 wire rcv;
 reg rcv_r;
 
-reg ccl;
+assign gen1 = rcv_r;
+
+//reg ccl;
 
 
 //-- Registrar el reset
@@ -70,7 +72,7 @@ genram
 
 //-- Contador
 always @(posedge clk)
-  if (ccl)
+  if (rstn_r == 0)
     addr <= 0;
   else if (cena)
     addr <= addr + 1;
@@ -79,10 +81,10 @@ always @(posedge clk)
 wire ov = & addr;
 
 //-- Conectar los leds
-always @(posedge clk)
-  leds_r <= {1'b0, addr}; //data_out[4:0];//data_in[4:0];
+//always @(posedge clk)
+//  leds_r <= {1'b0, addr}; //data_out[4:0];//data_in[4:0];
 
-assign leds = leds_r;
+assign leds = data_in[4:0]; //{1'b0, addr}; //leds_r;
 
 //-------- TRANSMISOR SERIE
 //-- Instanciar la Unidad de transmision
@@ -114,24 +116,17 @@ always @(posedge clk)
 
 //------------------- CONTROLADOR
 
-localparam INIT = 0;
-localparam READ_1 = 1;    //-- Lectura en memoria
-localparam TRANS_1 = 2;   //-- Comienzo de transmision de caracter
-localparam TRANS_2 = 3;   //-- Esperar a que transmision se estabilice
-
-localparam INITW = 4;
-localparam RCV_1 = 5;     //-- Esperar a recibir caracter
-localparam WRITE = 6;     //-- Escribir en memoria
-localparam END = 7;       //-- Preparacion para comenzar otra vez
-
+//-- Estado del automata
 reg [2: 0] state;
 reg [2: 0] next_state;
 
+localparam INIT = 0;
 localparam TX_WAIT = 1;
 localparam TX_READ = 2;
 localparam RX_WAIT = 3;
 localparam RX_WRITE = 4;
 
+//-- Transiones de estados
 always @(posedge clk) begin
 	if(rstn == 0)
 		state <= INIT;
@@ -139,16 +134,20 @@ always @(posedge clk) begin
 		state <= next_state;
 end
 
+
+//-- Generacion de microordenes
+//-- y siguientes estados
 always @(*) begin
   next_state = state;
   rw = 1;
   cena = 0;
   transmit = 0;
-  ccl = 0;
+  debug = 0;
+  //ccl = 0;
 
   case (state)
     INIT: begin
-      ccl = 1;
+      //ccl = 1;
       next_state = TX_WAIT;
     end
 
@@ -171,6 +170,9 @@ always @(*) begin
     end
 
     RX_WAIT: begin
+
+      debug = 1;
+
       if (rcv)
         next_state = RX_WRITE;
       else
