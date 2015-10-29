@@ -75,6 +75,9 @@ always @(posedge clk)
   else if (cena)
     addr <= addr + 1;
 
+//-- Overflow
+wire ov = & addr;
+
 //-- Conectar los leds
 always @(posedge clk)
   leds_r <= {1'b0, addr}; //data_out[4:0];//data_in[4:0];
@@ -124,6 +127,11 @@ localparam END = 7;       //-- Preparacion para comenzar otra vez
 reg [2: 0] state;
 reg [2: 0] next_state;
 
+localparam TX_WAIT = 1;
+localparam TX_READ = 2;
+localparam RX_WAIT = 3;
+localparam RX_READ = 4;
+
 always @(posedge clk) begin
 	if(rstn == 0)
 		state <= INIT;
@@ -141,14 +149,50 @@ always @(*) begin
   case (state)
     INIT: begin
       ccl = 1;
-      next_state = READ_1;
+      next_state = TX_WAIT;
     end
 
-    READ_1: begin
+    TX_WAIT: begin
+      if (ready)
+        next_state = TX_READ;
+      else
+        next_state = TX_WAIT;
+    end
+
+    TX_READ: begin
+
+      transmit = 1;
+      cena = 1;
+
+      if (ov) 
+        next_state = RX_WAIT;
+      else
+        next_state = TX_WAIT;
+    end
+
+  endcase
+
+end
+
+/*
+always @(*) begin
+  next_state = state;
+  rw = 1;
+  cena = 0;
+  transmit = 0;
+  ccl = 0;
+
+  case (state)
+    TX_WAIT: begin
+      ccl = 1;
+      next_state = TX_READ;
+    end
+
+    TX_READ: begin
       if (ready)
         next_state = TRANS_1;
       else
-        next_state = READ_1;
+        next_state = TX_READ;
     end
 
     TRANS_1: begin
@@ -163,33 +207,10 @@ always @(*) begin
       else
         next_state = READ_1; 
 
-    INITW: begin
-      ccl = 1;
-      next_state = RCV_1;
-    end
-
-    RCV_1: begin
-      if (rcv_r == 1) next_state = WRITE;
-      else next_state = RCV_1;
-    end
-
-		WRITE: begin
-      rw = 0;
-      cena = 1;
-      next_state = END;
-    end
-
-    END: begin
-      if (addr > 4'd13)
-        next_state = INIT;
-      else
-        next_state = RCV_1; 
-    end
-
 
   endcase
 
-end
+end*/
 
 /*
 
