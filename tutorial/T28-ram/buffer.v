@@ -107,9 +107,6 @@ uart_rx #(BAUD)
        .data(data_in)     //-- Datos recibidos
       );
 
-always @(posedge clk)
-  rcv_r <= rcv;
-
 assign leds = data_in[4:0];
 
 //------------------- CONTROLADOR
