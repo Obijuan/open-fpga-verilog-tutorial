@@ -177,49 +177,6 @@ always @(*) begin
 
 end
 
- 
-/*
-    //-- Transiciones a los siguientes estados
-    case (state)
-
-      //-- Estado de reposo. Se sale cuando la señal
-      //-- de start se pone a 1
-      IDLE: 
-        if (start == 1) 
-          state <= START;
-        else 
-          state <= IDLE;
-
-      //-- Estado de comienzo. Prepararse para empezar
-      //-- a transmitir. Duracion: 1 ciclo de reloj
-      START:
-        state <= TRANS;
-
-      //-- Transmitiendo. Se esta en este estado hasta
-      //-- que se hayan transmitido todos los bits pendientes
-      TRANS:
-        if (bitc == 11)
-          state <= IDLE;
-        else
-          state <= TRANS;
-
-      //-- Por defecto. NO USADO. Puesto para
-      //-- cubrir todos los casos y que no se generen latches
-      default:
-        state <= IDLE;
-
-    endcase
-
-//-- Generacion de las microordenes
-assign load = (state == START) ? 1 : 0;
-assign baud_en = (state == IDLE) ? 0 : 1;
-
-//-- Señal de salida. Esta a 1 cuando estamos en reposo (listos
-//-- para transmitir). En caso contrario esta a 0
-assign ready = (state == IDLE) ? 1 : 0;
-
-*/
-
 endmodule
 
 
