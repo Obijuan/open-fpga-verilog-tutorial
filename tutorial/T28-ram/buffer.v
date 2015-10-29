@@ -1,6 +1,8 @@
 //----------------------------------------------------------------------------
-//-- Ejemplo de uso de una memoria rom generica
-//-- Se reproduce en los leds la secuencia definida en el fichero rom1.list
+//-- Buffer de datos
+//-- Se reciben datos por el puerto serie y se almacenan hasta llenar el buffer
+//-- Una vez lleno, se vuelcan todos los datos, envianse de vuelta por el puerto
+//-- serie
 //------------------------------------------
 //-- (C) BQ. October 2015. Written by Juan Gonzalez (Obijuan)
 //-- GPL license
@@ -116,6 +118,8 @@ always @(posedge clk)
 //-- Generacion de microordenes
 //-- y siguientes estados
 always @(*) begin
+
+  //-- Valores por defecto
   next_state = state;
   rw = 1;
   cena = 0;
@@ -124,6 +128,7 @@ always @(*) begin
 
   case (state)
 
+    //-- Esperar a que transmisor este listo para enviar
     TX_WAIT: begin
       if (ready)
         next_state = TX_READ;
@@ -131,17 +136,20 @@ always @(*) begin
         next_state = TX_WAIT;
     end
 
+    //-- Lectura del dato en memoria y transmision serie
     TX_READ: begin
 
       transmit = 1;
       cena = 1;
 
+      //-- Si es el ultimo caracter pasar a recepcion
       if (ov) 
         next_state = RX_WAIT;
       else
         next_state = TX_WAIT;
     end
 
+    //-- Esperar a que lleguen caracteres por el puerto serie
     RX_WAIT: begin
 
       debug = 1;
@@ -152,20 +160,20 @@ always @(*) begin
         next_state = RX_WAIT;
     end
 
+    //-- Escritura de dato en memoria
     RX_WRITE: begin
       rw = 0;
       cena = 1;
 
+      //-- Si es el ultimo caracter, ir al estado inicial
       if (ov)
         next_state = TX_WAIT;
       else
         next_state = RX_WAIT;
     end
-
   endcase
 
 end
-
 
 endmodule
 
