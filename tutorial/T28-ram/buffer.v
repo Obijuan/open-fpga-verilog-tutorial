@@ -142,6 +142,8 @@ always @(*) begin
 
     RX_WAIT: begin
 
+      debug = 1;
+
       if (rcv)
         next_state = RX_WRITE;
       else
