@@ -1,19 +1,18 @@
 //-------------------------------------------------------------------
 //-- buffer_tb.v
-//-- Banco de pruebas para el secuenciador de luces, implementado con
-//-- una memoria rom generica
+//-- Banco de pruebas para buffer serie, implementado con
+//-- una memoria ram generica
 //-------------------------------------------------------------------
-//-- BQ August 2015. Written by Juan Gonzalez (Obijuan)
+//-- BQ November 2015. Written by Juan Gonzalez (Obijuan)
 //-------------------------------------------------------------------
 
 module buffer_tb();
 
-//-- Para la simulacion se usa un retraso de 2 ciclos de reloj
+//-- Contenido inicial de la memoria ram
 parameter ROMFILE = "bufferini.list";
 
 //-- Baudios con los que realizar la simulacion
 localparam BAUD = `B115200;
-localparam DELAY = 10000;
 
 //-- Tics de reloj para envio de datos a esa velocidad
 //-- Se multiplica por 2 porque el periodo del reloj es de 2 unidades
@@ -82,18 +81,18 @@ initial begin
    #(FRAME_WAIT * 2) send_car("O");
    #(FRAME_WAIT * 2) send_car("L");
    #(FRAME_WAIT * 2) send_car("A");
+   #(FRAME_WAIT * 2) send_car(" ");
    #(FRAME_WAIT * 2) send_car("Q");
+   #(FRAME_WAIT * 2) send_car("U");
+   #(FRAME_WAIT * 2) send_car("E");
+   #(FRAME_WAIT * 2) send_car(" ");
    #(FRAME_WAIT * 2) send_car("H");
-   #(FRAME_WAIT * 2) send_car("O");
-   #(FRAME_WAIT * 2) send_car("L");
    #(FRAME_WAIT * 2) send_car("A");
-   #(FRAME_WAIT * 2) send_car("Q");
-   #(FRAME_WAIT * 2) send_car("H");
-   #(FRAME_WAIT * 2) send_car("O");
-   #(FRAME_WAIT * 2) send_car("L");
-   #(FRAME_WAIT * 2) send_car("A");
-   #(FRAME_WAIT * 2) send_car("Q");
-   #(FRAME_WAIT * 2) send_car("Q");
+   #(FRAME_WAIT * 2) send_car("C");
+   #(FRAME_WAIT * 2) send_car("E");
+   #(FRAME_WAIT * 2) send_car("S");
+   #(FRAME_WAIT * 2) send_car("-");
+   #(FRAME_WAIT * 2) send_car(".");
 
    #(FRAME_WAIT * 20) $display("FIN de la simulacion");
   $finish;
