@@ -94,7 +94,7 @@ initial begin
    #(FRAME_WAIT * 2) send_car("-");
    #(FRAME_WAIT * 2) send_car(".");
 
-   #(FRAME_WAIT * 20) $display("FIN de la simulacion");
+   #(FRAME_WAIT * 40) $display("FIN de la simulacion");
   $finish;
 end
 
