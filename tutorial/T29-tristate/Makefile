@@ -7,17 +7,14 @@ DEPS = divider.v
 NAME2 = tristate2
 DEPS2 = dividerp1.v
 
-NAME3 = tristate3
-DEPS3 = dividerp1.v
+NAME3 = error1
+DEPS3 =
 
-NAME4 = error1
+NAME4 = error2
 DEPS4 =
 
-NAME5 = error2
+NAME5 = error3
 DEPS5 =
-
-NAME6 = error3
-DEPS6 = dividerp1.v
 
 #-------------------------------------------------------
 #-- Objetivo por defecto: hacer simulacion y sintesis
