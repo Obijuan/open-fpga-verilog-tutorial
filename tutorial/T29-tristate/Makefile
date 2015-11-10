@@ -5,7 +5,7 @@ NAME = tristate1
 DEPS = divider.v
 
 NAME2 = tristate2
-DEPS2 = divider.v
+DEPS2 = dividerp1.v
 
 NAME3 = tristate3
 DEPS3 = dividerp1.v
