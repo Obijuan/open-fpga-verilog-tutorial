@@ -1,7 +1,8 @@
 //----------------------------------------------------------------------------
 //-- Limitaciones en la sintesis de puertas triestado
 //-- Error 2: Conexion de dos registro de 1 bit a un cable de 2 bits
-//-- a traves de dos puertas triestado
+//-- a traves de dos puertas triestado. Controlados con la misma
+//-- señal de enable
 //----------------------------------------------------------------------------
 //--  (C) BQ. November 2015. Written by Juan Gonzalez (Obijuan)
 //-- GPL license
@@ -32,6 +33,7 @@ module error2  (
          input wire clk,            //-- Entrada de reloj
          output wire [1:0] leds);   //-- Leds a controlar
 
+//-- Senal de habilitacion para las puertas
 wire ena = 1'b1;
 
 //-- Registro de 1 bit
@@ -45,6 +47,7 @@ always @(posedge clk)
   reg1 <= 1'b1;
 
 //-- Conectar los registros al cable de 2 bits
+//-- Se controlan con la misma señal de habilitacion
 assign leds[0] = (ena) ? reg0 : 1'bz;
 assign leds[1] = (ena) ? reg1 : 1'bz;
 
