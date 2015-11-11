@@ -1,6 +1,6 @@
 //----------------------------------------------------------------------------
 //-- Ejemplo 2 de puertas tri-estado
-//-- Hay 3 biestables con sus salidas conectas a un bus de 1 bitº
+//-- Hay 3 biestables con sus salidas conectas a un bus de 1 bit
 //-- Este bus se saca por un led, para conocer su estado
 //-- Con un registro de desplazamiento se selecciona que registro
 //-- se conecta al bus a traves de su puerta triestado correspondiente
