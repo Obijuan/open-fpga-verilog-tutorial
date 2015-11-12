@@ -1,0 +1,11 @@
+//-- Fichero prog1.list
+//-- Programa de ejemplo para Microbio
+
+//40   //-- HALT
+00   //-- NOP
+85   //-- LEDS
+00   //-- NOP
+8A   //-- LEDS
+C0   //-- JP 0    Saltar a la direccion 0
+40   //-- HALT
+00
