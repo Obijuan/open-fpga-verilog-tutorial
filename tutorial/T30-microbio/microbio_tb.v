@@ -1,15 +1,14 @@
 //-------------------------------------------------------------------
-//-- genromleds_tb.v
-//-- Banco de pruebas para el secuenciador de luces, implementado con
-//-- una memoria rom generica
+//-- microbio_tb
+//-- Banco de pruebas para el microprocesador MICROBIO
 //-------------------------------------------------------------------
 //-- BQ August 2015. Written by Juan Gonzalez (Obijuan)
 //-------------------------------------------------------------------
 
 module microbio_tb();
 
-//-- Para la simulacion se usa un periodo de 2 ciclos de reloj
-parameter CPU_PERIOD = 3;
+//-- Para la simulacion se usa un WAIT_DELAY de 3 ciclos de reloj
+parameter WAIT_DELAY = 3;
 parameter ROMFILE = "prog1.list";
 
 //-- Registro para generar la señal de reloj
@@ -21,7 +20,7 @@ wire stop;
 reg rstn = 0;
 
 //-- Instanciar el componente
-microbio #(.CPU_PERIOD(CPU_PERIOD), .ROMFILE(ROMFILE))
+microbio #(.WAIT_DELAY(WAIT_DELAY), .ROMFILE(ROMFILE))
   dut(
     .clk(clk),
     .rstn_ini(rstn),

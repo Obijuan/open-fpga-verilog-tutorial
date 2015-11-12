@@ -2,9 +2,9 @@
 //-- Programa de ejemplo para Microbio
 
 //40   //-- HALT
-00   //-- NOP
+00   //-- WAIT
 85   //-- LEDS
-00   //-- NOP
+00   //-- WAIT
 8A   //-- LEDS
 C0   //-- JP 0    Saltar a la direccion 0
 40   //-- HALT

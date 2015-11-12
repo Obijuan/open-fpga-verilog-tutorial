@@ -12,22 +12,23 @@
 //-- Anchura de los datos: 8 bits
 //--
 //-- Codigos de operacion
-//-- 00 --> NOP    (consume ciclos sin hacer nada)
+//-- 00 --> WAIT    (consume ciclos sin hacer nada)
 //-- 01 --> HALT   (Parar. Enciende led verde)
 //-- 10 --> LEDS   (Establecer valor en los leds)
 //-- 11 --> JP     (Saltar a la direccion indicada)
+//------------------------------------------------------------------------------
 
 `default_nettype none
 `include "divider.vh"
 
-
+//-- Procesador microbio
 module microbio (input wire clk,          //-- Reloj del sistema
                  input wire rstn_ini,     //-- Reset
                  output wire [3:0] leds,  //-- leds
                  output wire stop);       //-- Indicador de stop
 
-//-- Parametro: Periodo de funcionamiento de la CPU
-parameter CPU_PERIOD = `T_1s;
+//-- Parametro: Tiempo de espera para la instruccion WAIT
+parameter WAIT_DELAY = `T_200ms;
 
 //-- Parametro: fichero con el programa a cargar en la rom
 parameter ROMFILE = "prog1.list";
@@ -36,8 +37,8 @@ parameter ROMFILE = "prog1.list";
 localparam AW = 6;     //-- Anchura del bus de direcciones
 localparam DW = 8;     //-- Anchura del bus de datos
 
-//-- Codigo de operacion
-localparam NOP = 2'b00;
+//-- Codigo de operacion de las instrucciones
+localparam WAIT = 2'b00;
 localparam HALT = 2'b01;
 localparam LEDS = 2'b10;
 localparam JP = 2'b11;
@@ -114,15 +115,21 @@ always @(posedge clk)
 
 assign leds = leds_r;
 
-//-- Debug
+//-- Mostrar la señal de stop por el led verde
+assign stop = reg_stop;
+
+//-------- Debug
+//-- Sacar codigo de operacion por leds
 //assign leds = CO;
-//assign stop = reg_stop;
+
+/*-- Hacer parpadear el led de stop
 reg cont=0;
 always @(posedge clk)
   if (clk_tic)
     cont <= cont + 1;
 
 assign stop = cont;
+*/
 
 //----------- UNIDAD DE CONTROL
 localparam INIT = 0;
@@ -155,36 +162,48 @@ always @(*) begin
 
 
   case (state)
-    INIT: begin
+    //-- Estado inicial y de reposo
+    INIT:
       next_state = FETCH;
-    end
+
+    //-- Ciclo de captura: obtener la siguiente instruccion
+    //-- de la memoria
     FETCH: begin
       cp_inc = 1;  //-- Incrementar CP (en el siguiente estado)
       ri_load = 1; //-- Cargar la instruccion (en el siguiente estado)
       next_state = EXEC;
     end
+
+    //-- Ciclo de ejecucion
     EXEC: begin
       next_state = FETCH;
 
       //-- Ejecutar la instruccion
       case (CO)
+
+        //-- Instruccion HALT
         HALT: begin
-          halt = 1;
+          halt = 1;           //-- Activar microorden de halt
           next_state = EXEC;  //-- Permanecer en este estado indefinidamente
         end
 
-        NOP: begin
+        //-- Instruccion WAIT
+        WAIT: begin
+          //-- Mientras no se active clk_tic, se sigue en el mismo
+          //-- estado de ejecucion
           if (clk_tic) next_state = FETCH;
           else next_state = EXEC;
         end
 
-        LEDS: begin
-          leds_load = 1;
-        end
+        //-- Instruccion LEDs
+        LEDS:
+          leds_load = 1;  //-- Microorden de carga en el registro de leds
 
+        //-- Instruccion de Salto
         JP: begin
-          cp_load = 1;
-          next_state = INIT;
+          cp_load = 1;    //-- Microorden de carga del CP
+          next_state = INIT;  //-- Realizar un ciclo de reposo para
+                              //-- que se cargue CP antes del estado FETCH
         end
 
       endcase
@@ -195,7 +214,7 @@ always @(*) begin
 end
 
 //-- Divisor para marcar la duracion de cada estado del automata
-dividerp1 #(CPU_PERIOD)
+dividerp1 #(WAIT_DELAY)
   TIMER0 (
     .clk(clk),
     .clk_out(clk_tic)
