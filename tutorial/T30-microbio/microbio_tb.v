@@ -9,7 +9,7 @@ module microbio_tb();
 
 //-- Para la simulacion se usa un WAIT_DELAY de 3 ciclos de reloj
 parameter WAIT_DELAY = 3;
-parameter ROMFILE = "prog1.list";
+parameter ROMFILE = "prog.list";
 
 //-- Registro para generar la señal de reloj
 reg clk = 0;

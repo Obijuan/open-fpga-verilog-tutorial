@@ -31,7 +31,7 @@ module microbio (input wire clk,          //-- Reloj del sistema
 parameter WAIT_DELAY = `T_200ms;
 
 //-- Parametro: fichero con el programa a cargar en la rom
-parameter ROMFILE = "prog1.list";
+parameter ROMFILE = "prog.list";
 
 //-- Tamaño de la memoria ROM a instanciar
 localparam AW = 6;     //-- Anchura del bus de direcciones
