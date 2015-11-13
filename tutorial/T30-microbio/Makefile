@@ -35,10 +35,10 @@ sint: $(NAME).bin
 #-------------------------------
 #-- Compilacion y simulacion
 #-------------------------------
-$(NAME)_tb.vcd: $(NAME).v $(DEPS) $(NAME)_tb.v
+$(NAME)_tb.vcd: $(NAME).v $(DEPS) $(NAME)_tb.v prog.list
 
 	#-- Compilar
-	iverilog $^ -o $(NAME)_tb.out
+	iverilog $(NAME).v $(DEPS) $(NAME)_tb.v -o $(NAME)_tb.out
 
 	#-- Simular
 	./$(NAME)_tb.out
@@ -49,7 +49,7 @@ $(NAME)_tb.vcd: $(NAME).v $(DEPS) $(NAME)_tb.v
 #------------------------------
 #-- Sintesis completa
 #------------------------------
-$(NAME).bin: $(NAME).pcf $(NAME).v $(DEPS)
+$(NAME).bin: $(NAME).pcf $(NAME).v $(DEPS) prog.list
 
 	#-- Sintesis
 	yosys -p "synth_ice40 -blif $(NAME).blif" $(NAME).v $(DEPS)
