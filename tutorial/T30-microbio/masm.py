@@ -5,6 +5,15 @@
 # -- Microbio Nemonic list
 nemonic = ["WAIT", "HALT", "LEDS", "JP"]
 
+# -- Symbol table. It is used for storing the pairs label - address
+simtable = {}
+
+# -- Program: AST
+prog = []
+
+# -- Current address
+addr = 0
+
 
 class Instruction:
     """Microbio instruction class"""
@@ -42,19 +51,31 @@ def is_comment_cad(cad):
         return False
 
 
-def is_comment_line(listline):
+def is_comment(line):
     """Return True if the line is a comment or a blank"""
 
+    # -- Divide the line into words
+    lwords = line.split()
+
     # -- A blank line is considered a comment
-    if len(listline) == 0:
+    if len(lwords) == 0:
         return True
 
-    return is_comment_cad(listline[0])
+    return is_comment_cad(lwords[0])
+
+
+def is_label(word):
+    """Return True if the word is a label"""
+    list = word.split(":")
+    if (len(list) == 2 and list[1] == ''):
+        return True
+    else:
+        return False
 
 
 def is_instruction_cad(cad):
     inst = cad.upper()
-    if inst in ["LEDS", "HALT"]:
+    if inst in nemonic:
         return True, inst
     else:
         return False
@@ -90,12 +111,12 @@ def is_hexdigit(dat):
 
 def parse_dat(dat):
     if dat.isdigit():
-        return int(dat)
+        return True, int(dat)
 
     if is_hexdigit(dat):
-        return int(dat, 16)
+        return True, int(dat, 16)
 
-    return 0
+    return False, 0
 
 
 def parse_instruction(line):
@@ -111,19 +132,129 @@ def parse_instruction(line):
 
     return False, 0, 0
 
-if __name__ == "__main__":
 
-    # -- Fichero a ensamblar
-    filename = "M0.asm"
-    with open(filename, mode='r') as f:
+def parse_arguments():
+    """Parse the arguments, open the asm file and return the raw contents"""
+
+    import argparse
+    description = """
+        Microbio assembler. The prog.list file with the machine code is generated output
+    """
+    # -- Add the assembler description
+    parser = argparse.ArgumentParser(description=description)
+
+    # -- Add the assembler argument: asmfile
+    parser.add_argument("asmfile", help="Microbio asembly file (.asm)")
+
+    # -- Parse the anguments
+    args = parser.parse_args()
+
+    # -- File to assembly
+    asmfile = args.asmfile
+
+    # -- Read the file
+    with open(asmfile, mode='r') as f:
         raw = f.read()
 
-    print()
-    prog = []
+    return raw
 
-    l2 = []
-    for line in raw.splitlines():
-        # print(line)
+
+def parse_label(label):
+    # -- Insert the label in the symbol table
+    simtable[label] = addr
+
+
+def parse_line(line, nline):
+    global addr
+    words = line.split()
+
+    # -- Check if the first word is a label
+    if is_label(words[0]):
+
+        # -- Parse the label
+        parse_label(words[0])
+
+        # -- Remove the label from the words list to parser
+        words = words[1:]
+
+        # -- If there is no more words, the line is finished
+        if len(words) == 0:
+            return True
+
+    # -- If there is a comment, the line is ignored
+    if is_comment_cad(words[0]):
+        return True
+
+    # -- If it is reached, it should be a instruction
+    # -- Parse the instruction
+    if not words[0] in nemonic:
+        print("ERROR: Unkwown instruction {} in line {}".format(words[0], nline))
+        return False
+
+    if words[0] == "HALT" or words[0] == "WAIT":
+        # -- Get the opcode
+        co = nemonic.index(words[0])
+
+        # -- Create the instruction
+        inst = Instruction(co, 0)
+
+        # -- Insert in the AST tree
+        prog.append(inst)
+
+        # -- Increment the address
+        addr += 1
+        return True
+
+    # -- It should be the LEDS or JP instruction
+    # -- There should be al least two more words: for the nemonic and the data
+    if len(words) == 1:
+        print("ERROR: No data for the instruction {} in line {}".format(words[0], nline))
+        return False
+
+    # -- Read the opcode
+    co = nemonic.index(words[0])
+
+    # -- Read the data
+    okdat, dat = parse_dat(words[1])
+
+    # -- Invalid data
+    if not okdat:
+        print("ERROR: Invalid data for the instruction {} in line {}".format(words[0], nline))
+        return False
+
+    # -- Create the instruction
+    inst = Instruction(co, dat)
+
+    # -- Insert in the AST tree
+    prog.append(inst)
+
+    # -- Increment the address
+    addr += 1
+
+    return True
+
+
+if __name__ == "__main__":
+
+    # -- Read the raw file. It returns a list of lines
+    rawlines = parse_arguments().splitlines()
+    # print(rawlines)
+    print()
+
+    for i, line in enumerate(rawlines):
+
+        # -- If the whole line is a comment, ignore it!
+        if (is_comment(line)):
+            continue
+
+        # print("[{}] {}".format(i+1, line))
+        # print("[{}] {}".format(i+1, line.split()))
+        # -- Parse line
+        if not parse_line(line, i+1):
+            break
+
+    """
+    for line in rawlines:
         listline = line.split()
         if (not is_comment_line(listline)):
             listline2 = remove_comments(listline)
@@ -132,6 +263,13 @@ if __name__ == "__main__":
                 ok, co, dat = parse_instruction(listline2)
                 inst = Instruction(co, dat)
                 prog.append(inst)
+    """
+
+    # -- Print the symbol table
+    print()
+    print("Symbol table:")
+    for key in simtable:
+        print("{} = {}".format(key, simtable[key]))
 
     # -- Print the parsed code
     print()
