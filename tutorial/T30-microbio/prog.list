@@ -1,25 +1,3 @@
-81   //-- LEDS 0x1
-00   //-- WAIT
-82   //-- LEDS 0x2
-00   //-- WAIT
-84   //-- LEDS 0x4
-00   //-- WAIT
-88   //-- LEDS 0x8
-00   //-- WAIT
-81   //-- LEDS 0x1
-00   //-- WAIT
-00   //-- WAIT
-83   //-- LEDS 0x3
-00   //-- WAIT
-00   //-- WAIT
-86   //-- LEDS 0x6
-00   //-- WAIT
-00   //-- WAIT
-8C   //-- LEDS 0xC
-00   //-- WAIT
-00   //-- WAIT
-89   //-- LEDS 0x9
-00   //-- WAIT
-00   //-- WAIT
-C0   //-- JP 0x0
-40   //-- HALT
+@10
+8F   //-- [10] LEDS 0xF
+40   //-- [11] HALT

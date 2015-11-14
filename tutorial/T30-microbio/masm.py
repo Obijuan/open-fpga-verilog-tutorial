@@ -206,7 +206,6 @@ def parse_line(line, nline):
             print("Syntax error in line {}: Unknow command {}".format(nline, words[0]))
             return False
 
-
     # -- Check if the first word is a label
     if is_label(words[0]):
 
@@ -334,11 +333,23 @@ if __name__ == "__main__":
 
         # -- Print the machine cod
         print()
+        addr = 0  # -- Set the initial address
         print("Machine code:\n")
         for inst in prog:
-            print("{:02X}   //-- {}".format(inst.mcode(), inst.__str__()))
+            if addr != inst._addr:
+                print("@{:02X}".format(inst._addr))
+                addr = inst._addr
+
+            print("{:02X}   //-- {}".format(inst.mcode(), inst))
+            addr += 1
 
         # -- Write the machine code in the prog.list file
+        addr = 0
         with open("prog.list", mode='w') as f:
             for inst in prog:
+                if addr != inst._addr:
+                    f.write("@{:02X}\n".format(inst._addr))
+                    addr = inst._addr
+
                 f.write("{:02X}   //-- {}\n".format(inst.mcode(), inst))
+                addr += 1
