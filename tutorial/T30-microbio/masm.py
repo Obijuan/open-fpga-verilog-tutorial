@@ -21,11 +21,12 @@ addr = 0
 class Instruction:
     """Microbio instruction class"""
 
-    def __init__(self, co, dat, addr):
+    def __init__(self, co, dat, addr, label=""):
         """Create the instruction from the co and dat fields"""
         self._co = co
         self._dat = dat
         self._addr = addr    # Address where the instruction should be placed
+        self.label = label
 
     def mcode(self):
         """Return the machine code"""
@@ -161,17 +162,19 @@ def parse_arguments():
     with open(asmfile, mode='r') as f:
         raw = f.read()
 
-    return raw
+    return raw.upper()
 
 
 def parse_label(label):
     # -- Insert the label in the symbol table
-    simtable[label] = addr
+    simtable[label[:-1]] = addr
 
 
 def parse_line(line, nline):
     global addr
     words = line.split()
+
+    print("Parsing: {}".format(words))
 
     # -- check if it is an ORG directive
     if words[0] == ORG:
@@ -263,17 +266,31 @@ def parse_line(line, nline):
 
     # -- Read the opcode
     co = nemonic.index(words[0])
+    label = ""
 
-    # -- Read the data
-    okdat, dat = parse_dat(words[1])
+    # -- Parse the LEDS instruction
+    if words[0] == "LEDS":
+        # -- Read the data
+        okdat, dat = parse_dat(words[1])
 
-    # -- Invalid data
-    if not okdat:
-        print("ERROR: Invalid data for the instruction {} in line {}".format(words[0], nline))
-        return False
+        # -- Invalid data
+        if not okdat:
+            print("ERROR: Invalid data for the instruction {} in line {}".format(words[0], nline))
+            return False
+
+    # -- Parse the JP instruction
+    if words[0] == "JP":
+        # -- Read the data
+        okdat, dat = parse_dat(words[1])
+
+        # -- Invalid data
+        if not okdat:
+            # -- Check if words[1] is a label
+            label = words[1]
+            # dat = simtable[words[1]]
 
     # -- Create the instruction
-    inst = Instruction(co, dat, addr)
+    inst = Instruction(co, dat, addr, label)
 
     # -- Insert in the AST tree
     prog.append(inst)
@@ -323,7 +340,12 @@ if __name__ == "__main__":
         print()
         print("Symbol table:")
         for key in simtable:
-            print("{} = {}".format(key, simtable[key]))
+            print("{} = 0x{:02X}".format(key, simtable[key]))
+
+        # -- Check if all the labels are ok
+        for inst in prog:
+            if (inst._co == nemonic.index("JP")):
+                inst._dat = simtable[inst.label]
 
         # -- Print the parsed code
         print()

@@ -22,7 +22,7 @@ module genrom #(             //-- Parametros
          output reg [DW-1: 0] data);  //-- Dato de salida
 
 //-- Parametro: Nombre del fichero con el contenido de la ROM
-parameter ROMFILE = "prog1.list";
+parameter ROMFILE = "prog.list";
 
 //-- Calcular el numero de posiciones totales de memoria
 localparam NPOS = 2 ** AW;
