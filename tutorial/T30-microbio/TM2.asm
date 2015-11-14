@@ -1,6 +1,8 @@
 //-- TM1.asm Microbio Assembler.  Test file 2
 //-- This is for debugging the Microbio assembler
 
+
+        org 10
 ini:
       jp label1
 

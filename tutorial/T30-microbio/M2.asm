@@ -22,7 +22,7 @@ LEDS 0x6     //--  /
 WAIT
 WAIT
 LEDS 0xC    //--  \
-WAIT 
+WAIT
 WAIT
 LEDS 0x9     //--  /
 WAIT

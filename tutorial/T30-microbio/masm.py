@@ -1,6 +1,13 @@
 # ---
 # --  Ensamblador para MICROBIO
 # --  Python 3
+import sys
+
+
+class Prog(object):
+    def __init__(self):
+        self.dir = 0   # -- Current address
+        self.linst = []  # -- List of instructions
 
 # -- Microbio Nemonic list
 nemonic = ["WAIT", "HALT", "LEDS", "JP"]
@@ -16,12 +23,20 @@ simtable = {}
 
 # -- Program: AST
 prog = []
+prog2 = Prog()
 
 # -- Current address
 addr = 0
 
 
-class Instruction:
+class SyntaxError(Exception):
+    def __init__(self, value, msg, nline):
+        self.value = value
+        self.msg = msg
+        self.nline = nline
+
+
+class Instruction(object):
     """Microbio instruction class"""
 
     def __init__(self, co, dat, addr, nline=0, label=""):
@@ -128,20 +143,6 @@ def parse_dat(dat):
     return False, 0
 
 
-def parse_instruction(line):
-
-    if line[0] == "LEDS" or line[0] == "JP":
-        co = nemonic.index(line[0])
-        dat = parse_dat(line[1])
-        return True, co, dat
-
-    if line[0] == "HALT" or line[0] == "WAIT":
-        co = nemonic.index(line[0])
-        return True, co, 0
-
-    return False, 0, 0
-
-
 def parse_arguments():
     """Parse the arguments, open the asm file and return the raw contents"""
 
@@ -171,65 +172,77 @@ def parse_arguments():
 
 
 def parse_label(label):
-    # -- Insert the label in the symbol table
-    simtable[label[:-1]] = addr
+    if is_label(label):
+        # -- Inset the label in the symbol table
+        # -- TODO: Check for duplicates!
+        simtable[label[:-1]] = prog2.dir
+        return True
+    else:
+        return False
 
 
-def parse_line(line, nline):
+def parse_org(lwords, nline):
+    if not lwords[0] == "ORG":
+        return False
+
+    if len(lwords) == 1:
+        msg = "ERROR: No address is given after ORG in line {}".format(nline)
+        raise SyntaxError(0, msg, nline)
+
+    # -- Read the argument. It should be a number
+    okdat, dat = parse_dat(lwords[1])
+
+    # -- Invalid data
+    if not okdat:
+        msg = "ERROR: ORG {}: Invalid address in line {}".format(lwords[1], nline)
+        raise SyntaxError(0, msg, nline)
+
+    # -- Update the address
+    global addr
+    addr = dat
+    prog2.dir = dat
+
+    # -- Check that there are no more instruccion in the same line
+    # -- Except comments
+    lwords = lwords[2:]
+
+    # -- If no more words to parse, return
+    if len(lwords) == 0:
+        return True
+
+    if is_comment_cad(lwords[0]):
+        return True
+    else:
+        msg = "Syntax error in line {}: Unknow command {}".format(nline, lwords[0])
+        raise SyntaxError(0, msg, nline)
+
+
+def parse_instruction(lwords, nline):
+    if not lwords[0] in nemonic:
+        msg = "ERROR: Unkwown instruction {} in line {}".format(lwords[0], nline)
+        raise SyntaxError(0, msg, nline)
+
+
+def parse_line(line,  nline):
     global addr
     words = line.split()
 
-    # print("Parsing: {}".format(words))
+    # -- Check if the line was an ORG directive
+    if parse_org(words, nline):
+        return
 
-    # -- check if it is an ORG directive
-    if words[0] == ORG:
-        # -- Check that there one more word (for the argument)
-        if (len(words) == 1):
-            print("ERROR: No address is given after ORG in line {}".format(nline))
-            return False
-
-        # -- Read the argument. It should be a number
-        # -- Read the data
-        okdat, dat = parse_dat(words[1])
-
-        # -- Invalid data
-        if not okdat:
-            print("ERROR: ORG {}: Invalid address in line {}".format(words[1], nline))
-            return False
-
-        # -- Update the address
-        addr = dat
-
-        # -- Check that there are no more instruccion in the same line
-        # -- Except comments
-        words = words[2:]
-
-        # -- If no more words to parse, return
-        if len(words) == 0:
-            return True
-
-        if is_comment_cad(words[0]):
-            return True
-        else:
-            print("Syntax error in line {}: Unknow command {}".format(nline, words[0]))
-            return False
-
-    # -- Check if the first word is a label
-    if is_label(words[0]):
-
-        # -- Parse the label
-        parse_label(words[0])
-
-        # -- Remove the label from the words list to parser
+    # -- Check if the word is a label
+    if parse_label(words[0]):
         words = words[1:]
-
-        # -- If there is no more words, the line is finished
         if len(words) == 0:
-            return True
+            return
 
     # -- If there is a comment, the line is ignored
     if is_comment_cad(words[0]):
-        return True
+        return
+
+    # -- Parse the instruction
+    parse_instruction(words, nline)
 
     # -- If it is reached, it should be a instruction
     # -- Parse the instruction
@@ -301,6 +314,7 @@ def parse_line(line, nline):
     prog.append(inst)
 
     # -- Increment the address
+    prog2.dir += 1
     addr += 1
 
     # -- Remove the processed words
@@ -334,11 +348,12 @@ if __name__ == "__main__":
         if (is_comment(line)):
             continue
 
-        # print("[{}] {}".format(i+1, line))
-        # print("[{}] {}".format(i+1, line.split()))
         # -- Parse line
-        if not parse_line(line, i+1):
-            parse_ok = False
+        try:
+            parse_line(line, i+1)
+        except SyntaxError as e:
+            print(e.msg)
+            sys.exit()
             break
 
     if parse_ok:
@@ -350,7 +365,6 @@ if __name__ == "__main__":
                     inst._dat = simtable[inst.label]
                 except KeyError:
                     print("ERROR: Label {} unknow in line {}".format(inst.label, inst.nline))
-                    import sys
                     sys.exit()
 
         if verbose:
