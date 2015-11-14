@@ -8,6 +8,9 @@ nemonic = ["WAIT", "HALT", "LEDS", "JP"]
 # -- Assembler directives
 ORG = "ORG"
 
+# -- default output file
+OUTPUT_FILE = "prog.list"
+
 # -- Symbol table. It is used for storing the pairs label - address
 simtable = {}
 
@@ -21,12 +24,13 @@ addr = 0
 class Instruction:
     """Microbio instruction class"""
 
-    def __init__(self, co, dat, addr, label=""):
+    def __init__(self, co, dat, addr, nline=0, label=""):
         """Create the instruction from the co and dat fields"""
         self._co = co
         self._dat = dat
         self._addr = addr    # Address where the instruction should be placed
         self.label = label
+        self.nline = nline
 
     def mcode(self):
         """Return the machine code"""
@@ -151,6 +155,7 @@ def parse_arguments():
 
     # -- Add the assembler argument: asmfile
     parser.add_argument("asmfile", help="Microbio asembly file (.asm)")
+    parser.add_argument("-verbose", help="verbose mode on", action="store_true")
 
     # -- Parse the anguments
     args = parser.parse_args()
@@ -162,7 +167,7 @@ def parse_arguments():
     with open(asmfile, mode='r') as f:
         raw = f.read()
 
-    return raw.upper()
+    return raw.upper(), args.verbose
 
 
 def parse_label(label):
@@ -174,7 +179,7 @@ def parse_line(line, nline):
     global addr
     words = line.split()
 
-    print("Parsing: {}".format(words))
+    # print("Parsing: {}".format(words))
 
     # -- check if it is an ORG directive
     if words[0] == ORG:
@@ -290,7 +295,7 @@ def parse_line(line, nline):
             # dat = simtable[words[1]]
 
     # -- Create the instruction
-    inst = Instruction(co, dat, addr, label)
+    inst = Instruction(co, dat, addr, nline, label)
 
     # -- Insert in the AST tree
     prog.append(inst)
@@ -318,7 +323,8 @@ if __name__ == "__main__":
     parse_ok = True
 
     # -- Read the raw file. It returns a list of lines
-    rawlines = parse_arguments().splitlines()
+    rawlines, verbose = parse_arguments()
+    rawlines = rawlines.splitlines()
     # print(rawlines)
     print()
 
@@ -336,42 +342,49 @@ if __name__ == "__main__":
             break
 
     if parse_ok:
-        # -- Print the symbol table
-        print()
-        print("Symbol table:")
-        for key in simtable:
-            print("{} = 0x{:02X}".format(key, simtable[key]))
 
         # -- Check if all the labels are ok
         for inst in prog:
             if (inst._co == nemonic.index("JP")):
-                inst._dat = simtable[inst.label]
+                try:
+                    inst._dat = simtable[inst.label]
+                except KeyError:
+                    print("ERROR: Label {} unknow in line {}".format(inst.label, inst.nline))
+                    import sys
+                    sys.exit()
 
-        # -- Print the parsed code
-        print()
-        print("Microbio assembly program:\n")
-        for inst in prog:
-            print("{}".format(inst))
+        if verbose:
+            # -- Print the symbol table
+            print()
+            print("Symbol table:\n")
+            for key in simtable:
+                print("{} = 0x{:02X}".format(key, simtable[key]))
+
+            # -- Print the parsed code
+            print()
+            print("Microbio assembly program:\n")
+            for inst in prog:
+                print("{}".format(inst))
 
         # -- Print the machine cod
-        print()
-        addr = 0  # -- Set the initial address
-        print("Machine code:\n")
-        for inst in prog:
-            if addr != inst._addr:
-                print("@{:02X}".format(inst._addr))
-                addr = inst._addr
-
-            print("{:02X}   //-- {}".format(inst.mcode(), inst))
-            addr += 1
+        if verbose:
+            print()
+            print("Machine code:\n")
 
         # -- Write the machine code in the prog.list file
         addr = 0
-        with open("prog.list", mode='w') as f:
+        with open(OUTPUT_FILE, mode='w') as f:
             for inst in prog:
+                output = ""
                 if addr != inst._addr:
-                    f.write("@{:02X}\n".format(inst._addr))
+                    # -- There is a gap in the addresses
+                    output = "@{:02X}\n".format(inst._addr)
                     addr = inst._addr
 
-                f.write("{:02X}   //-- {}\n".format(inst.mcode(), inst))
+                output += "{:02X}   //-- {}".format(inst.mcode(), inst)
+                f.write(output+"\n")
                 addr += 1
+                if verbose:
+                    print(output)
+
+        print("\nFile {} successfully generated".format(OUTPUT_FILE))
