@@ -138,7 +138,8 @@ def parse_arguments():
 
     import argparse
     description = """
-        Microbio assembler. The prog.list file with the machine code is generated output
+        Microbio assembler. The prog.list file with the machine code is \
+        generated output
     """
     # -- Add the assembler description
     parser = argparse.ArgumentParser(description=description)
@@ -203,7 +204,19 @@ def parse_line(line, nline):
 
         # -- Increment the address
         addr += 1
-        return True
+
+        # -- Check that there are only comments or nothing after these nemonics
+        words = words[1:]
+
+        # -- If no more words to parse, return
+        if len(words) == 0:
+            return True
+
+        if is_comment_cad(words[0]):
+            return True
+        else:
+            print("Syntax error in line {}: Unknow command".format(nline))
+            return False
 
     # -- It should be the LEDS or JP instruction
     # -- There should be al least two more words: for the nemonic and the data
@@ -231,10 +244,24 @@ def parse_line(line, nline):
     # -- Increment the address
     addr += 1
 
-    return True
+    # -- Remove the processed words
+    words = words[2:]
+
+    # -- If no more words to parse, return
+    if len(words) == 0:
+        return True
+
+    # -- There can only be comments. If not, it is a syntax error
+    if is_comment_cad(words[0]):
+        return True
+    else:
+        print("Syntax error in line {}: Unknow command".format(nline))
+        return False
 
 
 if __name__ == "__main__":
+
+    parse_ok = True
 
     # -- Read the raw file. It returns a list of lines
     rawlines = parse_arguments().splitlines()
@@ -251,39 +278,29 @@ if __name__ == "__main__":
         # print("[{}] {}".format(i+1, line.split()))
         # -- Parse line
         if not parse_line(line, i+1):
+            parse_ok = False
             break
 
-    """
-    for line in rawlines:
-        listline = line.split()
-        if (not is_comment_line(listline)):
-            listline2 = remove_comments(listline)
-            ok, inst = is_instruction(listline2)
-            if (ok):
-                ok, co, dat = parse_instruction(listline2)
-                inst = Instruction(co, dat)
-                prog.append(inst)
-    """
+    if parse_ok:
+        # -- Print the symbol table
+        print()
+        print("Symbol table:")
+        for key in simtable:
+            print("{} = {}".format(key, simtable[key]))
 
-    # -- Print the symbol table
-    print()
-    print("Symbol table:")
-    for key in simtable:
-        print("{} = {}".format(key, simtable[key]))
-
-    # -- Print the parsed code
-    print()
-    print("Microbio assembly program:\n")
-    for inst in prog:
-        print(inst)
-
-    # -- Print the machine cod
-    print()
-    print("Machine code:\n")
-    for inst in prog:
-        print("{:02X}   //-- {}".format(inst.mcode(), inst.__str__()))
-
-    # -- Write the machine code in the prog.list file
-    with open("prog.list", mode='w') as f:
+        # -- Print the parsed code
+        print()
+        print("Microbio assembly program:\n")
         for inst in prog:
-            f.write("{:02X}   //-- {}\n".format(inst.mcode(), inst.__str__()))
+            print(inst)
+
+        # -- Print the machine cod
+        print()
+        print("Machine code:\n")
+        for inst in prog:
+            print("{:02X}   //-- {}".format(inst.mcode(), inst.__str__()))
+
+        # -- Write the machine code in the prog.list file
+        with open("prog.list", mode='w') as f:
+            for inst in prog:
+                f.write("{:02X}   //-- {}\n".format(inst.mcode(), inst.__str__()))

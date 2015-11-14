@@ -21,8 +21,8 @@ WAIT
 LEDS 0x6     //--  /
 WAIT
 WAIT
-LEDS 0xC     //--  \
-WAIT
+LEDS 0xC    //--  \
+WAIT 
 WAIT
 LEDS 0x9     //--  /
 WAIT
