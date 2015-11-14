@@ -18,11 +18,11 @@ addr = 0
 class Instruction:
     """Microbio instruction class"""
 
-    def __init__(self, co, dat):
+    def __init__(self, co, dat, addr):
         """Create the instruction from the co and dat fields"""
         self._co = co
         self._dat = dat
-        self._addr = 0
+        self._addr = addr    # Address where the instruction should be placed
 
     def mcode(self):
         """Return the machine code"""
@@ -31,10 +31,11 @@ class Instruction:
 
     def __str__(self):
         """Print the instruction"""
+        saddr = "[{:02X}]".format(self._addr)
         if nemonic[self._co] in ["LEDS", "JP"]:
-            return "{} 0x{:X}".format(nemonic[self._co], self._dat)
+            return "{} {} 0x{:X}".format(saddr, nemonic[self._co], self._dat)
         else:
-            return nemonic[self._co]
+            return "{} {}".format(saddr, nemonic[self._co])
 
 
 def is_comment_cad(cad):
@@ -197,7 +198,7 @@ def parse_line(line, nline):
         co = nemonic.index(words[0])
 
         # -- Create the instruction
-        inst = Instruction(co, 0)
+        inst = Instruction(co, 0, addr)
 
         # -- Insert in the AST tree
         prog.append(inst)
@@ -236,7 +237,7 @@ def parse_line(line, nline):
         return False
 
     # -- Create the instruction
-    inst = Instruction(co, dat)
+    inst = Instruction(co, dat, addr)
 
     # -- Insert in the AST tree
     prog.append(inst)
@@ -292,7 +293,7 @@ if __name__ == "__main__":
         print()
         print("Microbio assembly program:\n")
         for inst in prog:
-            print(inst)
+            print("{}".format(inst))
 
         # -- Print the machine cod
         print()
@@ -303,4 +304,4 @@ if __name__ == "__main__":
         # -- Write the machine code in the prog.list file
         with open("prog.list", mode='w') as f:
             for inst in prog:
-                f.write("{:02X}   //-- {}\n".format(inst.mcode(), inst.__str__()))
+                f.write("{:02X}   //-- {}\n".format(inst.mcode(), inst))
