@@ -5,6 +5,9 @@
 # -- Microbio Nemonic list
 nemonic = ["WAIT", "HALT", "LEDS", "JP"]
 
+# -- Assembler directives
+ORG = "ORG"
+
 # -- Symbol table. It is used for storing the pairs label - address
 simtable = {}
 
@@ -169,6 +172,40 @@ def parse_label(label):
 def parse_line(line, nline):
     global addr
     words = line.split()
+
+    # -- check if it is an ORG directive
+    if words[0] == ORG:
+        # -- Check that there one more word (for the argument)
+        if (len(words) == 1):
+            print("ERROR: No address is given after ORG in line {}".format(nline))
+            return False
+
+        # -- Read the argument. It should be a number
+        # -- Read the data
+        okdat, dat = parse_dat(words[1])
+
+        # -- Invalid data
+        if not okdat:
+            print("ERROR: ORG {}: Invalid address in line {}".format(words[1], nline))
+            return False
+
+        # -- Update the address
+        addr = dat
+
+        # -- Check that there are no more instruccion in the same line
+        # -- Except comments
+        words = words[2:]
+
+        # -- If no more words to parse, return
+        if len(words) == 0:
+            return True
+
+        if is_comment_cad(words[0]):
+            return True
+        else:
+            print("Syntax error in line {}: Unknow command {}".format(nline, words[0]))
+            return False
+
 
     # -- Check if the first word is a label
     if is_label(words[0]):
