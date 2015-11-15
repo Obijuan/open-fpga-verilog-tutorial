@@ -1,8 +1,9 @@
 //-- TM1.asm Microbio Assembler.  Test file 1
 //-- This is for debugging the Microbio assembler
 
-      ORG 0x10    //-- test
+//      ORG 0x10    //-- test
 
-INI:
-      LEDS 0xF
-      HALT
+//INI:
+      JP 10
+      //LEDS 0xF
+      //HALT

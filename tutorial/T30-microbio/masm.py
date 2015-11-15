@@ -49,7 +49,8 @@ class Prog(object):
         for inst in self.linst:
             if (inst.nemonic == "JP"):
                 try:
-                    inst._dat = prog.symtable[inst.label]
+                    if len(inst.label) != 0:
+                        inst._dat = prog.symtable[inst.label]
                 except KeyError:
                     msg = "ERROR: Label {} unknow in line {}".format(inst.label, inst.nline)
                     raise SyntaxError(msg, inst.nline)
@@ -336,6 +337,7 @@ def parse_instruction_jp(prog, words, nline):
         # -- Read the data
         okdat, dat = parse_dat(words[1])
         label = ""
+        print ("Dir: {}".format(dat))
 
         # -- Invalid number: it should be a label
         if not okdat:
@@ -473,7 +475,7 @@ def syntax_analisis(prog, asmfile):
             continue
 
         # -- If the whole line is a comment, ignore it!
-        if (is_comment(words)):
+        if (is_comment(words[0])):
             continue
 
         # -- Parse line
