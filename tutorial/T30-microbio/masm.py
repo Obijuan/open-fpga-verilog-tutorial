@@ -8,7 +8,7 @@ class Prog(object):
     """Abstract syntax Tree for the assembled program"""
 
     def __init__(self):
-        self.addr = 0   # -- Current address
+        self._addr = 0   # -- Current address
         self.linst = []  # -- List of instructions
 
     def add_instruction(self, inst):
@@ -16,13 +16,21 @@ class Prog(object):
         """
 
         # -- Assign the current address
-        inst.addr = self.addr
+        inst.addr = self._addr
 
         # -- Insert the instruction
         self.linst.append(inst)
 
         # -- Increment the current address
-        self.addr += 1
+        self._addr += 1
+
+    def set_addr(self, addr):
+        """Set the current address"""
+        self._addr = addr
+
+    def get_addr(self):
+        """Return the current address"""
+        return self._addr
 
     def __str__(self):
         """Print the current program (in assembly language)"""
@@ -204,16 +212,30 @@ def parse_label(prog, label):
     if is_label(label):
         # -- Inset the label in the symbol table
         # -- TODO: Check for duplicates!
-        simtable[label[:-1]] = prog.addr
+        simtable[label[:-1]] = prog.get_addr()
         return True
     else:
         return False
 
 
 def parse_org(prog, lwords, nline):
+    """Parse the org directive
+        Inputs:
+          * prog: AST tree were to store the information obtained from parsing the line
+          * lwors: List of words to parse
+          * nline: number of the line that is being parsed
+
+        Returns:
+          * False, If it is not an org directive
+          * True. Success
+          * An exception is raised in case of a sintax error
+    """
+
+    # -- The first word is not ORG. It is not an org directive
     if not lwords[0] == "ORG":
         return False
 
+    # -- Sintax error: The org directive should have one argument with the address
     if len(lwords) == 1:
         msg = "ERROR: No address is given after ORG in line {}".format(nline)
         raise SyntaxError(msg, nline)
@@ -226,17 +248,19 @@ def parse_org(prog, lwords, nline):
         msg = "ERROR: ORG {}: Invalid address in line {}".format(lwords[1], nline)
         raise SyntaxError(msg, nline)
 
-    # -- Update the address
-    prog.addr = dat
+    # -- Update the current address. The next instruction will be stored in this
+    # -- address
+    prog.set_addr(dat)
 
-    # -- Check that there are no more instruccion in the same line
-    # -- Except comments
+    # -- Get the following words if any. They should only be comments
     lwords = lwords[2:]
 
     # -- If no more words to parse, return
     if len(lwords) == 0:
         return True
 
+    # -- If there are comments, return true. If they are not comments, there
+    # -- is a sintax error
     if is_comment_cad(lwords[0]):
         return True
     else:
@@ -380,10 +404,16 @@ def parse_instruction(prog, lwords, nline):
 
 
 def parse_line(prog, line,  nline):
-    global addr
+    """Parse one line of the assembly program
+        These are the different type of lines:
+        -         ORG dir   [//-- Comments]
+        - label:            [//-- Comments]
+        - label:  INSTRUCTION  [//-- Comments]
+        -         INSTRUCTION  [//-- Comments]
+    """
     words = line.split()
 
-    # -- Check if the line was an ORG directive
+    # -- Check if the line is an ORG directive
     if parse_org(prog, words, nline):
         return
 
@@ -403,8 +433,12 @@ def parse_line(prog, line,  nline):
 
 
 def syntax_analisis(prog, asmfile):
-    """Perform the syntax analisis"""
+    """Perform the syntax analisis
+        prog: AST with the processed program (outuput)
+        asmfile: ASCII raw file (input)
+    """
 
+    # -- Split the ASCII file into isolates lines
     asmfile = asmfile.splitlines()
 
     # -- Syntax analisis: line by line
@@ -425,11 +459,12 @@ def syntax_analisis(prog, asmfile):
 
 
 if __name__ == "__main__":
+    """Main program"""
 
     # -- default output file with the machine code for MICROBIO
     OUTPUT_FILE = "prog.list"
 
-    # -- Process the arguments. Return the source file and the verbose flag
+    # -- Process the arguments. Return the source file and the verbose flags
     asmfile, verbose = parse_arguments()
 
     # -- Create a blank AST for storing the processed program
@@ -437,6 +472,7 @@ if __name__ == "__main__":
 
     # -- Perform the sintax analisis. The sintax errors are reported
     # -- In case of errors, it exits
+    # -- If sucess, the program is stored in the prog object
     syntax_analisis(prog, asmfile)
 
     # -- Semantics analisis: Check if all the labels are ok
