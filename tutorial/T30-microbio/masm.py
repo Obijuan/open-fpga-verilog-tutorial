@@ -26,8 +26,29 @@ class Prog(object):
 
     def __str__(self):
         """Print the current program (in assembly language)"""
+        str = ""
         for inst in self.linst:
-            print("{}".format(inst))
+            str += "{}\n".format(inst)
+
+        return str
+
+    def machine_code(self):
+        """Generate the program in microbio machine code"""
+
+        addr = 0
+        code = ""
+        for inst in self.linst:
+            inst_ascii = ""
+            if addr != inst.addr:
+                # -- There is a gap in the addresses
+                inst_ascii = "@{:02X}\n".format(inst.addr)
+                addr = inst.addr
+
+            inst_ascii += "{:02X}   //-- {}".format(inst.mcode(), inst)
+            code += inst_ascii + "\n"
+            addr += 1
+
+        return code
 
 
 class Instruction(object):
@@ -59,22 +80,14 @@ class SyntaxError(Exception):
         self.nline = nline
 
 
-
-
 # -- Microbio Nemonic list
 nemonic = ["WAIT", "HALT", "LEDS", "JP"]
 
 # -- Assembler directives
 ORG = "ORG"
 
-# -- default output file
-OUTPUT_FILE = "prog.list"
-
 # -- Symbol table. It is used for storing the pairs label - address
 simtable = {}
-
-# -- Program: AST
-prog = Prog()
 
 
 def is_comment_cad(cad):
@@ -187,7 +200,7 @@ def parse_arguments():
     return raw.upper(), args.verbose
 
 
-def parse_label(label):
+def parse_label(prog, label):
     if is_label(label):
         # -- Inset the label in the symbol table
         # -- TODO: Check for duplicates!
@@ -197,7 +210,7 @@ def parse_label(label):
         return False
 
 
-def parse_org(lwords, nline):
+def parse_org(prog, lwords, nline):
     if not lwords[0] == "ORG":
         return False
 
@@ -231,7 +244,7 @@ def parse_org(lwords, nline):
         raise SyntaxError(msg, nline)
 
 
-def parse_instruction_arg0(lwords, nline):
+def parse_instruction_arg0(prog, lwords, nline):
     """Parse the instruction that have no arguments: HALT and WAIT
     """
     if (lwords[0] == "HALT" or lwords[0] == "WAIT"):
@@ -262,7 +275,7 @@ def parse_instruction_arg0(lwords, nline):
         return False
 
 
-def parse_instruction_leds(lwords, nline):
+def parse_instruction_leds(prog, lwords, nline):
     # -- Parse the LEDS instruction
     if lwords[0] == "LEDS":
         # -- Read the data
@@ -288,7 +301,7 @@ def parse_instruction_leds(lwords, nline):
         return False
 
 
-def parse_instruction_jp(lwords, nline):
+def parse_instruction_jp(prog, lwords, nline):
     # -- Parse the JP instruction
     if lwords[0] == "JP":
         # -- Read the data
@@ -316,7 +329,7 @@ def parse_instruction_jp(lwords, nline):
         return False
 
 
-def parse_instruction_arg1(lwords, nline):
+def parse_instruction_arg1(prog, lwords, nline):
     """Parse the instructions with 1 argument: LEDS and JP
     """
     # -- Check that there are at least 2 words in the line (1 for the nemonic and
@@ -326,10 +339,10 @@ def parse_instruction_arg1(lwords, nline):
         raise SyntaxError(msg, nline)
 
     # -- Parse the leds instruction
-    parse_instruction_leds(lwords, nline)
+    parse_instruction_leds(prog, lwords, nline)
 
     # -- Parse the jp instruction
-    parse_instruction_jp(lwords, nline)
+    parse_instruction_jp(prog, lwords, nline)
 
     # -- Parse the comments, if any
     lwords = lwords[2:]
@@ -348,7 +361,7 @@ def parse_instruction_arg1(lwords, nline):
     return False
 
 
-def parse_instruction(lwords, nline):
+def parse_instruction(prog, lwords, nline):
 
     # -- Check if the first word is a correct nemonic
     if not lwords[0] in nemonic:
@@ -356,26 +369,26 @@ def parse_instruction(lwords, nline):
         raise SyntaxError(0, msg, nline)
 
     # -- Check if it is a nenomic with no arguments (WAIT or HALT)
-    if parse_instruction_arg0(lwords, nline):
+    if parse_instruction_arg0(prog, lwords, nline):
         return True
 
     # -- Check if it is a nenomic with 1 argument (LEDS, JP)
-    if parse_instruction_arg1(lwords, nline):
+    if parse_instruction_arg1(prog, lwords, nline):
         return True
 
     return False
 
 
-def parse_line(line,  nline):
+def parse_line(prog, line,  nline):
     global addr
     words = line.split()
 
     # -- Check if the line was an ORG directive
-    if parse_org(words, nline):
+    if parse_org(prog, words, nline):
         return
 
     # -- Check if the word is a label
-    if parse_label(words[0]):
+    if parse_label(prog, words[0]):
         words = words[1:]
         if len(words) == 0:
             return
@@ -385,20 +398,17 @@ def parse_line(line,  nline):
         return
 
     # -- Parse the instruction
-    if parse_instruction(words, nline):
+    if parse_instruction(prog, words, nline):
         return
 
 
-if __name__ == "__main__":
+def syntax_analisis(prog, asmfile):
+    """Perform the syntax analisis"""
 
-    # -- Read the raw file. It returns a list of lines
-    rawlines, verbose = parse_arguments()
-    rawlines = rawlines.splitlines()
-    # print(rawlines)
-    print()
+    asmfile = asmfile.splitlines()
 
     # -- Syntax analisis: line by line
-    for i, line in enumerate(rawlines):
+    for nline, line in enumerate(asmfile):
 
         # -- If the whole line is a comment, ignore it!
         if (is_comment(line)):
@@ -406,14 +416,30 @@ if __name__ == "__main__":
 
         # -- Parse line
         try:
-            parse_line(line, i+1)
+            parse_line(prog, line, nline+1)
 
         # -- There was a syntax error. Print the message and exit
         except SyntaxError as e:
             print(e.msg)
             sys.exit()
 
-    # -- Check if all the labels are ok
+
+if __name__ == "__main__":
+
+    # -- default output file with the machine code for MICROBIO
+    OUTPUT_FILE = "prog.list"
+
+    # -- Process the arguments. Return the source file and the verbose flag
+    asmfile, verbose = parse_arguments()
+
+    # -- Create a blank AST for storing the processed program
+    prog = Prog()
+
+    # -- Perform the sintax analisis. The sintax errors are reported
+    # -- In case of errors, it exits
+    syntax_analisis(prog, asmfile)
+
+    # -- Semantics analisis: Check if all the labels are ok
     for inst in prog.linst:
         if (inst._co == nemonic.index("JP")):
             try:
@@ -432,28 +458,15 @@ if __name__ == "__main__":
         # -- Print the parsed code
         print()
         print("Microbio assembly program:\n")
-        for inst in prog.linst:
-            print("{}".format(inst))
+        print(prog)
 
-    # -- Print the machine cod
-    if verbose:
+        # -- Print the machine cod
         print()
         print("Machine code:\n")
+        print(prog.machine_code())
 
     # -- Write the machine code in the prog.list file
-    addr = 0
     with open(OUTPUT_FILE, mode='w') as f:
-        for inst in prog.linst:
-            output = ""
-            if addr != inst.addr:
-                # -- There is a gap in the addresses
-                output = "@{:02X}\n".format(inst.addr)
-                addr = inst.addr
-
-            output += "{:02X}   //-- {}".format(inst.mcode(), inst)
-            f.write(output+"\n")
-            addr += 1
-            if verbose:
-                print(output)
+        f.write(prog.machine_code())
 
     print("\nFile {} successfully generated".format(OUTPUT_FILE))
