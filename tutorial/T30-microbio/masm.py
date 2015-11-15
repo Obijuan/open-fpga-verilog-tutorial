@@ -11,6 +11,9 @@ class Prog(object):
         self._addr = 0   # -- Current address
         self.linst = []  # -- List of instructions
 
+        # -- Symbol table. It is used for storing the pairs label - address
+        self.symtable = {}
+
     def add_instruction(self, inst):
         """Add the instruction in the current address. The current dir is incremented
         """
@@ -94,12 +97,6 @@ class SyntaxError(Exception):
     def __init__(self, msg, nline):
         self.msg = msg        # - Sintax error message
         self.nline = nline    # - Number of line were the sintax error is located
-
-# -- Assembler directives
-ORG = "ORG"
-
-# -- Symbol table. It is used for storing the pairs label - address
-simtable = {}
 
 
 def is_comment(lwords):
@@ -212,7 +209,7 @@ def parse_label(prog, label):
     if is_label(label):
         # -- Inset the label in the symbol table
         # -- TODO: Check for duplicates!
-        simtable[label[:-1]] = prog.get_addr()
+        prog.symtable[label[:-1]] = prog.get_addr()
         return True
     else:
         return False
@@ -510,7 +507,7 @@ if __name__ == "__main__":
     for inst in prog.linst:
         if (inst.nemonic == "JP"):
             try:
-                inst._dat = simtable[inst.label]
+                inst._dat = prog.symtable[inst.label]
             except KeyError:
                 print("ERROR: Label {} unknow in line {}".format(inst.label, inst.nline))
                 sys.exit()
@@ -519,8 +516,8 @@ if __name__ == "__main__":
         # -- Print the symbol table
         print()
         print("Symbol table:\n")
-        for key in simtable:
-            print("{} = 0x{:02X}".format(key, simtable[key]))
+        for key in prog.symtable:
+            print("{} = 0x{:02X}".format(key, prog.symtable[key]))
 
         # -- Print the parsed code
         print()
