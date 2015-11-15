@@ -27,5 +27,5 @@ label3:
          org 0x36
 label4:
          LEDS 0x08
-         wait
+         wait       
          JP ini

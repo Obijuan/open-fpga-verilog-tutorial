@@ -27,9 +27,14 @@ class Prog(object):
         # -- Increment the current address
         self._addr += 1
 
-    def set_label(self, label):
+    def set_label(self, label, nline):
         """Assign the label to the current address"""
-        self.symtable[label] = self._addr
+
+        if label in self.symtable:
+            msg = "ERROR. Label {} is duplicated in line {}".format(label, nline)
+            raise SyntaxError(msg, 0)
+        else:
+            self.symtable[label] = self._addr
 
     def assign_labels(self):
         """Check all the labels of the JP instructions of the program
@@ -93,12 +98,13 @@ class Instruction(object):
     # -- Instruction opcodes
     opcodes = {"WAIT": 0, "HALT": 1, "LEDS": 2, "JP": 3}
 
-    def __init__(self, nemonic, dat=0, addr=0, label=""):
+    def __init__(self, nemonic, dat=0, addr=0, label="", nline=0):
         """Create the instruction from the co and dat fields"""
         self.nemonic = nemonic  # -- Instruction name
         self._dat = dat     # -- Instruction argument
         self.addr = addr    # -- Address where the instruction is stored in memory
         self.label = label  # -- Label (if any)
+        self.nline = nline  # -- Line number
 
     def opcode(self):
         """Return the instruction opcode"""
@@ -140,6 +146,7 @@ def is_comment(lwords):
 
 def is_label(word):
     """Return True if the word is a label"""
+
     list = word.split(":")
     if (len(list) == 2 and list[1] == ''):
         return True
@@ -221,7 +228,7 @@ def parse_arguments():
     return raw.upper(), args.verbose
 
 
-def parse_label(prog, label):
+def parse_label(prog, label, nline):
     """Parse the label and added it to the symbol table
         INPUTS:
         - prog: AST tree where the current program is being processed
@@ -233,7 +240,7 @@ def parse_label(prog, label):
     """
     if is_label(label):
         # -- Inset the label in the symbol table
-        prog.set_label(label[:-1])
+        prog.set_label(label[:-1], nline)
         return True
     else:
         return False
@@ -376,7 +383,7 @@ def parse_instruction_jp(prog, words, nline):
             # dat = simtable[words[1]]
 
         # -- Create the instruction
-        inst = Instruction(words[0], dat, label=label)
+        inst = Instruction(words[0], dat, label=label, nline=nline)
 
         # -- Insert in the AST tree
         prog.add_instruction(inst)
@@ -462,7 +469,7 @@ def parse_line(prog, words,  nline):
         return
 
     # -- Check if the word is a label
-    if parse_label(prog, words[0]):
+    if parse_label(prog, words[0], nline):
         words = words[1:]
         if len(words) == 0:
             return
