@@ -4,6 +4,6 @@
 //      ORG 0x10    //-- test
 
 //INI:
-      JP 10
-      //LEDS 0xF
-      //HALT
+
+      LEDS 0xa
+      HALT

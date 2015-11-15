@@ -161,21 +161,40 @@ def is_label(word):
 
 def is_hexdigit(dat):
     """Returns True if dat is a ASCII hexadecimal number"""
-    dat_list = dat.upper()
-    return dat_list[0:2] == "0X"
+
+    # -- Hex number have at least 3 characteres (2 for 0x and another for the hex digit)
+    # -- If not, it is not an hexadecimal number
+    if len(dat) < 3:
+        return False
+
+    prefix = dat[0:2]
+
+    if prefix == "0X":
+        return True
+    else:
+        return False
 
 
-def parse_dat(dat):
+def parse_dat(dat, nline):
     """Parse a numerical data
        * Returns (ok, dat)
           -ok: True: Successfully parsed
           -dat: Numerical data
     """
+
     if dat.isdigit():
         return True, int(dat)
 
     if is_hexdigit(dat):
-        return True, int(dat, 16)
+
+        # -- Convert the string into number
+        try:
+            hex = int(dat, 16)
+        except ValueError:
+            msg = "ERROR: Invalid hexadecimal number in line {}".format(nline)
+            raise SyntaxError(msg, nline)
+
+        return True, hex
 
     # -- Not a number
     return False, 0
@@ -222,7 +241,7 @@ def parse_org(prog, words, nline):
         raise SyntaxError(msg, nline)
 
     # -- Read the argument. It should be a number
-    okdat, dat = parse_dat(words[1])
+    okdat, dat = parse_dat(words[1], nline)
 
     # -- Invalid data
     if not okdat:
@@ -302,7 +321,7 @@ def parse_instruction_leds(prog, words, nline):
     # -- Parse the LEDS instruction
     if words[0] == "LEDS":
         # -- Read the data
-        okdat, dat = parse_dat(words[1])
+        okdat, dat = parse_dat(words[1], nline)
 
         # -- Invalid data
         if not okdat:
@@ -335,7 +354,7 @@ def parse_instruction_jp(prog, words, nline):
     # -- Parse the JP instruction
     if words[0] == "JP":
         # -- Read the data
-        okdat, dat = parse_dat(words[1])
+        okdat, dat = parse_dat(words[1], nline)
         label = ""
         print ("Dir: {}".format(dat))
 
@@ -530,6 +549,9 @@ if __name__ == "__main__":
 
     # -- Create a blank AST for storing the processed program
     prog = Prog()
+
+    print("Assembler for the MICROBIO microprocessor")
+    print("Released under the GPL license\n")
 
     # -- Perform the sintax analisis. The sintax errors are reported
     # -- In case of errors, it exits
