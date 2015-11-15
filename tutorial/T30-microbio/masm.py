@@ -1,6 +1,10 @@
-# ---
-# --  Ensamblador para MICROBIO
+# ---------------------------------------------------------------------------------
+# --  Asembler for the MICROBIO hello world microprocessor
+# --  (C) BQ November 2015. Written by Juan Gonzalez (obijuan)
 # --  Python 3
+# ----------------------------------------------------------------------------------
+# -- Released under the GPL v3 License
+# ----------------------------------------------------------------------------------
 import sys
 
 
@@ -154,78 +158,26 @@ def is_label(word):
         return False
 
 
-def is_instruction_cad(cad):
-    inst = cad.upper()
-    if inst in Instruction.opcodes.keys():
-        return True, inst
-    else:
-        return False
-
-
-def is_instruction(line):
-    if len(line) == 0:
-        return False, ""
-
-    cad = line[0]
-    return is_instruction_cad(cad)
-
-
-def remove_comments(line):
-    """Return the same line without comments
-       The line is a list of strings
-    """
-
-    new = []
-    for cad in line:
-        if is_comment(cad):
-            break
-        else:
-            new.append(cad)
-
-    return new
-
-
 def is_hexdigit(dat):
+    """Returns True if dat is a ASCII hexadecimal number"""
     dat_list = dat.upper()
     return dat_list[0:2] == "0X"
 
 
 def parse_dat(dat):
+    """Parse a numerical data
+       * Returns (ok, dat)
+          -ok: True: Successfully parsed
+          -dat: Numerical data
+    """
     if dat.isdigit():
         return True, int(dat)
 
     if is_hexdigit(dat):
         return True, int(dat, 16)
 
+    # -- Not a number
     return False, 0
-
-
-def parse_arguments():
-    """Parse the arguments, open the asm file and return the raw contents"""
-
-    import argparse
-    description = """
-        Microbio assembler. The prog.list file with the machine code is \
-        generated output
-    """
-    # -- Add the assembler description
-    parser = argparse.ArgumentParser(description=description)
-
-    # -- Add the assembler argument: asmfile
-    parser.add_argument("asmfile", help="Microbio asembly file (.asm)")
-    parser.add_argument("-verbose", help="verbose mode on", action="store_true")
-
-    # -- Parse the anguments
-    args = parser.parse_args()
-
-    # -- File to assembly
-    asmfile = args.asmfile
-
-    # -- Read the file
-    with open(asmfile, mode='r') as f:
-        raw = f.read()
-
-    return raw.upper(), args.verbose
 
 
 def parse_label(prog, label, nline):
@@ -297,7 +249,16 @@ def parse_org(prog, words, nline):
 
 
 def parse_instruction_arg0(prog, words, nline):
-    """Parse the instruction that have no arguments: HALT and WAIT
+    """Parse the instructions with no arguments: HALT and WAIT
+        INPUTS:
+          -prog: AST tree where to insert the parsed instruction
+          -words: List of words to parse
+          -nline: Number of the line that is beign parsed
+
+        RETURNS:
+          -True: Success. Instruction parsed and added into the AST
+          -False: Not the LEDS instruction
+          -An exception is raised in case of a syntax error
     """
     if (words[0] == "HALT" or words[0] == "WAIT"):
 
@@ -394,30 +355,39 @@ def parse_instruction_jp(prog, words, nline):
         return False
 
 
-def parse_instruction_arg1(prog, lwords, nline):
-    """Parse the instructions with 1 argument: LEDS and JP
+def parse_instruction_arg1(prog, words, nline):
+    """Parse the instruction with 1 argument: LEDS or JP and insert into the prog AST tree
+        INPUTS:
+          -prog: AST tree where to insert the parsed instruction
+          -words: List of words to parse
+          -nline: Number of the line that is beign parsed
+
+        RETURNS:
+          -True: Success. Instruction parsed and added into the AST
+          -False: Not an instruction
+          -An exception is raised in case of a sintax error
     """
     # -- Check that there are at least 2 words in the line (1 for the nemonic and
     # -- one for the argument. If not, raise an exception)
-    if len(lwords) == 1:
-        msg = "ERROR: No data for the instruction {} in line {}".format(lwords[0], nline)
+    if len(words) == 1:
+        msg = "ERROR: No data for the instruction {} in line {}".format(words[0], nline)
         raise SyntaxError(msg, nline)
 
     # -- Parse the leds instruction
-    parse_instruction_leds(prog, lwords, nline)
+    parse_instruction_leds(prog, words, nline)
 
     # -- Parse the jp instruction
-    parse_instruction_jp(prog, lwords, nline)
+    parse_instruction_jp(prog, words, nline)
 
     # -- Parse the comments, if any
-    lwords = lwords[2:]
+    words = words[2:]
 
     # -- If no more words to parse, return
-    if len(lwords) == 0:
+    if len(words) == 0:
         return True
 
     # -- There can only be comments. If not, it is a syntax error
-    if is_comment(lwords[0]):
+    if is_comment(words[0]):
         return True
     else:
         msg = "Syntax error in line {}: Unknow command".format(nline)
@@ -514,6 +484,37 @@ def syntax_analisis(prog, asmfile):
         except SyntaxError as e:
             print(e.msg)
             sys.exit()
+
+
+def parse_arguments():
+    """Parse the arguments, open the asm file and return the raw contents"""
+
+    import argparse
+    description = """
+        Microbio assembler. The prog.list file with the machine code is \
+        generated as output
+    """
+    # -- Add the assembler description
+    parser = argparse.ArgumentParser(description=description)
+
+    # -- Add the assembler argument: asmfile
+    parser.add_argument("asmfile", help="Microbio asembly file (.asm)")
+
+    # -- Add the assembler argument: verbose
+    parser.add_argument("-verbose", help="verbose mode on", action="store_true")
+
+    # -- Parse the anguments
+    args = parser.parse_args()
+
+    # -- File to assembly
+    asmfile = args.asmfile
+
+    # -- Read the file
+    with open(asmfile, mode='r') as f:
+        raw = f.read()
+
+    # -- Return the file and verbose arguments
+    return raw.upper(), args.verbose
 
 
 if __name__ == "__main__":
