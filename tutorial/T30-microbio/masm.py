@@ -70,7 +70,7 @@ class Prog(object):
             inst_ascii = ""
             if addr != inst.addr:
                 # -- There is a gap in the addresses
-                inst_ascii = "@{:02X}\n".format(inst.addr)
+                inst_ascii = "\n@{0:02X}  //-- ORG 0x{0:02X}\n".format(inst.addr)
                 addr = inst.addr
 
             inst_ascii += "{:02X}   //-- {}".format(inst.mcode(), inst)
