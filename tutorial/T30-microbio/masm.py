@@ -217,10 +217,154 @@ def parse_org(lwords, nline):
         raise SyntaxError(0, msg, nline)
 
 
+def parse_instruction_arg0(lwords, nline):
+    """Parse the instruction that have no arguments: HALT and WAIT
+    """
+    if (lwords[0] == "HALT" or lwords[0] == "WAIT"):
+        # -- Get the opcode
+        co = nemonic.index(lwords[0])
+
+        # -- Create the instruction
+        inst = Instruction(co, 0, prog2.dir)
+
+        # -- Insert in the AST tree
+        prog.append(inst)
+
+        # -- Increment the address
+        global addr
+        addr += 1
+        prog2.dir += 1
+
+        # -- Check that there are only comments or nothing after these nemonics
+        lwords = lwords[1:]
+
+        # -- If no more words to parse, return
+        if len(lwords) == 0:
+            return True
+
+        if is_comment_cad(lwords[0]):
+            return True
+        else:
+            msg = "Syntax error in line {}: Unknow command".format(nline)
+            raise SyntaxError(0, msg, nline)
+            return False
+    else:
+        # -- The instructions are not HALT or WAIT
+        return False
+
+
+def parse_instruction_leds(lwords, nline):
+    # -- Parse the LEDS instruction
+    if lwords[0] == "LEDS":
+        # -- Read the data
+        okdat, dat = parse_dat(lwords[1])
+
+        # -- Invalid data
+        if not okdat:
+            msg = "ERROR: Invalid data for the instruction {} in line {}".format(lwords[0], nline)
+            raise SyntaxError(0, msg, nline)
+
+        # -- Read the opcode
+        co = nemonic.index(lwords[0])
+
+        # -- Create the instruction
+        inst = Instruction(co, dat, prog2.dir, nline)
+
+        # -- Insert in the AST tree
+        prog.append(inst)
+
+        # -- Increment the address
+        prog2.dir += 1
+        global addr
+        addr += 1
+
+        return True
+
+    else:
+        return False
+
+
+def parse_instruction_jp(lwords, nline):
+    # -- Parse the JP instruction
+    if lwords[0] == "JP":
+        # -- Read the data
+        okdat, dat = parse_dat(lwords[1])
+        label = ""
+
+        # -- Invalid number: it should be a label
+        if not okdat:
+            # -- Check if words[1] is a label
+            label = lwords[1]
+            # dat = simtable[words[1]]
+
+        # -- Read the opcode
+        co = nemonic.index(lwords[0])
+
+        # -- Create the instruction
+        inst = Instruction(co, dat, prog2.dir, nline, label)
+
+        # -- Insert in the AST tree
+        prog.append(inst)
+
+        # -- Increment the address
+        prog2.dir += 1
+        global addr
+        addr += 1
+
+        return True
+
+    else:
+        return False
+
+
+def parse_instruction_arg1(lwords, nline):
+    """Parse the instructions with 1 argument: LEDS and JP
+    """
+    # -- Check that there are at least 2 words in the line (1 for the nemonic and
+    # -- one for the argument. If not, raise an exception)
+    if len(lwords) == 1:
+        msg = "ERROR: No data for the instruction {} in line {}".format(lwords[0], nline)
+        raise SyntaxError(0, msg, nline)
+
+    # -- Parse the leds instruction
+    parse_instruction_leds(lwords, nline)
+
+    # -- Parse the jp instruction
+    parse_instruction_jp(lwords, nline)
+
+    # -- Parse the comments, if any
+    lwords = lwords[2:]
+
+    # -- If no more words to parse, return
+    if len(lwords) == 0:
+        return True
+
+    # -- There can only be comments. If not, it is a syntax error
+    if is_comment_cad(lwords[0]):
+        return True
+    else:
+        msg = "Syntax error in line {}: Unknow command".format(nline)
+        raise SyntaxError(0, msg, nline)
+
+    return False
+
+
 def parse_instruction(lwords, nline):
+
+    # -- Check if the first word is a correct nemonic
     if not lwords[0] in nemonic:
         msg = "ERROR: Unkwown instruction {} in line {}".format(lwords[0], nline)
         raise SyntaxError(0, msg, nline)
+
+    # -- Check if it is a nenomic with no arguments (WAIT or HALT)
+    if parse_instruction_arg0(lwords, nline):
+        return True
+
+    # -- Check if it is a nenomic with 1 argument (LEDS, JP)
+    if parse_instruction_arg1(lwords, nline):
+        return True
+
+    return False
 
 
 def parse_line(line,  nline):
@@ -242,99 +386,11 @@ def parse_line(line,  nline):
         return
 
     # -- Parse the instruction
-    parse_instruction(words, nline)
-
-    # -- If it is reached, it should be a instruction
-    # -- Parse the instruction
-    if not words[0] in nemonic:
-        print("ERROR: Unkwown instruction {} in line {}".format(words[0], nline))
-        return False
-
-    if words[0] == "HALT" or words[0] == "WAIT":
-        # -- Get the opcode
-        co = nemonic.index(words[0])
-
-        # -- Create the instruction
-        inst = Instruction(co, 0, addr)
-
-        # -- Insert in the AST tree
-        prog.append(inst)
-
-        # -- Increment the address
-        addr += 1
-
-        # -- Check that there are only comments or nothing after these nemonics
-        words = words[1:]
-
-        # -- If no more words to parse, return
-        if len(words) == 0:
-            return True
-
-        if is_comment_cad(words[0]):
-            return True
-        else:
-            print("Syntax error in line {}: Unknow command".format(nline))
-            return False
-
-    # -- It should be the LEDS or JP instruction
-    # -- There should be al least two more words: for the nemonic and the data
-    if len(words) == 1:
-        print("ERROR: No data for the instruction {} in line {}".format(words[0], nline))
-        return False
-
-    # -- Read the opcode
-    co = nemonic.index(words[0])
-    label = ""
-
-    # -- Parse the LEDS instruction
-    if words[0] == "LEDS":
-        # -- Read the data
-        okdat, dat = parse_dat(words[1])
-
-        # -- Invalid data
-        if not okdat:
-            print("ERROR: Invalid data for the instruction {} in line {}".format(words[0], nline))
-            return False
-
-    # -- Parse the JP instruction
-    if words[0] == "JP":
-        # -- Read the data
-        okdat, dat = parse_dat(words[1])
-
-        # -- Invalid data
-        if not okdat:
-            # -- Check if words[1] is a label
-            label = words[1]
-            # dat = simtable[words[1]]
-
-    # -- Create the instruction
-    inst = Instruction(co, dat, addr, nline, label)
-
-    # -- Insert in the AST tree
-    prog.append(inst)
-
-    # -- Increment the address
-    prog2.dir += 1
-    addr += 1
-
-    # -- Remove the processed words
-    words = words[2:]
-
-    # -- If no more words to parse, return
-    if len(words) == 0:
-        return True
-
-    # -- There can only be comments. If not, it is a syntax error
-    if is_comment_cad(words[0]):
-        return True
-    else:
-        print("Syntax error in line {}: Unknow command".format(nline))
-        return False
+    if parse_instruction(words, nline):
+        return
 
 
 if __name__ == "__main__":
-
-    parse_ok = True
 
     # -- Read the raw file. It returns a list of lines
     rawlines, verbose = parse_arguments()
@@ -342,6 +398,7 @@ if __name__ == "__main__":
     # print(rawlines)
     print()
 
+    # -- Syntax analisis: line by line
     for i, line in enumerate(rawlines):
 
         # -- If the whole line is a comment, ignore it!
@@ -351,54 +408,53 @@ if __name__ == "__main__":
         # -- Parse line
         try:
             parse_line(line, i+1)
+
+        # -- There was a syntax error. Print the message and exit
         except SyntaxError as e:
             print(e.msg)
             sys.exit()
-            break
 
-    if parse_ok:
+    # -- Check if all the labels are ok
+    for inst in prog:
+        if (inst._co == nemonic.index("JP")):
+            try:
+                inst._dat = simtable[inst.label]
+            except KeyError:
+                print("ERROR: Label {} unknow in line {}".format(inst.label, inst.nline))
+                sys.exit()
 
-        # -- Check if all the labels are ok
+    if verbose:
+        # -- Print the symbol table
+        print()
+        print("Symbol table:\n")
+        for key in simtable:
+            print("{} = 0x{:02X}".format(key, simtable[key]))
+
+        # -- Print the parsed code
+        print()
+        print("Microbio assembly program:\n")
         for inst in prog:
-            if (inst._co == nemonic.index("JP")):
-                try:
-                    inst._dat = simtable[inst.label]
-                except KeyError:
-                    print("ERROR: Label {} unknow in line {}".format(inst.label, inst.nline))
-                    sys.exit()
+            print("{}".format(inst))
 
-        if verbose:
-            # -- Print the symbol table
-            print()
-            print("Symbol table:\n")
-            for key in simtable:
-                print("{} = 0x{:02X}".format(key, simtable[key]))
+    # -- Print the machine cod
+    if verbose:
+        print()
+        print("Machine code:\n")
 
-            # -- Print the parsed code
-            print()
-            print("Microbio assembly program:\n")
-            for inst in prog:
-                print("{}".format(inst))
+    # -- Write the machine code in the prog.list file
+    addr = 0
+    with open(OUTPUT_FILE, mode='w') as f:
+        for inst in prog:
+            output = ""
+            if addr != inst._addr:
+                # -- There is a gap in the addresses
+                output = "@{:02X}\n".format(inst._addr)
+                addr = inst._addr
 
-        # -- Print the machine cod
-        if verbose:
-            print()
-            print("Machine code:\n")
+            output += "{:02X}   //-- {}".format(inst.mcode(), inst)
+            f.write(output+"\n")
+            addr += 1
+            if verbose:
+                print(output)
 
-        # -- Write the machine code in the prog.list file
-        addr = 0
-        with open(OUTPUT_FILE, mode='w') as f:
-            for inst in prog:
-                output = ""
-                if addr != inst._addr:
-                    # -- There is a gap in the addresses
-                    output = "@{:02X}\n".format(inst._addr)
-                    addr = inst._addr
-
-                output += "{:02X}   //-- {}".format(inst.mcode(), inst)
-                f.write(output+"\n")
-                addr += 1
-                if verbose:
-                    print(output)
-
-        print("\nFile {} successfully generated".format(OUTPUT_FILE))
+    print("\nFile {} successfully generated".format(OUTPUT_FILE))

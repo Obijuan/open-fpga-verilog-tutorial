@@ -8,7 +8,7 @@ ini:
 
 
          ORG 0x10    //-- test
-label1:  LEDS 0x01
+label1:  LEDS 0x01  //-- aaaa
          WAIT
          JP label2
 
