@@ -62,24 +62,31 @@ class Prog(object):
 class Instruction(object):
     """Microbio instruction class"""
 
-    def __init__(self, co, dat, addr=0, label=""):
+    # -- Instruction opcodes
+    opcodes = {"WAIT": 0, "HALT": 1, "LEDS": 2, "JP": 3}
+
+    def __init__(self, nemonic, dat=0, addr=0, label=""):
         """Create the instruction from the co and dat fields"""
-        self._co = co       # -- Opcode
+        self.nemonic = nemonic  # -- Instruction name
         self._dat = dat     # -- Instruction argument
         self.addr = addr    # -- Address where the instruction is stored in memory
         self.label = label  # -- Label (if any)
 
+    def opcode(self):
+        """Return the instruction opcode"""
+        return self.opcodes[self.nemonic]
+
     def mcode(self):
         """Return the machine code"""
-        return (self._co << 6) + self._dat
+        return (self.opcode() << 6) + self._dat
 
     def __str__(self):
-        """Print the instruction"""
+        """Print the instruction in assembly"""
         saddr = "[{:02X}]".format(self.addr)
-        if nemonic[self._co] in ["LEDS", "JP"]:
-            return "{} {} 0x{:X}".format(saddr, nemonic[self._co], self._dat)
+        if self.nemonic in ["LEDS", "JP"]:
+            return "{} {} 0x{:X}".format(saddr, self.nemonic, self._dat)
         else:
-            return "{} {}".format(saddr, nemonic[self._co])
+            return "{} {}".format(saddr, self.nemonic)
 
 
 class SyntaxError(Exception):
@@ -87,10 +94,6 @@ class SyntaxError(Exception):
     def __init__(self, msg, nline):
         self.msg = msg        # - Sintax error message
         self.nline = nline    # - Number of line were the sintax error is located
-
-
-# -- Microbio Nemonic list
-nemonic = ["WAIT", "HALT", "LEDS", "JP"]
 
 # -- Assembler directives
 ORG = "ORG"
@@ -124,7 +127,7 @@ def is_label(word):
 
 def is_instruction_cad(cad):
     inst = cad.upper()
-    if inst in nemonic:
+    if inst in Instruction.opcodes.keys():
         return True, inst
     else:
         return False
@@ -265,27 +268,25 @@ def parse_org(prog, words, nline):
         raise SyntaxError(msg, nline)
 
 
-def parse_instruction_arg0(prog, lwords, nline):
+def parse_instruction_arg0(prog, words, nline):
     """Parse the instruction that have no arguments: HALT and WAIT
     """
-    if (lwords[0] == "HALT" or lwords[0] == "WAIT"):
-        # -- Get the opcode
-        co = nemonic.index(lwords[0])
+    if (words[0] == "HALT" or words[0] == "WAIT"):
 
-        # -- Create the instruction
-        inst = Instruction(co, 0)
+        # -- Create the instruction from the nemonic
+        inst = Instruction(words[0])
 
-        # -- Insert in the AST tree
+        # -- Insert it in the AST tree
         prog.add_instruction(inst)
 
         # -- Check that there are only comments or nothing after these nemonics
-        lwords = lwords[1:]
+        words = words[1:]
 
         # -- If no more words to parse, return
-        if len(lwords) == 0:
+        if len(words) == 0:
             return True
 
-        if is_comment(lwords[0]):
+        if is_comment(words[0]):
             return True
         else:
             msg = "Syntax error in line {}: Unknow command".format(nline)
@@ -296,22 +297,30 @@ def parse_instruction_arg0(prog, lwords, nline):
         return False
 
 
-def parse_instruction_leds(prog, lwords, nline):
+def parse_instruction_leds(prog, words, nline):
+    """Parse the LEDS instruction
+        INPUTS:
+          -prog: AST tree where to insert the parsed instruction
+          -words: List of words to parse
+          -nline: Number of the line that is beign parsed
+
+        RETURNS:
+          -True: Success. Instruction parsed and added into the AST
+          -False: Not the LEDS instruction
+          -An exception is raised in case of a syntax error
+    """
     # -- Parse the LEDS instruction
-    if lwords[0] == "LEDS":
+    if words[0] == "LEDS":
         # -- Read the data
-        okdat, dat = parse_dat(lwords[1])
+        okdat, dat = parse_dat(words[1])
 
         # -- Invalid data
         if not okdat:
-            msg = "ERROR: Invalid data for the instruction {} in line {}".format(lwords[0], nline)
+            msg = "ERROR: Invalid data for the instruction {} in line {}".format(words[0], nline)
             raise SyntaxError(msg, nline)
 
-        # -- Read the opcode
-        co = nemonic.index(lwords[0])
-
         # -- Create the instruction
-        inst = Instruction(co, dat)
+        inst = Instruction(words[0], dat)
 
         # -- Insert in the AST tree
         prog.add_instruction(inst)
@@ -322,24 +331,31 @@ def parse_instruction_leds(prog, lwords, nline):
         return False
 
 
-def parse_instruction_jp(prog, lwords, nline):
+def parse_instruction_jp(prog, words, nline):
+    """Parse the JP instruction
+        INPUTS:
+          -prog: AST tree where to insert the parsed instruction
+          -words: List of words to parse
+          -nline: Number of the line that is beign parsed
+
+        RETURNS:
+          -True: Success. Instruction parsed and added into the AST
+          -False: Not the JP instruction
+    """
     # -- Parse the JP instruction
-    if lwords[0] == "JP":
+    if words[0] == "JP":
         # -- Read the data
-        okdat, dat = parse_dat(lwords[1])
+        okdat, dat = parse_dat(words[1])
         label = ""
 
         # -- Invalid number: it should be a label
         if not okdat:
             # -- Check if words[1] is a label
-            label = lwords[1]
+            label = words[1]
             # dat = simtable[words[1]]
 
-        # -- Read the opcode
-        co = nemonic.index(lwords[0])
-
         # -- Create the instruction
-        inst = Instruction(co, dat, label=label)
+        inst = Instruction(words[0], dat, label=label)
 
         # -- Insert in the AST tree
         prog.add_instruction(inst)
@@ -396,7 +412,7 @@ def parse_instruction(prog, words, nline):
     """
 
     # -- Check if the first word is a correct nemonic
-    if not words[0] in nemonic:
+    if not words[0] in Instruction.opcodes.keys():
         msg = "ERROR: Unkwown instruction {} in line {}".format(words[0], nline)
         raise SyntaxError(0, msg, nline)
 
@@ -490,8 +506,9 @@ if __name__ == "__main__":
     syntax_analisis(prog, asmfile)
 
     # -- Semantics analisis: Check if all the labels are ok
+
     for inst in prog.linst:
-        if (inst._co == nemonic.index("JP")):
+        if (inst.nemonic == "JP"):
             try:
                 inst._dat = simtable[inst.label]
             except KeyError:
