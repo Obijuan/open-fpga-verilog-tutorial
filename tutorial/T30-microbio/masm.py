@@ -27,6 +27,10 @@ class Prog(object):
         # -- Increment the current address
         self._addr += 1
 
+    def set_label(self, label):
+        """Assign the label to the current address"""
+        self.symtable[label] = self._addr
+
     def set_addr(self, addr):
         """Set the current address"""
         self._addr = addr
@@ -208,8 +212,7 @@ def parse_label(prog, label):
     """
     if is_label(label):
         # -- Inset the label in the symbol table
-        # -- TODO: Check for duplicates!
-        prog.symtable[label[:-1]] = prog.get_addr()
+        prog.set_label(label[:-1])
         return True
     else:
         return False
