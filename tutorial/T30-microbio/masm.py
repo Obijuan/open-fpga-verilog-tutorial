@@ -197,6 +197,15 @@ def parse_arguments():
 
 
 def parse_label(prog, label):
+    """Parse the label and added it to the symbol table
+        INPUTS:
+        - prog: AST tree where the current program is being processed
+        - label: A string to parse
+
+        Returns:
+        -TRUE: If it is a label
+        -False: Not a label
+    """
     if is_label(label):
         # -- Inset the label in the symbol table
         # -- TODO: Check for duplicates!
@@ -206,7 +215,7 @@ def parse_label(prog, label):
         return False
 
 
-def parse_org(prog, lwords, nline):
+def parse_org(prog, words, nline):
     """Parse the org directive
         Inputs:
           * prog: AST tree were to store the information obtained from parsing the line
@@ -220,20 +229,20 @@ def parse_org(prog, lwords, nline):
     """
 
     # -- The first word is not ORG. It is not an org directive
-    if not lwords[0] == "ORG":
+    if not words[0] == "ORG":
         return False
 
     # -- Sintax error: The org directive should have one argument with the address
-    if len(lwords) == 1:
+    if len(words) == 1:
         msg = "ERROR: No address is given after ORG in line {}".format(nline)
         raise SyntaxError(msg, nline)
 
     # -- Read the argument. It should be a number
-    okdat, dat = parse_dat(lwords[1])
+    okdat, dat = parse_dat(words[1])
 
     # -- Invalid data
     if not okdat:
-        msg = "ERROR: ORG {}: Invalid address in line {}".format(lwords[1], nline)
+        msg = "ERROR: ORG {}: Invalid address in line {}".format(words[1], nline)
         raise SyntaxError(msg, nline)
 
     # -- Update the current address. The next instruction will be stored in this
@@ -241,18 +250,18 @@ def parse_org(prog, lwords, nline):
     prog.set_addr(dat)
 
     # -- Get the following words if any. They should only be comments
-    lwords = lwords[2:]
+    words = words[2:]
 
     # -- If no more words to parse, return
-    if len(lwords) == 0:
+    if len(words) == 0:
         return True
 
     # -- If there are comments, return true. If they are not comments, there
     # -- is a sintax error
-    if is_comment(lwords[0]):
+    if is_comment(words[0]):
         return True
     else:
-        msg = "Syntax error in line {}: Unknow command {}".format(nline, lwords[0])
+        msg = "Syntax error in line {}: Unknow command {}".format(nline, words[0])
         raise SyntaxError(msg, nline)
 
 
@@ -373,19 +382,30 @@ def parse_instruction_arg1(prog, lwords, nline):
     return False
 
 
-def parse_instruction(prog, lwords, nline):
+def parse_instruction(prog, words, nline):
+    """Parse the instruction and insert into the prog AST tree
+        INPUTS:
+          -prog: AST tree where to insert the parsed instruction
+          -words: List of words to parse
+          -nline: Number of the line that is beign parsed
+
+        RETURNS:
+          -True: Success. Instruction parsed and added into the AST
+          -False: Not an instruction
+          -An exception is raised in case of a sintax error
+    """
 
     # -- Check if the first word is a correct nemonic
-    if not lwords[0] in nemonic:
-        msg = "ERROR: Unkwown instruction {} in line {}".format(lwords[0], nline)
+    if not words[0] in nemonic:
+        msg = "ERROR: Unkwown instruction {} in line {}".format(words[0], nline)
         raise SyntaxError(0, msg, nline)
 
     # -- Check if it is a nenomic with no arguments (WAIT or HALT)
-    if parse_instruction_arg0(prog, lwords, nline):
+    if parse_instruction_arg0(prog, words, nline):
         return True
 
     # -- Check if it is a nenomic with 1 argument (LEDS, JP)
-    if parse_instruction_arg1(prog, lwords, nline):
+    if parse_instruction_arg1(prog, words, nline):
         return True
 
     return False
