@@ -56,8 +56,15 @@ class Prog(object):
     def __str__(self):
         """Print the current program (in assembly language)"""
         str = ""
+        addr = 0
         for inst in self.linst:
+            if addr != inst.addr:
+                # -- there is a gap in the addresses
+                str += "\n     ORG 0x{:02X}\n".format(inst.addr)
+                addr = inst.addr
+
             str += "{}\n".format(inst)
+            addr += 1
 
         return str
 
