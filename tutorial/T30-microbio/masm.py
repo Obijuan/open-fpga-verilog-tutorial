@@ -5,9 +5,61 @@ import sys
 
 
 class Prog(object):
+    """Abstract syntax Tree for the assembled program"""
+
     def __init__(self):
-        self.dir = 0   # -- Current address
+        self.addr = 0   # -- Current address
         self.linst = []  # -- List of instructions
+
+    def add_instruction(self, inst):
+        """Add the instruction in the current address. The current dir is incremented
+        """
+
+        # -- Assign the current address
+        inst.addr = self.addr
+
+        # -- Insert the instruction
+        self.linst.append(inst)
+
+        # -- Increment the current address
+        self.addr += 1
+
+    def __str__(self):
+        """Print the current program (in assembly language)"""
+        for inst in self.linst:
+            print("{}".format(inst))
+
+
+class Instruction(object):
+    """Microbio instruction class"""
+
+    def __init__(self, co, dat, addr=0, label=""):
+        """Create the instruction from the co and dat fields"""
+        self._co = co       # -- Opcode
+        self._dat = dat     # -- Instruction argument
+        self.addr = addr    # -- Address where the instruction is stored in memory
+        self.label = label  # -- Label (if any)
+
+    def mcode(self):
+        """Return the machine code"""
+        return (self._co << 6) + self._dat
+
+    def __str__(self):
+        """Print the instruction"""
+        saddr = "[{:02X}]".format(self.addr)
+        if nemonic[self._co] in ["LEDS", "JP"]:
+            return "{} {} 0x{:X}".format(saddr, nemonic[self._co], self._dat)
+        else:
+            return "{} {}".format(saddr, nemonic[self._co])
+
+
+class SyntaxError(Exception):
+    def __init__(self, msg, nline):
+        self.msg = msg
+        self.nline = nline
+
+
+
 
 # -- Microbio Nemonic list
 nemonic = ["WAIT", "HALT", "LEDS", "JP"]
@@ -22,43 +74,7 @@ OUTPUT_FILE = "prog.list"
 simtable = {}
 
 # -- Program: AST
-prog = []
-prog2 = Prog()
-
-# -- Current address
-addr = 0
-
-
-class SyntaxError(Exception):
-    def __init__(self, value, msg, nline):
-        self.value = value
-        self.msg = msg
-        self.nline = nline
-
-
-class Instruction(object):
-    """Microbio instruction class"""
-
-    def __init__(self, co, dat, addr, nline=0, label=""):
-        """Create the instruction from the co and dat fields"""
-        self._co = co
-        self._dat = dat
-        self._addr = addr    # Address where the instruction should be placed
-        self.label = label
-        self.nline = nline
-
-    def mcode(self):
-        """Return the machine code"""
-
-        return (self._co << 6) + self._dat
-
-    def __str__(self):
-        """Print the instruction"""
-        saddr = "[{:02X}]".format(self._addr)
-        if nemonic[self._co] in ["LEDS", "JP"]:
-            return "{} {} 0x{:X}".format(saddr, nemonic[self._co], self._dat)
-        else:
-            return "{} {}".format(saddr, nemonic[self._co])
+prog = Prog()
 
 
 def is_comment_cad(cad):
@@ -175,7 +191,7 @@ def parse_label(label):
     if is_label(label):
         # -- Inset the label in the symbol table
         # -- TODO: Check for duplicates!
-        simtable[label[:-1]] = prog2.dir
+        simtable[label[:-1]] = prog.addr
         return True
     else:
         return False
@@ -187,7 +203,7 @@ def parse_org(lwords, nline):
 
     if len(lwords) == 1:
         msg = "ERROR: No address is given after ORG in line {}".format(nline)
-        raise SyntaxError(0, msg, nline)
+        raise SyntaxError(msg, nline)
 
     # -- Read the argument. It should be a number
     okdat, dat = parse_dat(lwords[1])
@@ -195,12 +211,10 @@ def parse_org(lwords, nline):
     # -- Invalid data
     if not okdat:
         msg = "ERROR: ORG {}: Invalid address in line {}".format(lwords[1], nline)
-        raise SyntaxError(0, msg, nline)
+        raise SyntaxError(msg, nline)
 
     # -- Update the address
-    global addr
-    addr = dat
-    prog2.dir = dat
+    prog.addr = dat
 
     # -- Check that there are no more instruccion in the same line
     # -- Except comments
@@ -214,7 +228,7 @@ def parse_org(lwords, nline):
         return True
     else:
         msg = "Syntax error in line {}: Unknow command {}".format(nline, lwords[0])
-        raise SyntaxError(0, msg, nline)
+        raise SyntaxError(msg, nline)
 
 
 def parse_instruction_arg0(lwords, nline):
@@ -225,15 +239,10 @@ def parse_instruction_arg0(lwords, nline):
         co = nemonic.index(lwords[0])
 
         # -- Create the instruction
-        inst = Instruction(co, 0, prog2.dir)
+        inst = Instruction(co, 0)
 
         # -- Insert in the AST tree
-        prog.append(inst)
-
-        # -- Increment the address
-        global addr
-        addr += 1
-        prog2.dir += 1
+        prog.add_instruction(inst)
 
         # -- Check that there are only comments or nothing after these nemonics
         lwords = lwords[1:]
@@ -246,7 +255,7 @@ def parse_instruction_arg0(lwords, nline):
             return True
         else:
             msg = "Syntax error in line {}: Unknow command".format(nline)
-            raise SyntaxError(0, msg, nline)
+            raise SyntaxError(msg, nline)
             return False
     else:
         # -- The instructions are not HALT or WAIT
@@ -262,21 +271,16 @@ def parse_instruction_leds(lwords, nline):
         # -- Invalid data
         if not okdat:
             msg = "ERROR: Invalid data for the instruction {} in line {}".format(lwords[0], nline)
-            raise SyntaxError(0, msg, nline)
+            raise SyntaxError(msg, nline)
 
         # -- Read the opcode
         co = nemonic.index(lwords[0])
 
         # -- Create the instruction
-        inst = Instruction(co, dat, prog2.dir, nline)
+        inst = Instruction(co, dat)
 
         # -- Insert in the AST tree
-        prog.append(inst)
-
-        # -- Increment the address
-        prog2.dir += 1
-        global addr
-        addr += 1
+        prog.add_instruction(inst)
 
         return True
 
@@ -301,15 +305,10 @@ def parse_instruction_jp(lwords, nline):
         co = nemonic.index(lwords[0])
 
         # -- Create the instruction
-        inst = Instruction(co, dat, prog2.dir, nline, label)
+        inst = Instruction(co, dat, label=label)
 
         # -- Insert in the AST tree
-        prog.append(inst)
-
-        # -- Increment the address
-        prog2.dir += 1
-        global addr
-        addr += 1
+        prog.add_instruction(inst)
 
         return True
 
@@ -324,7 +323,7 @@ def parse_instruction_arg1(lwords, nline):
     # -- one for the argument. If not, raise an exception)
     if len(lwords) == 1:
         msg = "ERROR: No data for the instruction {} in line {}".format(lwords[0], nline)
-        raise SyntaxError(0, msg, nline)
+        raise SyntaxError(msg, nline)
 
     # -- Parse the leds instruction
     parse_instruction_leds(lwords, nline)
@@ -344,7 +343,7 @@ def parse_instruction_arg1(lwords, nline):
         return True
     else:
         msg = "Syntax error in line {}: Unknow command".format(nline)
-        raise SyntaxError(0, msg, nline)
+        raise SyntaxError(msg, nline)
 
     return False
 
@@ -415,7 +414,7 @@ if __name__ == "__main__":
             sys.exit()
 
     # -- Check if all the labels are ok
-    for inst in prog:
+    for inst in prog.linst:
         if (inst._co == nemonic.index("JP")):
             try:
                 inst._dat = simtable[inst.label]
@@ -433,7 +432,7 @@ if __name__ == "__main__":
         # -- Print the parsed code
         print()
         print("Microbio assembly program:\n")
-        for inst in prog:
+        for inst in prog.linst:
             print("{}".format(inst))
 
     # -- Print the machine cod
@@ -444,12 +443,12 @@ if __name__ == "__main__":
     # -- Write the machine code in the prog.list file
     addr = 0
     with open(OUTPUT_FILE, mode='w') as f:
-        for inst in prog:
+        for inst in prog.linst:
             output = ""
-            if addr != inst._addr:
+            if addr != inst.addr:
                 # -- There is a gap in the addresses
-                output = "@{:02X}\n".format(inst._addr)
-                addr = inst._addr
+                output = "@{:02X}\n".format(inst.addr)
+                addr = inst.addr
 
             output += "{:02X}   //-- {}".format(inst.mcode(), inst)
             f.write(output+"\n")
