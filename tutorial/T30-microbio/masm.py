@@ -31,6 +31,20 @@ class Prog(object):
         """Assign the label to the current address"""
         self.symtable[label] = self._addr
 
+    def assign_labels(self):
+        """Check all the labels of the JP instructions of the program
+           to make sure they all have an address asigned. If not, the attribute addr
+           is updated with the right value
+           If there are unknown labels an exception is raised
+        """
+        for inst in self.linst:
+            if (inst.nemonic == "JP"):
+                try:
+                    inst._dat = prog.symtable[inst.label]
+                except KeyError:
+                    msg = "ERROR: Label {} unknow in line {}".format(inst.label, inst.nline)
+                    raise SyntaxError(msg, inst.nline)
+
     def set_addr(self, addr):
         """Set the current address"""
         self._addr = addr
@@ -506,15 +520,20 @@ if __name__ == "__main__":
     syntax_analisis(prog, asmfile)
 
     # -- Semantics analisis: Check if all the labels are ok
+    try:
+        prog.assign_labels()
 
-    for inst in prog.linst:
-        if (inst.nemonic == "JP"):
-            try:
-                inst._dat = prog.symtable[inst.label]
-            except KeyError:
-                print("ERROR: Label {} unknow in line {}".format(inst.label, inst.nline))
-                sys.exit()
+    except SyntaxError as e:
+        print(e.msg)
+        sys.exit()
 
+    # -- Write the machine code in the output file file
+    with open(OUTPUT_FILE, mode='w') as f:
+        f.write(prog.machine_code())
+
+    print("\nFile {} successfully generated".format(OUTPUT_FILE))
+
+    # -- Only in verbose mode
     if verbose:
         # -- Print the symbol table
         print()
@@ -531,9 +550,3 @@ if __name__ == "__main__":
         print()
         print("Machine code:\n")
         print(prog.machine_code())
-
-    # -- Write the machine code in the prog.list file
-    with open(OUTPUT_FILE, mode='w') as f:
-        f.write(prog.machine_code())
-
-    print("\nFile {} successfully generated".format(OUTPUT_FILE))
