@@ -83,9 +83,10 @@ class Instruction(object):
 
 
 class SyntaxError(Exception):
+    """Syntax error exceptions"""
     def __init__(self, msg, nline):
-        self.msg = msg
-        self.nline = nline
+        self.msg = msg        # - Sintax error message
+        self.nline = nline    # - Number of line were the sintax error is located
 
 
 # -- Microbio Nemonic list
@@ -98,31 +99,18 @@ ORG = "ORG"
 simtable = {}
 
 
-def is_comment_cad(cad):
-    """Return True if the string is a comment"""
+def is_comment(lwords):
+    """Return True if the list of words is a comment"""
 
     # -- At least the string len should be 2 for being a comment
-    if len(cad) < 2:
+    if len(lwords) < 2:
         return False
 
-    comment = cad[0:2]
+    comment = lwords[0:2]
     if (comment == "//"):
         return True
     else:
         return False
-
-
-def is_comment(line):
-    """Return True if the line is a comment or a blank"""
-
-    # -- Divide the line into words
-    lwords = line.split()
-
-    # -- A blank line is considered a comment
-    if len(lwords) == 0:
-        return True
-
-    return is_comment_cad(lwords[0])
 
 
 def is_label(word):
@@ -157,7 +145,7 @@ def remove_comments(line):
 
     new = []
     for cad in line:
-        if is_comment_cad(cad):
+        if is_comment(cad):
             break
         else:
             new.append(cad)
@@ -261,7 +249,7 @@ def parse_org(prog, lwords, nline):
 
     # -- If there are comments, return true. If they are not comments, there
     # -- is a sintax error
-    if is_comment_cad(lwords[0]):
+    if is_comment(lwords[0]):
         return True
     else:
         msg = "Syntax error in line {}: Unknow command {}".format(nline, lwords[0])
@@ -288,7 +276,7 @@ def parse_instruction_arg0(prog, lwords, nline):
         if len(lwords) == 0:
             return True
 
-        if is_comment_cad(lwords[0]):
+        if is_comment(lwords[0]):
             return True
         else:
             msg = "Syntax error in line {}: Unknow command".format(nline)
@@ -376,7 +364,7 @@ def parse_instruction_arg1(prog, lwords, nline):
         return True
 
     # -- There can only be comments. If not, it is a syntax error
-    if is_comment_cad(lwords[0]):
+    if is_comment(lwords[0]):
         return True
     else:
         msg = "Syntax error in line {}: Unknow command".format(nline)
@@ -403,7 +391,7 @@ def parse_instruction(prog, lwords, nline):
     return False
 
 
-def parse_line(prog, line,  nline):
+def parse_line(prog, words,  nline):
     """Parse one line of the assembly program
         These are the different type of lines:
         -         ORG dir   [//-- Comments]
@@ -411,7 +399,6 @@ def parse_line(prog, line,  nline):
         - label:  INSTRUCTION  [//-- Comments]
         -         INSTRUCTION  [//-- Comments]
     """
-    words = line.split()
 
     # -- Check if the line is an ORG directive
     if parse_org(prog, words, nline):
@@ -424,7 +411,7 @@ def parse_line(prog, line,  nline):
             return
 
     # -- If there is a comment, the line is ignored
-    if is_comment_cad(words[0]):
+    if is_comment(words[0]):
         return
 
     # -- Parse the instruction
@@ -444,13 +431,20 @@ def syntax_analisis(prog, asmfile):
     # -- Syntax analisis: line by line
     for nline, line in enumerate(asmfile):
 
+        # -- Divide the line into a list of words, for parsing
+        words = line.split()
+
+        # -- If it is a blank line, ignore it
+        if len(words) == 0:
+            continue
+
         # -- If the whole line is a comment, ignore it!
-        if (is_comment(line)):
+        if (is_comment(words)):
             continue
 
         # -- Parse line
         try:
-            parse_line(prog, line, nline+1)
+            parse_line(prog, words, nline+1)
 
         # -- There was a syntax error. Print the message and exit
         except SyntaxError as e:
