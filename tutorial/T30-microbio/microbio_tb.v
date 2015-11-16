@@ -2,7 +2,7 @@
 //-- microbio_tb
 //-- Banco de pruebas para el microprocesador MICROBIO
 //-------------------------------------------------------------------
-//-- BQ August 2015. Written by Juan Gonzalez (Obijuan)
+//-- BQ November 2015. Written by Juan Gonzalez (Obijuan)
 //-------------------------------------------------------------------
 
 module microbio_tb();
@@ -41,7 +41,7 @@ initial begin
 
   #2 rstn <= 1;
 
-  # 140 $display("FIN de la simulacion");
+  # 160 $display("FIN de la simulacion");
   $finish;
 end
 
