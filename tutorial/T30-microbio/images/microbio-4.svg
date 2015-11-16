@@ -68,9 +68,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.2837891"
-     inkscape:cx="244.13738"
-     inkscape:cy="831.57767"
+     inkscape:zoom="1.664847"
+     inkscape:cx="242.44203"
+     inkscape:cy="848.04825"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -87,7 +87,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -258,5 +258,20 @@
          y="248.54713"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle"
          id="tspan4818"> máquina</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="281.34497"
+       y="215.26891"
+       id="text4146-0-3-2"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/obijuan/text4146-0-3-1.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         x="281.34497"
+         y="215.26891"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;font-family:sans-serif;-inkscape-font-specification:sans-serif;text-align:center;text-anchor:middle"
+         id="tspan4793-2">ensamblado</tspan></text>
   </g>
 </svg>
