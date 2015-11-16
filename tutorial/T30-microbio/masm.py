@@ -356,7 +356,6 @@ def parse_instruction_jp(prog, words, nline):
         # -- Read the data
         okdat, dat = parse_dat(words[1], nline)
         label = ""
-        print ("Dir: {}".format(dat))
 
         # -- Invalid number: it should be a label
         if not okdat:
