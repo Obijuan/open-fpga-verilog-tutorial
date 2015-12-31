@@ -1,0 +1,22 @@
+[*]
+[*] GTKWave Analyzer v3.3.58 (w)1999-2014 BSI
+[*] Thu Dec 31 00:38:23 2015
+[*]
+[dumpfile] "/home/david/Dropbox/UbuntuOne/GITHUB/FPGA/open-fpga-verilog-tutorial/tutorial/ICE40-HX8K_Breakout_Board/T01-setbit/T01-setbit_tb.vcd"
+[dumpfile_mtime] "Thu Dec 31 00:37:59 2015"
+[dumpfile_size] 450
+[savefile] "/home/david/Dropbox/UbuntuOne/GITHUB/FPGA/open-fpga-verilog-tutorial/tutorial/ICE40-HX8K_Breakout_Board/T01-setbit/T01-setbit_tb.gtkw"
+[timestart] 0
+[size] 1000 600
+[pos] -1 -1
+*-2.672039 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] setbit_tb.
+[sst_width] 225
+[signals_width] 78
+[sst_expanded] 1
+[sst_vpaned_height] 160
+@28
+setbit_tb.SB1.LED1
+setbit_tb.SB1.LED2
+[pattern_trace] 1
+[pattern_trace] 0

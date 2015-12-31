@@ -1,0 +1,18 @@
+# ##############################################################################
+# iCEcube PCF
+# Version:            2012.09SP1.22498
+# File Generated:     Sep 14 2013 17:36:59
+# Tested by:          D. Cuartielles
+# Latest test:        Dec 25 2015
+# Family & Device:    iCE40HX8K
+# Package:            CT256
+# ##############################################################################
+
+set_io LED1 B5
+set_io LED2 B4
+set_io LED3 A2
+set_io LED4 A1
+set_io LED5 C5
+set_io LED6 C4
+set_io LED7 B3
+set_io LED8 C3
