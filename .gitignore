@@ -1,2 +1,6 @@
 *~
-
+*.out
+*.vcd
+*.bin
+*.blif
+*.txt
