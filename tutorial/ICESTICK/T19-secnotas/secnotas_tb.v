@@ -18,7 +18,7 @@ wire ch_out;
 
 //-- Instanciar el componente y establecer el valor del divisor
 //-- Se pone un valor bajo para simular (de lo contrario tardaria mucho)
-secnotas #(.N0(2), .N1(3), .N2(4), .DUR(10))
+secnotas #(.N0(4), .N1(3), .N2(2), .DUR(10))
   dut(
     .clk(clk),
     .ch_out(ch_out)
