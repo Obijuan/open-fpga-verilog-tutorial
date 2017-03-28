@@ -16,7 +16,7 @@
    version="1.1"
    inkscape:version="0.91 r13725"
    sodipodi:docname="setbit-3.svg"
-   inkscape:export-filename="/home/obijuan/development/mytests/verilog/tutorial/01-setbit/images/setbit-1.png"
+   inkscape:export-filename="/home/dstanford/workspace/git/open-fpga-verilog-tutorial/tutorial/ICESTICK/T01-setbit/images/setbit-3.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
   <defs
@@ -50,8 +50,8 @@
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:snap-center="false"
-     inkscape:window-width="1301"
-     inkscape:window-height="744"
+     inkscape:window-width="1855"
+     inkscape:window-height="1176"
      inkscape:window-x="65"
      inkscape:window-y="24"
      inkscape:window-maximized="1"
@@ -167,17 +167,17 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="284.05966"
+       x="279.0625"
        y="125.84614"
        id="text4425"
        sodipodi:linespacing="125%"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90"><tspan
          sodipodi:role="line"
-         x="284.05966"
+         x="279.0625"
          y="125.84614"
          id="tspan4435"
-         style="writing-mode:lr;-inkscape-font-specification:'sans-serif Bold';font-family:sans-serif;font-weight:bold;font-style:normal;font-stretch:normal;font-variant:normal">Banco de pruebas</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';writing-mode:lr-tb">Banco de pruebas</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -210,30 +210,61 @@
        transform="translate(-5.6536427,0)"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90">
-      <text
-         inkscape:export-ydpi="90"
-         inkscape:export-xdpi="90"
-         sodipodi:linespacing="125%"
-         id="text4425-2-1"
-         y="249.9389"
-         x="434.70703"
-         style="font-style:normal;font-weight:normal;font-size:10px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         xml:space="preserve"><tspan
-           id="tspan4435-5-0"
-           y="249.9389"
-           x="434.70703"
-           sodipodi:role="line">Comprobación</tspan><tspan
-           id="tspan4265"
-           y="262.4389"
-           x="434.70703"
-           sodipodi:role="line">de la salida</tspan></text>
       <rect
-         y="224.81026"
-         x="383.741"
-         height="61.483364"
-         width="107.41921"
+         y="178.05692"
+         x="383.96097"
+         height="128.00539"
+         width="106.97928"
          id="rect4267"
-         style="fill:none;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+         style="fill:none;stroke:#000000;stroke-width:1.43993914;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="295.02722"
+       y="154.63246"
+       id="text4425-3"
+       sodipodi:linespacing="125%"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         x="295.02722"
+         y="154.63246"
+         id="tspan4435-6"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';writing-mode:lr-tb">Test Bench</tspan></text>
+    <text
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       sodipodi:linespacing="125%"
+       id="text4425-2-1-7"
+       y="194.52637"
+       x="429.90482"
+       style="font-style:normal;font-weight:normal;font-size:10px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         id="tspan4435-5-0-5"
+         y="194.52637"
+         x="429.90482"
+         sodipodi:role="line">Comprobación</tspan><tspan
+         id="tspan4265-3"
+         y="207.02637"
+         x="429.90482"
+         sodipodi:role="line">de la salida</tspan></text>
+    <text
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       sodipodi:linespacing="125%"
+       id="text4425-2-1"
+       y="286.47412"
+       x="432.90314"
+       style="font-style:normal;font-weight:normal;font-size:10px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         id="tspan4265"
+         y="286.47412"
+         x="432.90314"
+         sodipodi:role="line">Verification</tspan><tspan
+         y="298.97412"
+         x="432.90314"
+         sodipodi:role="line"
+         id="tspan3482"> of the outputs</tspan></text>
   </g>
 </svg>

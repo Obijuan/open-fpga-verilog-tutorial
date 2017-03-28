@@ -16,7 +16,10 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="icestorm-1.svg">
+   sodipodi:docname="icestorm-1.svg"
+   inkscape:export-filename="/home/dstanford/workspace/git/open-fpga-verilog-tutorial/tutorial/ICESTICK/T00-Intro/images/icestorm-1.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
   <defs
      id="defs4">
     <marker
@@ -461,13 +464,13 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.0754852"
-     inkscape:cx="258.04724"
+     inkscape:cx="101.37377"
      inkscape:cy="576.11708"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1855"
-     inkscape:window-height="1056"
+     inkscape:window-height="1176"
      inkscape:window-x="65"
      inkscape:window-y="24"
      inkscape:window-maximized="1"
@@ -581,11 +584,7 @@
          sodipodi:role="line"
          x="487.9491"
          y="257.23807"
-         id="tspan5429">y</tspan><tspan
-         sodipodi:role="line"
-         x="487.9491"
-         y="275.98807"
-         id="tspan5431">rutado</tspan></text>
+         id="tspan5431">y rutado</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:15px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -698,7 +697,7 @@
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#0000ff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        x="442.2182"
-       y="299.43478"
+       y="281.76834"
        id="text4479-9-2"
        sodipodi:linespacing="125%"
        inkscape:export-xdpi="90"
@@ -706,7 +705,7 @@
          sodipodi:role="line"
          id="tspan4481-0-6"
          x="442.2182"
-         y="299.43478">arachne-pnr</tspan></text>
+         y="281.76834">arachne-pnr</tspan></text>
     <path
        style="fill:#ff9955;fill-rule:evenodd;stroke:#ff9955;stroke-width:5.99139929;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutM-0-4-4)"
        d="m 639.2938,330.64701 0,74.93998"
@@ -916,5 +915,76 @@
          id="tspan4481-7-0"
          x="70.076569"
          y="439.76144">Placa icestick</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:15px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="164.35509"
+       y="325.56198"
+       id="text4341-6-29"
+       sodipodi:linespacing="125%"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan4343-5-1"
+         x="164.35509"
+         y="325.56198">Synthesis</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:15px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="486.85941"
+       y="307.86557"
+       id="text4341-6-0-2"
+       sodipodi:linespacing="125%"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         x="489.46683"
+         y="307.86557"
+         id="tspan5431-0">Place and </tspan><tspan
+         sodipodi:role="line"
+         x="486.85941"
+         y="326.61557"
+         id="tspan4782">Route</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:15px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="596.3446"
+       y="529.68872"
+       id="text4341-6-3-9"
+       sodipodi:linespacing="125%"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan4343-5-7-3"
+         x="596.3446"
+         y="529.68872">Convertor</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:15px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="296.12268"
+       y="529.0072"
+       id="text4341-6-5-6"
+       sodipodi:linespacing="125%"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan4343-5-8-0"
+         x="296.12268"
+         y="529.0072">Download</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="66.813042"
+       y="523.31183"
+       id="text4479-8-5-6"
+       sodipodi:linespacing="125%"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:transform-center-x="-26.964574"
+       inkscape:transform-center-y="-73.455218"><tspan
+         sodipodi:role="line"
+         id="tspan4481-7-0-2"
+         x="66.813042"
+         y="523.31183">icestick board</tspan></text>
   </g>
 </svg>

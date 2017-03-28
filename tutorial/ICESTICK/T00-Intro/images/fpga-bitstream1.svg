@@ -15,7 +15,10 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="fpga-bitstream1.svg">
+   sodipodi:docname="fpga-bitstream1.svg"
+   inkscape:export-filename="/home/dstanford/workspace/git/open-fpga-verilog-tutorial/tutorial/ICESTICK/T00-Intro/images/fpga-bitstream1.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
   <defs
      id="defs4">
     <marker
@@ -295,13 +298,13 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.90777595"
-     inkscape:cx="326.19052"
+     inkscape:cx="140.57203"
      inkscape:cy="813.142"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1855"
-     inkscape:window-height="1056"
+     inkscape:window-height="1176"
      inkscape:window-x="65"
      inkscape:window-y="24"
      inkscape:window-maximized="1" />
@@ -385,37 +388,33 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:15px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="241.90178"
-       y="197.39328"
+       x="243.00337"
+       y="159.9391"
        id="text4341-6"
        sodipodi:linespacing="125%"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90"><tspan
          sodipodi:role="line"
          id="tspan4343-5"
-         x="241.90178"
-         y="197.39328">Síntesis</tspan></text>
+         x="243.00337"
+         y="159.9391">Síntesis</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:15px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="438.53696"
-       y="186.48807"
+       x="437.43536"
+       y="157.84663"
        id="text4341-6-0"
        sodipodi:linespacing="125%"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90"><tspan
          sodipodi:role="line"
          id="tspan4343-5-4"
-         x="438.53696"
-         y="186.48807">Emplazado</tspan><tspan
+         x="437.43536"
+         y="157.84663">Emplazado</tspan><tspan
          sodipodi:role="line"
-         x="438.53696"
-         y="205.23807"
-         id="tspan5429">y</tspan><tspan
-         sodipodi:role="line"
-         x="438.53696"
-         y="223.98807"
-         id="tspan5431">rutado</tspan></text>
+         x="437.43536"
+         y="176.59663"
+         id="tspan5431">y rutado</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:15px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -439,16 +438,12 @@
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90"><tspan
          sodipodi:role="line"
-         id="tspan4343-5-5-3"
          x="122.30814"
-         y="184.15123">Ficheros</tspan><tspan
+         y="184.15123"
+         id="tspan5484" /><tspan
          sodipodi:role="line"
          x="122.30814"
          y="202.90123"
-         id="tspan5484">fuente</tspan><tspan
-         sodipodi:role="line"
-         x="122.30814"
-         y="221.65123"
          id="tspan5486">HDL</tspan></text>
     <path
        style="fill:#0000ff;fill-rule:evenodd;stroke:#0000ff;stroke-width:5.99139929;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutM-0)"
@@ -464,5 +459,35 @@
        inkscape:connector-curvature="0"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:15px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="439.17325"
+       y="230.63469"
+       id="text4341-6-0-3"
+       sodipodi:linespacing="125%"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         x="439.17325"
+         y="230.63469"
+         id="tspan3540">Place and</tspan><tspan
+         sodipodi:role="line"
+         x="439.17325"
+         y="249.38469"
+         id="tspan5431-5">Route</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:15px;line-height:125%;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="237.29691"
+       y="244.17702"
+       id="text4341-6-3"
+       sodipodi:linespacing="125%"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan4343-5-56"
+         x="237.29691"
+         y="244.17702">Synthesis</tspan></text>
   </g>
 </svg>

@@ -16,7 +16,7 @@
    version="1.1"
    inkscape:version="0.91 r13725"
    sodipodi:docname="setbit-1.svg"
-   inkscape:export-filename="/home/obijuan/development/mytests/verilog/tutorial/01-setbit/images/setbit-1.png"
+   inkscape:export-filename="/home/dstanford/workspace/git/open-fpga-verilog-tutorial/tutorial/ICESTICK/T01-setbit/images/setbit-1.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
   <defs
@@ -29,16 +29,16 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4222978"
-     inkscape:cx="57.903425"
+     inkscape:cx="-60.566842"
      inkscape:cy="872.42703"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:snap-center="false"
-     inkscape:window-width="1301"
-     inkscape:window-height="744"
-     inkscape:window-x="65"
-     inkscape:window-y="24"
+     inkscape:window-width="1920"
+     inkscape:window-height="1176"
+     inkscape:window-x="0"
+     inkscape:window-y="1224"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata7">
@@ -121,5 +121,21 @@
          x="107.35203"
          y="172.9657"
          style="font-size:15px">&quot;1&quot;</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="142.00172"
+       y="197.71136"
+       id="text3336-3"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3338-6"
+         x="142.00172"
+         y="197.71136"
+         style="text-align:center;text-anchor:middle">Component</tspan><tspan
+         sodipodi:role="line"
+         x="142.00172"
+         y="216.46136"
+         id="tspan4162-7">setbit</tspan></text>
   </g>
 </svg>
