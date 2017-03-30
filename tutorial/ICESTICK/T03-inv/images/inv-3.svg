@@ -16,7 +16,7 @@
    version="1.1"
    inkscape:version="0.91 r13725"
    sodipodi:docname="inv-3.svg"
-   inkscape:export-filename="/home/obijuan/development/mytests/verilog/tutorial/01-setbit/images/setbit-1.png"
+   inkscape:export-filename="/home/dstanford/workspace/git/open-fpga-verilog-tutorial/tutorial/ICESTICK/T03-inv/images/inv-3.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
   <defs
@@ -73,17 +73,17 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.000568"
-     inkscape:cx="466.46193"
+     inkscape:cx="298.05758"
      inkscape:cy="911.45128"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:snap-center="false"
-     inkscape:window-width="1301"
-     inkscape:window-height="744"
-     inkscape:window-x="65"
-     inkscape:window-y="24"
-     inkscape:window-maximized="1"
+     inkscape:window-width="1380"
+     inkscape:window-height="765"
+     inkscape:window-x="147"
+     inkscape:window-y="1286"
+     inkscape:window-maximized="0"
      showguides="true"
      inkscape:guide-bbox="true"
      inkscape:snap-global="false" />
@@ -117,8 +117,8 @@
        id="rect3344"
        width="351.59036"
        height="240.3629"
-       x="147.20845"
-       y="54.30418"
+       x="145.20958"
+       y="52.305317"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <g
@@ -237,15 +237,15 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="262.30573"
-       y="68.035698"
+       x="255.30969"
+       y="67.036263"
        id="text4425"
        sodipodi:linespacing="125%"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90"><tspan
          sodipodi:role="line"
-         x="262.30573"
-         y="68.035698"
+         x="255.30969"
+         y="67.036263"
          id="tspan4435"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';writing-mode:lr-tb">Banco de pruebas</tspan></text>
     <text
@@ -265,22 +265,26 @@
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        x="429.26184"
-       y="186.75284"
+       y="177.75795"
        id="text4425-2-1"
        sodipodi:linespacing="125%"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90"><tspan
          sodipodi:role="line"
          x="429.26184"
-         y="186.75284"
-         id="tspan4265">Estímulos entrada</tspan></text>
+         y="177.75795"
+         id="tspan4265">Estímulos entrada</tspan><tspan
+         sodipodi:role="line"
+         x="429.26184"
+         y="190.25795"
+         id="tspan3879">Input stimulus</tspan></text>
     <rect
-       style="fill:none;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:none;stroke:#000000;stroke-width:1.33586812;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect4267"
-       width="107.41921"
-       height="85.586685"
-       x="377.02878"
-       y="164.08727"
+       width="107.08335"
+       height="153.21222"
+       x="377.19672"
+       y="114.28358"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
     <path
@@ -307,19 +311,27 @@
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        x="428.22955"
-       y="222.78145"
+       y="215.78542"
        id="text4425-2-1-5"
        sodipodi:linespacing="125%"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90"><tspan
          sodipodi:role="line"
          x="428.22955"
-         y="222.78145"
+         y="215.78542"
          id="tspan4265-8">Comprobación</tspan><tspan
          sodipodi:role="line"
          x="428.22955"
-         y="235.28145"
-         id="tspan4642">salida</tspan></text>
+         y="228.28542"
+         id="tspan4642">salida</tspan><tspan
+         sodipodi:role="line"
+         x="429.82135"
+         y="240.78542"
+         id="tspan3881">Output </tspan><tspan
+         sodipodi:role="line"
+         x="428.22955"
+         y="253.2854"
+         id="tspan3883">Verification</tspan></text>
     <path
        style="fill:none;fill-rule:evenodd;stroke:#0000ff;stroke-width:0.99999994px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2Mend-6-7)"
        d="m 304.76492,223.84077 70.58514,0"
@@ -340,5 +352,19 @@
          x="333.23285"
          y="220.58238"
          id="tspan4435-5-29-2">dout</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="272.04025"
+       y="92.667664"
+       id="text4425-27"
+       sodipodi:linespacing="125%"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         x="272.04025"
+         y="92.667664"
+         id="tspan4435-0"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';writing-mode:lr-tb">Test Bench</tspan></text>
   </g>
 </svg>
