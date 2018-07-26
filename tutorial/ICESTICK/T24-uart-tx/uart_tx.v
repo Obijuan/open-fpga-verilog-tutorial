@@ -19,7 +19,11 @@
 
 //--- Modulo de transmision serie
 //--- La salida tx ESTA REGISTRADA
-module uart_tx (
+module uart_tx 
+    #(
+    parameter BAUD = `B115200
+    )
+    (
          input wire clk,        //-- Reloj del sistema (12MHz en ICEstick)
          input wire rstn,       //-- Reset global (activo nivel bajo)
          input wire start,      //-- Activar a 1 para transmitir
@@ -28,8 +32,6 @@ module uart_tx (
          output wire ready      //-- Transmisor listo / ocupado
        );
 
-//-- Parametro: velocidad de transmision
-parameter BAUD =  `B115200;
 
 //-- Señal de start registrada
 reg start_r; 
@@ -99,7 +101,7 @@ always @(posedge clk)
   tx <= shifter[0];
 
 //-- Divisor para obtener el reloj de transmision
-baudgen #(BAUD)
+baudgen #(.BAUD(BAUD))
   BAUD0 (
     .clk(clk),
     .clk_ena(baud_en),
