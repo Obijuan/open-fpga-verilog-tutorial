@@ -26,7 +26,7 @@
 MKFILE_PATH := $(abspath $(lastword $(MAKEFILE_LIST)))
 CURRENT_DIR := $(notdir $(patsubst %/,%,$(dir $(MKFILE_PATH))))
 FILE = $(CURRENT_DIR)
-MEMORY = "1k"
+MEMORY = "8k"
 
 #-------------------------------------------------------
 #-- Objetivo por defecto: hacer simulacion y sintesis
