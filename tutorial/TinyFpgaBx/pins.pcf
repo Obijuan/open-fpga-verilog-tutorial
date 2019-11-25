@@ -1,0 +1,94 @@
+###############################################################################
+#
+# TinyFPGA BX constraint file (.pcf)
+#
+###############################################################################
+#
+# Copyright (c) 2018, Luke Valenty
+# All rights reserved.
+# 
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+# 
+# 1. Redistributions of source code must retain the above copyright notice, this
+#    list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the above copyright notice,
+#    this list of conditions and the following disclaimer in the documentation
+#    and/or other materials provided with the distribution.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+# WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+# ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+# (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+# ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+# SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+# The views and conclusions contained in the software and documentation are those
+# of the authors and should not be interpreted as representing official policies,
+# either expressed or implied, of the <project name> project. 
+#
+###############################################################################
+
+####
+# TinyFPGA BX information: https://github.com/tinyfpga/TinyFPGA-BX/
+####
+
+# Left side of board
+set_io --warn-no-port tx A2 #0 IOT_221
+set_io --warn-no-port rx A1 #0 IOT_224
+set_io --warn-no-port ch0 B1 #3 IOL_3A
+set_io --warn-no-port ch1 C2 #3 IOL_2A
+set_io --warn-no-port ch2 C1 #3 IOL_3B
+set_io --warn-no-port ch3 D2 #3 IOL_7A
+set_io --warn-no-port ch4 D1 #3 IOL_10A
+set_io --warn-no-port ch5 E2 #3 IOL_13A
+set_io --warn-no-port ch6 E1 #3 IOL_10B
+set_io --warn-no-port ch7 G2 #3 IOL_26A
+set_io --warn-no-port PIN_11 H1 #2 IOB_54
+set_io --warn-no-port PIN_12 J1 #2 IOB_55
+set_io --warn-no-port PIN_13 H2 #3 IOL_26B
+
+# Right side of board
+set_io --warn-no-port A H9 #1 IOR_111
+set_io --warn-no-port B D9 #1 IOR_119
+set_io --warn-no-port clk_out D8 #1 IOR_141_GBIN2
+set_io --warn-no-port data[0] C9 #1 IOR_148
+set_io --warn-no-port data[1] A9 #1 IOR_116
+set_io --warn-no-port data[2] B8 #0 IOT_170
+set_io --warn-no-port data[3] A8 #0 IOT_174
+set_io --warn-no-port D1 B7 #0 IOT_180
+set_io --warn-no-port D2 A7 #0 IOT_177
+set_io --warn-no-port D3 B6 #0 IOT_183
+set_io --warn-no-port D4 A6 #0 IOT_185
+
+# SPI flash interface on bottom of board
+set_io --warn-no-port SPI_SS F7  #IOB_108_SS
+set_io --warn-no-port SPI_SCK G7 #IOB_107_SCK
+set_io --warn-no-port SPI_IO0 G6 #IOB_105_SDO
+set_io --warn-no-port SPI_IO1 H7 #IOB_106_SDI
+set_io --warn-no-port SPI_IO2 H4 #2 IOB_82_GBIN4
+set_io --warn-no-port SPI_IO3 J8 #1 IOR_109
+
+# General purpose pins on bottom of board
+set_io --warn-no-port PIN_25 G1 #3 IOL_24B
+set_io --warn-no-port PIN_26 J3 #2 IOB_57
+set_io --warn-no-port PIN_27 J4 #2 IOB_70
+set_io --warn-no-port PIN_28 G9 #1 IOR112
+set_io --warn-no-port PIN_29 J9 #1 IOR_110
+set_io --warn-no-port PIN_30 E8 #1 IOR_140_GBIN3
+set_io --warn-no-port PIN_31 J2 #2 IOB_56
+
+# LED
+set_io --warn-no-port leds[0] B3 #0 IOT_218
+
+# USB
+set_io --warn-no-port USBP B4  #0 IOT_211
+set_io --warn-no-port USBN A4  #0 IOT_208
+set_io --warn-no-port USBPU A3 #0 IOT_217
+
+# 16MHz clock
+set_io --warn-no-port clk B2 #3 IOL_2B
