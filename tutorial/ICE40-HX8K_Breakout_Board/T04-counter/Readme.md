@@ -35,4 +35,4 @@ The module can be verified using `yosys-smtbmc`.
 $ make formal
 ```
 
-You may need some dependencies, perhaps a solver like Z3 or yices. Some help installation snippets can be found on the (SymbiYosys getting started page](https://symbiyosys.readthedocs.io/en/latest/quickstart.html), SymbiYosys is not required though.
+You may need some dependencies, perhaps a solver like Z3 or yices. Some helpful installation snippets can be found on the (SymbiYosys getting started page](https://symbiyosys.readthedocs.io/en/latest/quickstart.html), SymbiYosys is not required though.

@@ -1,0 +1,2 @@
+set_io clk_out B5
+set_io clk_in  J3
