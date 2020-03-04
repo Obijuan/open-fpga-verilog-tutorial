@@ -1,0 +1,4 @@
+set_io data[0] B5
+set_io data[1] B4
+set_io data[2] A2
+set_io data[3] A1

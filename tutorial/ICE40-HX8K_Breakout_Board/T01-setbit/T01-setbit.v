@@ -30,14 +30,14 @@ module setbit(
   output LED8
 );
 
-wire LED1;
-wire LED2;
-wire LED3;
-wire LED4;
-wire LED5;
-wire LED6;
-wire LED7;
-wire LED8;
+  wire LED1;
+  wire LED2;
+  wire LED3;
+  wire LED4;
+  wire LED5;
+  wire LED6;
+  wire LED7;
+  wire LED8;
 
 	//-- Implementacion: el pin deseado esta cableado a '1'
   //                   los demas estan cableados a '0'
