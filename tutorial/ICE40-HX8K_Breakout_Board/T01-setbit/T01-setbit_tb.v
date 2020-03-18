@@ -26,25 +26,25 @@ setbit SB1 (
 //-- Comenzamos las pruebas
 initial begin
 
-	//-- Definir el fichero donde volvar los datos
+  //-- Definir el fichero donde volvar los datos
   //-- para ver graficamente la salida
-	$dumpfile("T01-setbit_tb.vcd");
+  $dumpfile("T01-setbit_tb.vcd");
 
-	//-- Volcar todos los datos a ese fichero
-	$dumpvars(0, setbit_tb);
+  //-- Volcar todos los datos a ese fichero
+  $dumpvars(0, setbit_tb);
 
-	//-- Pasadas 10 unidades de tiempo comprobamos
+  //-- Pasadas 10 unidades de tiempo comprobamos
   //-- si el cable esta a 1
   //-- En caso de no estar a 1, se informa del problema, pero la
   //-- simulacion no se detiene
   # 10 if (LED1 != 1)
-         $display("---->¡ERROR! Salida no esta a 1");
-			 else
-			   $display("Componente ok!");
+    $display("---->¡ERROR! Salida no esta a 1");
+  else
+    $display("Componente ok!");
 
   //-- Terminar la simulacion 10 unidades de tiempo
   //-- despues
-	# 10 $finish;
+  # 10 $finish;
 end
 
 

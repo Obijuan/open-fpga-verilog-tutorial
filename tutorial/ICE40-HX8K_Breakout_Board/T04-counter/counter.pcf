@@ -1,0 +1,5 @@
+set_io data[0]  C5  # LED5
+set_io data[1]  C4  # LED6
+set_io data[2]  B3  # LED7
+set_io data[3]  C3  # LED8
+set_io clk      J3
