@@ -4,3 +4,5 @@
 *.bin
 *.blif
 *.txt
+*.asc
+*.json
