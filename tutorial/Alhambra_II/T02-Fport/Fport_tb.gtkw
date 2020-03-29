@@ -1,0 +1,20 @@
+[*]
+[*] GTKWave Analyzer v3.3.64 (w)1999-2014 BSI
+[*] Fri Aug  7 09:59:17 2015
+[*]
+[dumpfile] "/home/obijuan/development/mytests/verilog/tutorial/02-Fport/Fport_tb.vcd"
+[dumpfile_mtime] "Fri Aug  7 09:58:50 2015"
+[dumpfile_size] 285
+[savefile] "/home/obijuan/development/mytests/verilog/tutorial/02-Fport/Fport_tb.gtkw"
+[timestart] 0
+[size] 1197 600
+[pos] -1 -1
+*-2.667667 3 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 223
+[signals_width] 161
+[sst_expanded] 1
+[sst_vpaned_height] 160
+@29
+Fport_tb.DATA[3:0]
+[pattern_trace] 1
+[pattern_trace] 0
