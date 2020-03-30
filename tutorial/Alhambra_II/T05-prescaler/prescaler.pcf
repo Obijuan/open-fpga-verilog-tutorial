@@ -1,0 +1,2 @@
+set_io clk_out 45 #LED0
+set_io clk_in  49 #CLK input pin
