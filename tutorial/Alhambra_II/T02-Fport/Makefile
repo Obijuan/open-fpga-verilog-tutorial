@@ -57,6 +57,7 @@ $(NAME).bin: $(NAME).pcf $(NAME).v
 
 	#-- Generar binario final, listo para descargar en fgpa
 	#icepack $(NAME).txt $(NAME).bin
+	
 	icepack $(NAME).asc $(NAME).bin
 
 	#------------------------------
