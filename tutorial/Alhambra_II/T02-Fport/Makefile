@@ -58,7 +58,7 @@ $(NAME).bin: $(NAME).pcf $(NAME).v
 	#-- Generar binario final, listo para descargar en fgpa
 	#icepack $(NAME).txt $(NAME).bin
 	icepack $(NAME).asc $(NAME).bin
-	
+
 	#------------------------------
 	#-- Upload the bitsream to board
 	#------------------------------
@@ -67,6 +67,6 @@ flash:
 
 #-- Limpiar todo
 clean:
-	rm -f *.bin *.txt *.blif *.out *.vcd *~
+	rm -f *.bin *.asc *.json *.out *.vcd *~
 
 .PHONY: all clean

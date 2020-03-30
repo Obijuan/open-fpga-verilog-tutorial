@@ -63,6 +63,6 @@ flash:
 
 #-- Limpiar todo
 clean:
-	rm -f *.bin *.txt *.blif *.out *.vcd *~
+	rm -f *.bin *.asc *.json *.out *.vcd *~
 
 .PHONY: all clean
