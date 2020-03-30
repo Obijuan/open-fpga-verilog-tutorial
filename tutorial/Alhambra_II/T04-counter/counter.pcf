@@ -1,0 +1,5 @@
+set_io data[25] 42 #LED3
+set_io data[24] 43 #LED2
+set_io data[23] 44 #LED1
+set_io data[22] 45 #LED0
+set_io clk 49 #CLK input pin
