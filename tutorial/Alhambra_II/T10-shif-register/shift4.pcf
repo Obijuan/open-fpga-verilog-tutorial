@@ -1,0 +1,5 @@
+set_io data[3] 42
+set_io data[2] 43
+set_io data[1] 44
+set_io data[0] 45
+set_io clk  49 #CLK input pin

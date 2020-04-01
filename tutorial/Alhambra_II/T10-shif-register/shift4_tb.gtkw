@@ -1,0 +1,24 @@
+[*]
+[*] GTKWave Analyzer v3.3.64 (w)1999-2014 BSI
+[*] Wed Aug 19 17:16:04 2015
+[*]
+[dumpfile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T10-shif-register/shift4_tb.vcd"
+[dumpfile_mtime] "Wed Aug 19 17:15:12 2015"
+[dumpfile_size] 990
+[savefile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T10-shif-register/shift4_tb.gtkw"
+[timestart] 0
+[size] 874 600
+[pos] 0 27
+*-3.359648 23 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] shift4_tb.
+[sst_width] 223
+[signals_width] 135
+[sst_expanded] 1
+[sst_vpaned_height] 160
+@28
+shift4_tb.clk
+shift4_tb.data[3:0]
+@29
+shift4_tb.C1.shift
+[pattern_trace] 1
+[pattern_trace] 0
