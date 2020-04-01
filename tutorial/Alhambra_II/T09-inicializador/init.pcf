@@ -1,0 +1,2 @@
+set_io ini  45
+set_io clk  49 #CLK input pin
