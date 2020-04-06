@@ -1,0 +1,24 @@
+[*]
+[*] GTKWave Analyzer v3.3.64 (w)1999-2014 BSI
+[*] Sat Aug 22 16:48:25 2015
+[*]
+[dumpfile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T14-regreset/regreset_tb.vcd"
+[dumpfile_mtime] "Sat Aug 22 16:47:16 2015"
+[dumpfile_size] 1380
+[savefile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T14-regreset/regreset.gtkw"
+[timestart] 0
+[size] 1000 600
+[pos] -1 -1
+*-3.229546 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] regreset_tb.
+[sst_width] 223
+[signals_width] 102
+[sst_expanded] 1
+[sst_vpaned_height] 160
+@28
+regreset_tb.clk
+regreset_tb.dut.clk_pres
+@29
+regreset_tb.data[3:0]
+[pattern_trace] 1
+[pattern_trace] 0
