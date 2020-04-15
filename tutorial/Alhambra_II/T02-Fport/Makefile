@@ -57,12 +57,12 @@ $(NAME).bin: $(NAME).pcf $(NAME).v
 
 	#-- Generar binario final, listo para descargar en fgpa
 	#icepack $(NAME).txt $(NAME).bin
-	
+
 	icepack $(NAME).asc $(NAME).bin
 
-	#------------------------------
-	#-- Upload the bitsream to board
-	#------------------------------
+#------------------------------
+#-- Upload the bitsream to board
+#------------------------------
 flash:
 	iceprog -d i:0x0403:0x6010:0 $(NAME).bin
 
