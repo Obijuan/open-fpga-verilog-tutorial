@@ -1,15 +1,10 @@
 # README
 
-Tutorial ports to [Alhambra II board](https://alhambrabits.com/alhambra/). Now using [nextpnr](https://github.com/YosysHQ/nextpnr) instead of `arachne`. This is the list of the updated tutorials:
-
-  - [x] T01-setbit
-  - [x] T02-Fport
-
-:warning: The rest of the tutorials could damage your board, as the pinout is still not updated!
+Tutorial ports to [Alhambra II board](https://alhambrabits.com/alhambra/). Now using [nextpnr](https://github.com/YosysHQ/nextpnr) instead of `arachne`.
 
 ## Requisites
 
-Apart from the tools described in the tutorials, you need to install nextpnr. Steps:
+Apart from the tools described in the tutorials, you need to install `nextpnr`. Steps:
 
 Install the dependencies:
 
