@@ -1,0 +1,25 @@
+[*]
+[*] GTKWave Analyzer v3.3.64 (w)1999-2014 BSI
+[*] Tue Aug 25 20:19:26 2015
+[*]
+[dumpfile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T17-tones/tones_tb.vcd"
+[dumpfile_mtime] "Tue Aug 25 20:19:01 2015"
+[dumpfile_size] 1940
+[savefile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T17-tones/tones_tb.gtkw"
+[timestart] 0
+[size] 1000 600
+[pos] -1 -1
+*-2.933561 30 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 223
+[signals_width] 177
+[sst_expanded] 1
+[sst_vpaned_height] 160
+@28
+tones_tb.clk
+tones_tb.ch0
+tones_tb.ch1
+tones_tb.ch2
+@29
+tones_tb.ch3
+[pattern_trace] 1
+[pattern_trace] 0

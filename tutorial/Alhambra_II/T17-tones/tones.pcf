@@ -1,0 +1,5 @@
+set_io ch3  3 #D3
+set_io ch2  4 #D2
+set_io ch1  1 #D1
+set_io ch0  2 #D0
+set_io clk  49 #CLK IN
