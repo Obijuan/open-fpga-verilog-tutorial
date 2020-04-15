@@ -1,0 +1,6 @@
+set_io tx   61
+set_io rx   62
+set_io rts  60
+set_io dtr  52
+set_io D2   38
+set_io D1   37
