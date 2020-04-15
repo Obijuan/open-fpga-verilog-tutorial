@@ -1,0 +1,40 @@
+[*]
+[*] GTKWave Analyzer v3.3.64 (w)1999-2014 BSI
+[*] Wed Sep 30 06:17:30 2015
+[*]
+[dumpfile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T24-uart-tx/scicad1_tb.vcd"
+[dumpfile_mtime] "Wed Sep 30 06:16:52 2015"
+[dumpfile_size] 834037
+[savefile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T24-uart-tx/scicad1_tb.gtkw"
+[timestart] 0
+[size] 1296 608
+[pos] 125 -329
+*-11.640796 26419 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] scicad1_tb.
+[treeopen] scicad1_tb.dut.
+[sst_width] 223
+[signals_width] 224
+[sst_expanded] 1
+[sst_vpaned_height] 167
+@28
+scicad1_tb.clk
+scicad1_tb.dut.rstn
+scicad1_tb.dut.TX0.clk_baud
+scicad1_tb.dtr
+scicad1_tb.dut.transmit
+scicad1_tb.tx
+scicad1_tb.dut.ready
+scicad1_tb.dut.start
+scicad1_tb.dut.ready
+scicad1_tb.dut.TX0.start_r
+scicad1_tb.dut.cena
+@22
+scicad1_tb.dut.car_count[2:0]
+scicad1_tb.dut.state[1:0]
+@820
+scicad1_tb.dut.data[7:0]
+scicad1_tb.dut.TX0.data_r[7:0]
+@29
+scicad1_tb.dut.transmit
+[pattern_trace] 1
+[pattern_trace] 0
