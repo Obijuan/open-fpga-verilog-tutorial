@@ -1,5 +1,5 @@
-set_io D1 45 #LED0
-set_io D2 44 #LED1
-set_io D3 43 #LED2
-set_io D4 42 #LED3
+set_io D1 37 #LED7
+set_io D2 38 #LED6
+set_io D3 39 #LED5
+set_io D4 41 #LED4
 set_io clk_in 49 #CLK input pin
