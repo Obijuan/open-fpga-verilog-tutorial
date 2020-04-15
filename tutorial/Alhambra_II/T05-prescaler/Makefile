@@ -53,16 +53,14 @@ $(NAME).bin: $(NAME).pcf $(NAME).v
 
 	#-- Place & route
 #	arachne-pnr -d 1k -p $(NAME).pcf $(NAME).blif -o $(NAME).txt
-
 	nextpnr-ice40 --hx8k --package tq144:4k --json $(NAME).json --pcf $(NAME).pcf --asc $(NAME).asc
-
 
 	#-- Generar binario final, listo para descargar en fgpa
 	icepack $(NAME).asc $(NAME).bin
 
-	#------------------------------
-	#-- Upload the bitsream to board
-	#------------------------------
+#------------------------------
+#-- Upload the bitsream to board
+#------------------------------
 flash:
 	iceprog -d i:0x0403:0x6010:0 $(NAME).bin
 
