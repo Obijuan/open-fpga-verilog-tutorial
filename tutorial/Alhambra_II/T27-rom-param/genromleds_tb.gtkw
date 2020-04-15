@@ -1,0 +1,24 @@
+[*]
+[*] GTKWave Analyzer v3.3.64 (w)1999-2014 BSI
+[*] Sun Oct 18 18:49:52 2015
+[*]
+[dumpfile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T27-rom-param/genromleds_tb.vcd"
+[dumpfile_mtime] "Sun Oct 18 18:49:41 2015"
+[dumpfile_size] 3896
+[savefile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T27-rom-param/genromleds_tb.gtkw"
+[timestart] 0
+[size] 1000 600
+[pos] -1 -1
+*-5.468258 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] genromleds_tb.
+[treeopen] genromleds_tb.dut.
+[sst_width] 223
+[signals_width] 102
+[sst_expanded] 1
+[sst_vpaned_height] 160
+@28
+genromleds_tb.clk
+@23
+genromleds_tb.leds[4:0]
+[pattern_trace] 1
+[pattern_trace] 0
