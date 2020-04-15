@@ -1,0 +1,41 @@
+[*]
+[*] GTKWave Analyzer v3.3.64 (w)1999-2014 BSI
+[*] Mon Nov 16 15:04:56 2015
+[*]
+[dumpfile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T30-microbio/microbio_tb.vcd"
+[dumpfile_mtime] "Mon Nov 16 14:59:55 2015"
+[dumpfile_size] 3912
+[savefile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T30-microbio/microbio_tb.gtkw"
+[timestart] 0
+[size] 1126 531
+[pos] -556 -1
+*-2.425097 18 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] microbio_tb.
+[sst_width] 223
+[signals_width] 151
+[sst_expanded] 1
+[sst_vpaned_height] 136
+@28
+microbio_tb.clk
+microbio_tb.dut.clk_tic
+microbio_tb.rstn
+@22
+microbio_tb.dut.addr[5:0]
+microbio_tb.dut.data[7:0]
+microbio_tb.dut.cp[5:0]
+microbio_tb.dut.state[1:0]
+microbio_tb.dut.ri[7:0]
+microbio_tb.dut.CO[1:0]
+microbio_tb.dut.DAT[5:0]
+microbio_tb.leds[3:0]
+@200
+-
+-Microordenes
+@28
+microbio_tb.dut.cp_inc
+microbio_tb.dut.cp_load
+microbio_tb.dut.ri_load
+microbio_tb.dut.leds_load
+microbio_tb.dut.halt
+[pattern_trace] 1
+[pattern_trace] 0

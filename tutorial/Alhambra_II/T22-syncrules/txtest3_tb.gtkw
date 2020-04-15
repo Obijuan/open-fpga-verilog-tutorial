@@ -1,0 +1,24 @@
+[*]
+[*] GTKWave Analyzer v3.3.64 (w)1999-2014 BSI
+[*] Tue Sep 22 14:02:39 2015
+[*]
+[dumpfile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T22-syncrules/txtest3_tb.vcd"
+[dumpfile_mtime] "Tue Sep 22 14:01:39 2015"
+[dumpfile_size] 510552
+[savefile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T22-syncrules/txtest3_tb.gtkw"
+[timestart] 0
+[size] 1038 316
+[pos] 45 0
+*-12.792563 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] txtest3_tb.
+[sst_width] 223
+[signals_width] 118
+[sst_expanded] 1
+[sst_vpaned_height] 60
+@28
+txtest3_tb.tx
+txtest3_tb.dut.clk_baud
+@29
+txtest3_tb.dut.load
+[pattern_trace] 1
+[pattern_trace] 0

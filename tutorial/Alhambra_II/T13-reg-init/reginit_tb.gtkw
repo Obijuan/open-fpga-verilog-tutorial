@@ -1,0 +1,24 @@
+[*]
+[*] GTKWave Analyzer v3.3.64 (w)1999-2014 BSI
+[*] Fri Aug 21 18:19:48 2015
+[*]
+[dumpfile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T13-reg-init/reginit_tb.vcd"
+[dumpfile_mtime] "Fri Aug 21 18:16:38 2015"
+[dumpfile_size] 1181
+[savefile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T13-reg-init/reginit_tb.gtkw"
+[timestart] 0
+[size] 1000 600
+[pos] -126 -61
+*-3.229546 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] reginit_tb.
+[sst_width] 223
+[signals_width] 102
+[sst_expanded] 1
+[sst_vpaned_height] 160
+@28
+reginit_tb.clk
+reginit_tb.dut.clk_pres
+@29
+reginit_tb.dut.data[3:0]
+[pattern_trace] 1
+[pattern_trace] 0

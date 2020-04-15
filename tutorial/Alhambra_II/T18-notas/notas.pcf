@@ -1,0 +1,9 @@
+set_io ch7  9
+set_io ch6  10
+set_io ch5  7
+set_io ch4  8
+set_io ch3  3
+set_io ch2  4
+set_io ch1  1
+set_io ch0  2
+set_io clk  49

@@ -1,0 +1,4 @@
+set_io data[0] 37 #LED 0
+set_io data[1] 38 #LED 1
+set_io data[2] 39 #LED 2
+set_io data[3] 41 #LED 3

@@ -1,0 +1,8 @@
+set_io rx2  2 #D1
+set_io tx2  1 #D0
+set_io tx   61
+set_io rx   62
+set_io rts  60
+set_io dtr  52
+set_io D2   38 #LED6
+set_io D1   37 #LED7

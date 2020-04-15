@@ -1,0 +1,25 @@
+[*]
+[*] GTKWave Analyzer v3.3.64 (w)1999-2014 BSI
+[*] Tue Aug 25 16:06:36 2015
+[*]
+[dumpfile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T16-countsec/countsec_tb.vcd"
+[dumpfile_mtime] "Tue Aug 25 16:05:38 2015"
+[dumpfile_size] 1971
+[savefile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T16-countsec/countsec_tb.gtkw"
+[timestart] 0
+[size] 1000 600
+[pos] 329 0
+*-3.030605 100 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] countsec_tb.
+[sst_width] 223
+[signals_width] 121
+[sst_expanded] 1
+[sst_vpaned_height] 160
+@28
+countsec_tb.clk
+@29
+countsec_tb.dut.clk_1HZ
+@22
+countsec_tb.data[3:0]
+[pattern_trace] 1
+[pattern_trace] 0

@@ -1,0 +1,25 @@
+[*]
+[*] GTKWave Analyzer v3.3.64 (w)1999-2014 BSI
+[*] Fri Sep 25 18:43:54 2015
+[*]
+[dumpfile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T23-fsmtx/fsmtx2_tb.vcd"
+[dumpfile_mtime] "Fri Sep 25 18:43:42 2015"
+[dumpfile_size] 187672
+[savefile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T23-fsmtx/fsmtx2_tb.gtkw"
+[timestart] 0
+[size] 1000 600
+[pos] 55 0
+*-11.484003 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] fsmtx2_tb.
+[treeopen] fsmtx2_tb.dut.
+[sst_width] 223
+[signals_width] 158
+[sst_expanded] 1
+[sst_vpaned_height] 160
+@28
+fsmtx2_tb.clk
+fsmtx2_tb.tx
+fsmtx2_tb.dut.clk_baud
+fsmtx2_tb.dut.start
+[pattern_trace] 1
+[pattern_trace] 0

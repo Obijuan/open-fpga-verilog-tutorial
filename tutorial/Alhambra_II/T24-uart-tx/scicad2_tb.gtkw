@@ -1,0 +1,27 @@
+[*]
+[*] GTKWave Analyzer v3.3.64 (w)1999-2014 BSI
+[*] Wed Sep 30 06:27:01 2015
+[*]
+[dumpfile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T24-uart-tx/scicad2_tb.vcd"
+[dumpfile_mtime] "Wed Sep 30 06:26:48 2015"
+[dumpfile_size] 1154313
+[savefile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T24-uart-tx/scicad2_tb.gtkw"
+[timestart] 0
+[size] 1000 600
+[pos] 291 0
+*-13.810537 20970 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] scicad2_tb.
+[treeopen] scicad2_tb.dut.
+[sst_width] 223
+[signals_width] 102
+[sst_expanded] 1
+[sst_vpaned_height] 160
+@28
+scicad2_tb.tx
+scicad2_tb.dut.TX0.clk_baud
+@820
+scicad2_tb.dut.data[7:0]
+@29
+scicad2_tb.dut.transmit
+[pattern_trace] 1
+[pattern_trace] 0

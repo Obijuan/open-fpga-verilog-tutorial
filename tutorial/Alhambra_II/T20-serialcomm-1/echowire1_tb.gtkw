@@ -1,0 +1,30 @@
+[*]
+[*] GTKWave Analyzer v3.3.64 (w)1999-2014 BSI
+[*] Wed Sep  9 16:01:55 2015
+[*]
+[dumpfile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T20-serialcomm-1/echowire1_tb.vcd"
+[dumpfile_mtime] "Wed Sep  9 16:00:30 2015"
+[dumpfile_size] 4691
+[savefile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T20-serialcomm-1/echowire1_tb.gtkw"
+[timestart] 75
+[size] 1000 600
+[pos] -1 -1
+*-3.926402 119 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 223
+[signals_width] 147
+[sst_expanded] 1
+[sst_vpaned_height] 160
+@28
+[color] 5
+echowire1_tb.dtr
+[color] 5
+echowire1_tb.led1
+echowire1_tb.rts
+echowire1_tb.led2
+[color] 3
+echowire1_tb.rx
+@29
+[color] 3
+echowire1_tb.tx
+[pattern_trace] 1
+[pattern_trace] 0

@@ -1,0 +1,22 @@
+[*]
+[*] GTKWave Analyzer v3.3.64 (w)1999-2014 BSI
+[*] Fri Aug 14 16:26:58 2015
+[*]
+[dumpfile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T05-prescaler/prescaler_tb.vcd"
+[dumpfile_mtime] "Fri Aug 14 16:25:17 2015"
+[dumpfile_size] 3726
+[savefile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T05-prescaler/prescaler.gtkw"
+[timestart] 0
+[size] 1000 600
+[pos] -1 -1
+*-3.919206 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 223
+[signals_width] 86
+[sst_expanded] 1
+[sst_vpaned_height] 160
+@28
+prescaler_tb.clk
+@29
+prescaler_tb.clk_out
+[pattern_trace] 1
+[pattern_trace] 0

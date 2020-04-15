@@ -1,0 +1,20 @@
+[*]
+[*] GTKWave Analyzer v3.3.64 (w)1999-2014 BSI
+[*] Fri Aug  7 05:20:20 2015
+[*]
+[dumpfile] "/home/obijuan/development/mytests/verilog/tutorial/01-bits-on-off/setbit_tb.vcd"
+[dumpfile_mtime] "Fri Aug  7 05:19:17 2015"
+[dumpfile_size] 255
+[savefile] "/home/obijuan/development/mytests/verilog/tutorial/01-bits-on-off/setbit.gtkw"
+[timestart] 0
+[size] 1301 744
+[pos] -302 -117
+*-2.667667 1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 223
+[signals_width] 78
+[sst_expanded] 1
+[sst_vpaned_height] 211
+@28
+setbit_tb.A
+[pattern_trace] 1
+[pattern_trace] 0

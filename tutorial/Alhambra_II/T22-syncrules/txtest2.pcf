@@ -1,0 +1,3 @@
+set_io load 52
+set_io tx   61
+set_io clk  49

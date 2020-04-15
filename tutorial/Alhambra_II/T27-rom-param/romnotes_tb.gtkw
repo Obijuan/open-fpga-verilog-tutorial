@@ -1,0 +1,25 @@
+[*]
+[*] GTKWave Analyzer v3.3.64 (w)1999-2014 BSI
+[*] Wed Oct 21 07:01:09 2015
+[*]
+[dumpfile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T27-rom-param/romnotes_tb.vcd"
+[dumpfile_mtime] "Wed Oct 21 07:00:07 2015"
+[dumpfile_size] 6508
+[savefile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T27-rom-param/romnotes_tb.gtkw"
+[timestart] 28
+[size] 1018 316
+[pos] -856 -429
+*-4.421464 97 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] romnotes_tb.
+[sst_width] 223
+[signals_width] 102
+[sst_expanded] 1
+[sst_vpaned_height] 60
+@29
+romnotes_tb.clk
+@28
+romnotes_tb.ch_out
+@22
+romnotes_tb.dut.leds[4:0]
+[pattern_trace] 1
+[pattern_trace] 0

@@ -1,0 +1,19 @@
+//-- Fichero rom2.list
+//-- Secuencia para sacar por los leds
+//-- Tamano: 16x4
+0
+1
+2
+4
+8
+1
+3
+6
+C
+9
+3
+7
+E
+D
+B
+F

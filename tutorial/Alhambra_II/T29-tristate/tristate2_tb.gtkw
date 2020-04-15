@@ -1,0 +1,24 @@
+[*]
+[*] GTKWave Analyzer v3.3.64 (w)1999-2014 BSI
+[*] Wed Nov 11 08:13:25 2015
+[*]
+[dumpfile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T29-tristate/tristate2_tb.vcd"
+[dumpfile_mtime] "Wed Nov 11 08:12:16 2015"
+[dumpfile_size] 2149
+[savefile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T29-tristate/tristate2_tb.gtkw"
+[timestart] 1
+[size] 875 316
+[pos] -855 -429
+*-4.933561 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] tristate2_tb.
+[sst_width] 223
+[signals_width] 182
+[sst_expanded] 1
+[sst_vpaned_height] 60
+@28
+tristate2_tb.clk
+tristate2_tb.led0
+@29
+tristate2_tb.dut.sreg[3:0]
+[pattern_trace] 1
+[pattern_trace] 0

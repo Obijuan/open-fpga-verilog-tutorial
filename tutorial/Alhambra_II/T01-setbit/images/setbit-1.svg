@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 744.09448819 1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="setbit-1.svg"
+   inkscape:export-filename="/home/dstanford/workspace/git/open-fpga-verilog-tutorial/tutorial/ICESTICK/T01-setbit/images/setbit-1.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4222978"
+     inkscape:cx="-60.566842"
+     inkscape:cy="872.42703"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:snap-center="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1176"
+     inkscape:window-x="0"
+     inkscape:window-y="1224"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#ffffff;stroke:none;stroke-opacity:1"
+       id="rect4164"
+       width="154.67929"
+       height="162.41325"
+       x="63.980976"
+       y="73.664192" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="141.55367"
+       y="107.05196"
+       id="text3336"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3338"
+         x="141.55367"
+         y="107.05196"
+         style="text-align:center;text-anchor:middle">Componente</tspan><tspan
+         sodipodi:role="line"
+         x="141.55367"
+         y="125.80196"
+         id="tspan4162">setbit</tspan></text>
+    <rect
+       id="rect3340"
+       width="116.15859"
+       height="128.29457"
+       x="84.951813"
+       y="90.152939"
+       style="stroke:#000000;stroke-opacity:1;fill:none" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="187.01917"
+       y="159.14128"
+       id="text4136"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4138"
+         x="187.01917"
+         y="159.14128"
+         style="font-size:15px">A</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 131.21162,169.36555 66.03183,0"
+       id="path4140"
+       inkscape:connector-curvature="0" />
+    <circle
+       style="fill:#ffffff;stroke:#000000;stroke-opacity:1"
+       id="path4142"
+       cx="201.07755"
+       cy="169.36554"
+       r="4.2601175" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="107.35203"
+       y="172.9657"
+       id="text4136-7"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4138-0"
+         x="107.35203"
+         y="172.9657"
+         style="font-size:15px">&quot;1&quot;</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="142.00172"
+       y="197.71136"
+       id="text3336-3"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3338-6"
+         x="142.00172"
+         y="197.71136"
+         style="text-align:center;text-anchor:middle">Component</tspan><tspan
+         sodipodi:role="line"
+         x="142.00172"
+         y="216.46136"
+         id="tspan4162-7">setbit</tspan></text>
+  </g>
+</svg>

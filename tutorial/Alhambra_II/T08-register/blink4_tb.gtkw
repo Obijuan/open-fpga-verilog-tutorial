@@ -1,0 +1,22 @@
+[*]
+[*] GTKWave Analyzer v3.3.64 (w)1999-2014 BSI
+[*] Tue Aug 18 06:45:19 2015
+[*]
+[dumpfile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T08-register/blink4_tb.vcd"
+[dumpfile_mtime] "Tue Aug 18 06:44:21 2015"
+[dumpfile_size] 1836
+[savefile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T08-register/blink4_tb.gtkw"
+[timestart] 0
+[size] 1000 600
+[pos] -1 -1
+*-4.933561 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 223
+[signals_width] 102
+[sst_expanded] 1
+[sst_vpaned_height] 160
+@28
+blink4_tb.clk
+@23
+blink4_tb.data[3:0]
+[pattern_trace] 1
+[pattern_trace] 0
