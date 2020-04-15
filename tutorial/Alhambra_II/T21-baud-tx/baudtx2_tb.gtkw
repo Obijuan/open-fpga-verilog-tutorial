@@ -1,0 +1,23 @@
+[*]
+[*] GTKWave Analyzer v3.3.64 (w)1999-2014 BSI
+[*] Mon Sep 14 06:06:25 2015
+[*]
+[dumpfile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T21-baud-tx/baudtx2_tb.vcd"
+[dumpfile_mtime] "Mon Sep 14 06:05:54 2015"
+[dumpfile_size] 516733
+[savefile] "/home/obijuan/development/open-fpga-verilog-tutorial/tutorial/T21-baud-tx/baudtx2_tb.gtkw"
+[timestart] 0
+[size] 1520 600
+[pos] 63 0
+*-11.000000 9210 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] baudtx2_tb.
+[sst_width] 223
+[signals_width] 162
+[sst_expanded] 1
+[sst_vpaned_height] 160
+@28
+baudtx2_tb.dut.clk_baud
+baudtx2_tb.dtr
+baudtx2_tb.tx
+[pattern_trace] 1
+[pattern_trace] 0
